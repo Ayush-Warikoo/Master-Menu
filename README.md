@@ -6,9 +6,8 @@
 
 # Table of Contents
 - [Description](#description)
-- [Installation and Deployment](installation-and-deployment)
-- [Features](features)
-- [Demo](demo)
+- [Installation and Deployment](#installation-and-deployment)
+- [Demo](#demo)
 
 <a name="description"></a>
 ## Description 
@@ -52,14 +51,14 @@ firebase deploy
 
 <a name="demo"></a>
 ## Demo 
-![](Demo.gif) <br/><br/>
+![](Demo.gif) <br/>
 
-
-#### Payments are recorded using Stripe 
+#### Sample payments recorded using Stripe 
+![](stripe.jpg)
 
 
 #### Menu item information is stored in Cloud Firestore after payment is processed and then retrieved for page listed with all previous orders 
-
+![](firestore.jpg)
 
 
 
