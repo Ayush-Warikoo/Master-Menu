@@ -29,13 +29,15 @@ function Payment() {
             const response = await axios({
                 method: 'post',
                 // Stripe expects the total in a currencies subunits
-                url: `/payments/create?total=${getBasketTotal(basket) * 100}`
+                url: `/payments/create?total=${getBasketTotal(basket)}`
             });
             //Get the secret back from stripe, which allows us to charge the right amount 
             setClientSecret(response.data.clientSecret)
         }
-
-        getClientSecret();
+        if(user && getBasketTotal(basket) > 0)
+        {
+            getClientSecret();
+        }
     }, [basket])
 
     //console.log('The secret is', clientSecret);
@@ -146,7 +148,8 @@ function Payment() {
                                         <h3>Order Total: {value}</h3>
                                     )}
                                     decimalScale={2}
-                                    value={getBasketTotal(basket)}
+                                    fixedDecimalScale={true}
+                                    value={getBasketTotal(basket)/100}
                                     displayType={"text"}
                                     thousandSeparator={true}
                                     prefix={"$"}

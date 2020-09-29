@@ -10,7 +10,6 @@ function Subtotal() {
     const history = useHistory();
 
     const [{basket}, dispatch] = useStateValue();
-    //console.log(getBasketTotal(basket));
 
     return <div className="subtotal">
         <CurrencyFormat
@@ -19,9 +18,9 @@ function Subtotal() {
                     Subtotal ({basket.length} items): <strong>{value} </strong>
                 </p>
             )}
-
+            value={getBasketTotal(basket)/100} 
             decimalScale={2}
-            value={getBasketTotal(basket)} 
+            fixedDecimalScale={true}
             displayType={"text"}
             thousandSeparator={true}
             prefix={"$"}
