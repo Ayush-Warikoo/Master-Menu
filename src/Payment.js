@@ -42,9 +42,16 @@ function Payment() {
 
 
     const handleSubmit = async event => {
+        //console.log(basket);
 
         event.preventDefault(); //stops refreshing
         setProcessing(true); //Block you from hitting the button again after its already processing 
+
+        if(!user)
+        {
+            history.replace('/login');
+            return;
+        }
 
         //Confirms client secret 
         const payload = await stripe.confirmCardPayment(clientSecret, {
@@ -67,15 +74,15 @@ function Payment() {
               })
             
             setSucceeded(true);
-            setError(null)
-            setProcessing(false)
+            setError(null);
+            setProcessing(false);
 
             dispatch({
                 type: 'EMPTY_BASKET'
             })
 
             //Push them to orders page to not create a loop 
-            history.replace('/orders')
+            history.replace('/orders');
         })
 
 
