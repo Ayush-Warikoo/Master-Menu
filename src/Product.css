@@ -21,7 +21,7 @@
   
   .product > button {
     float:left;
-    background: #f0c14b;
+    background: #ffc534;
     border: 1px solid;
     margin-top: 10px;
     border-color: #a88734 #9c7e31 #846a29;
@@ -30,7 +30,10 @@
     margin-bottom: 20px;
     height: 40px;
     width: 150px;
+  }
 
+  .product > button:hover {
+    background: #ffb700;
   }
   
   .product__price {

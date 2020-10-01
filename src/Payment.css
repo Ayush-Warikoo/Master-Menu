@@ -39,7 +39,7 @@
 
 
   .payment__details > form > div > button {
-    background: #f0c14b;
+    background: #ffc534;
     border-radius: 2px;
     width: 100%;
     height: 30px;
@@ -48,4 +48,8 @@
     margin-top: 10px;
     border-color: #a88734 #9c7e31 #846a29;
     color: #111;
+  }
+
+  .payment__details > form > div > button:hover {
+    background: #ffb700;
   }

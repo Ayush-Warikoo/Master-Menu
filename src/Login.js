@@ -67,6 +67,11 @@ function Login() {
                 </p>
 
                 <button onClick={register} className='login__registerButton'>Create your Master Menu Account</button>
+                
+                <p>
+                    In order to register an account, enter the email and password you would like to use in their 
+                    respective boxes and click on the button above.
+                </p>
             </div>
             
         </div>
