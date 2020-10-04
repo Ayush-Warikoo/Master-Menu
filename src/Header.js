@@ -21,6 +21,17 @@ function Header() {
         }
     }
 
+    const search = () => {
+        history.push(`/${restaurant}`);
+    }
+
+    const handleKeyPress = key => {
+        if(key === "Enter")
+        {
+            search();
+        }
+    }
+
     return (
         <div className='header'>
             <Link to="/">
@@ -30,7 +41,7 @@ function Header() {
             
             {/*search bar*/}
             <div className="header__search">
-                <input className="header__searchInput" type="text" value={restaurant} onChange={e => setRestaurant(e.target.value)}/>
+                <input className="header__searchInput" type="text" value={restaurant} onChange={e => setRestaurant(e.target.value)} onKeyDown={e => handleKeyPress(e.key)} />
                 <Link to={`/${restaurant}`}>
                     <SearchIcon className="header__searchIcon" />
                 </Link>

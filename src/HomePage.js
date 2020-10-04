@@ -6,8 +6,15 @@ function HomePage() {
     const history = useHistory();
     const [restaurant, setRestaurant] = useState('');
 
-    const search = e => {
+    const search = () => {
         history.push(`/${restaurant}`);
+    }
+
+    const handleKeyPress = key => {
+        if(key === "Enter")
+        {
+            search();
+        }
     }
     
     return (
@@ -16,8 +23,12 @@ function HomePage() {
                 <h1 className="homepage__text"> Begin your food journey here!</h1> 
                 <div className="homepage__form">
                     <input 
-                        className="homepage__searchbar" type="text" placeholder="Enter a restaurant" 
-                        value={restaurant} onChange={e => setRestaurant(e.target.value)}
+                        className="homepage__searchbar" 
+                        type="text" 
+                        placeholder="Enter a restaurant" 
+                        value={restaurant} 
+                        onChange={e => setRestaurant(e.target.value)}
+                        onKeyDown={e => handleKeyPress(e.key)}
                     />
                     <button className="homepage__button" type="button" onClick={search} > Search </button>
                 </div>
