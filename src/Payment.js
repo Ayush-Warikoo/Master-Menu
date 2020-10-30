@@ -86,10 +86,8 @@ function Payment() {
             //Push them to orders page to not create a loop 
             history.replace('/orders');
         })
-
-
-
     }
+    
     const handleChange = event => {
         //Dynamic alerts when customer is typing card details 
         //Listen for changes in card element

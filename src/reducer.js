@@ -1,6 +1,10 @@
 export const initialState = {
+    allergy: [],
+    preference: [],
+    budget: null,
     basket: [],
-    user: null
+    user: null,
+
 };
 
 // Selector
@@ -10,11 +14,19 @@ export const getBasketTotal = (basket) =>
 const reducer = (state, action) => {
   //console.log(action);
   switch (action.type) {
+    case "UPDATE_FILTER":
+      return {
+        ...state, 
+        allergy: action.allergy,
+        preference: action.preference,
+        budget: action.budget
+      }
+      
     case "ADD_TO_BASKET":
         return {
         ...state,
         basket: [...state.basket, action.item],
-    };
+      };
     
     case 'EMPTY_BASKET':
       return {
