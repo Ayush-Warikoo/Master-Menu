@@ -1,7 +1,10 @@
 import React, {useEffect} from 'react'
 import "./Product.css";
 import StarIcon from '@material-ui/icons/Star';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
 import { useStateValue } from "./StateProvider";
+
+
 
 function Product({id, title, image, price, rating, ingredients }) {
     const [{basket, allergy, preference, budget}, dispatch] = useStateValue();
@@ -11,15 +14,17 @@ function Product({id, title, image, price, rating, ingredients }) {
         console.log({title});
         if(allergy[0] == "" && preference[0] == "" && budget == null)
         {
+            console.log("Y");
             document.getElementById("basketAdd").style.background = "#ffc534";
             return;
         }
-        console.log(allergy[0]);
+        //console.log(allergy[0]);
         for(const all of allergy)
         {
             if(all != "" && {ingredients}.ingredients.includes(all))
             {
                 console.log(all)
+                console.log("R");
                 document.getElementById("basketAdd").style.background = "rgb(252, 137, 137)";
                 console.log("I HAVE LITERALLY PASSED THE CODE THAT IS SUPPOSED TO WORK");
                 return;
@@ -27,6 +32,7 @@ function Product({id, title, image, price, rating, ingredients }) {
         }
         if(budget != null && budget != "" && {price}.price > budget)
         {
+            console.log("R");
             document.getElementById("basketAdd").style.background = "rgb(252, 137, 137)";
             return;
         }
@@ -34,10 +40,12 @@ function Product({id, title, image, price, rating, ingredients }) {
         {
             if(pref != "" && {ingredients}.ingredients.includes(pref))
             {
+                console.log("G");
                 document.getElementById("basketAdd").style.background = "rgb(140, 233, 144)";
                 return;
             }
         }
+        console.log("Y");
         document.getElementById("basketAdd").style.background = "#ffc534";        
 
     }, [allergy, preference, budget]);
@@ -70,6 +78,12 @@ function Product({id, title, image, price, rating, ingredients }) {
                         .fill()
                         .map((_, i) => (
                             <StarIcon />
+                        )) }
+                    {Array(5 - rating)
+                        .fill()
+                        .map((_, i) => (
+                            <StarBorderIcon />
+                            
                         ))}
                 </div>
             </div>
