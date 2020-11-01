@@ -1,3 +1,4 @@
+
 .product {
     margin: 10px;
     padding: 20px;
@@ -21,10 +22,6 @@
   
   .product > button {
     float:left;
-    background: #ffc534; 
-     
-    /*background: rgb(140, 233, 144);*/
-    /*background: rgb(252, 137, 137); */
     border: 1px solid;
     margin-top: 10px;
     color: #111;
@@ -32,14 +29,9 @@
     margin-bottom: 20px;
     height: 40px;
     width: 150px;
+    color: test();
   }
 
-  .product > button:hover {
-    background: #ffb700;
-    /*background: rgb(116, 226, 122);*/
-    /*background: rgb(255, 119, 119); */
-  }
-  
   .product__price {
     margin-top: 5px;
   }
