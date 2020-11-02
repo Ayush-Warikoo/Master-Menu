@@ -19,11 +19,16 @@
 }
 
 .menu__filter {
-  margin: 10px;
-  padding: 20px;
-  width: 100%;
+  /*margin: 10px; */
+  padding-left: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px; 
+  
+  width: 98.5%;
   max-height: 100vh;
+   
   min-width: 100px;
+ 
   background-color: white;
   z-index: 1;
 }

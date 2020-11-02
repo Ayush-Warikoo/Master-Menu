@@ -4,12 +4,12 @@ import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import { useStateValue } from "./StateProvider";
 
-function Product({id, title, image, price, rating, ingredients }) {
-    const [{allergy, preference, budget}, dispatch] = useStateValue();
+function Product({id, title, image, price, stars, ingredients }) {
+    const [{allergy, preference, budget, rating}, dispatch] = useStateValue();
 
     function buttonColor()
     {
-        if(allergy[0] === "" && preference[0] === "" && budget == null)
+        if(allergy[0] === "" && preference[0] === "" && budget === null && rating === null)
         {
             return "#ffc534";
         }
@@ -21,6 +21,10 @@ function Product({id, title, image, price, rating, ingredients }) {
             }
         }
         if(budget !== null && budget !== "" && {price}.price > budget)
+        {
+            return "rgb(252, 137, 137)";
+        }
+        if(rating !== null && rating !== "" && {stars}.stars < rating )
         {
             return "rgb(252, 137, 137)";
         }
@@ -43,7 +47,7 @@ function Product({id, title, image, price, rating, ingredients }) {
             title: title,
             image: image,
             price: price,
-            rating: rating,
+            rating: stars,
             ingredients: ingredients
           },
         });
@@ -58,12 +62,12 @@ function Product({id, title, image, price, rating, ingredients }) {
                     <strong> {price} </strong>
                 </p>
                 <div className="product__rating">
-                    {Array(rating)
+                    {Array(stars)
                         .fill()
                         .map((_, i) => (
                             <StarIcon />
                         )) }
-                    {Array(5 - rating)
+                    {Array(5 - stars)
                         .fill()
                         .map((_, i) => (
                             <StarBorderIcon />
