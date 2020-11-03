@@ -1,5 +1,5 @@
 import React from 'react'
-import "./Mcdonalds.css";
+import "./RestaurantPage.css";
 import Product from "./Product";
 import Background from "./img/mcdonalds-banner.jpg";
 import MenuFilter from "./MenuFilter";
@@ -8,11 +8,11 @@ function Mcdonalds() {
   
   return (
 
-    <div className="mcdonalds">
-      <div className="mcdonalds__container">
+    <div className="restaurant">
+      <div className="restaurant__container">
         {/* banner */}
         <img 
-          className="mcdonalds__banner"
+          className="restaurant__banner"
           src={Background}
           alt="" 
         />
@@ -20,7 +20,7 @@ function Mcdonalds() {
         <MenuFilter />
 
         {/* Product rows */}
-        <div className="mcdonalds__row">
+        <div className="restaurant__row">
           <Product
             id="12321341"
             title= "Big Mac"
@@ -39,7 +39,7 @@ function Mcdonalds() {
           />
         </div>
 
-        <div className="mcdonalds__row">
+        <div className="restaurant__row">
           <Product
             id="4903851"
             title="Strawberry Triple Thick Milkshake"
@@ -66,7 +66,7 @@ function Mcdonalds() {
           />
         </div>
     
-        <div className="mcdonalds__row">
+        <div className="restaurant__row">
           <Product
             id="90829332"
             title="McChicken"
@@ -85,7 +85,7 @@ function Mcdonalds() {
           />
         </div>
 
-        <div className="mcdonalds__row">
+        <div className="restaurant__row">
           <Product
             id="12321342"
             title="Poutine"
@@ -113,7 +113,7 @@ function Mcdonalds() {
           />
         </div>
     
-        <div className="mcdonalds__row">
+        <div className="restaurant__row">
           <Product
             id="4903850"
             title="Quarter Pounder BLT"

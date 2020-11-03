@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import "./Product.css";
+import "./MenuFilter.css";
 import { useStateValue } from "./StateProvider";
 
 function MenuFilter()
