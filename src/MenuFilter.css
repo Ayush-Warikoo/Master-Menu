@@ -1,0 +1,41 @@
+.menu__filter {
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px; 
+    
+    width: 98.5%;
+    max-height: 100vh;
+     
+    min-width: 100px;
+   
+    background-color: white;
+    z-index: 1;
+  }
+  .menu__filter > h1 {
+    text-align: center;
+  }
+  
+  .menu__filter > h3 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+  
+  
+  .menu__filter > input {
+    height: 30px;
+    margin-bottom: 10px;
+    background-color: white;
+    width: 50%;
+  }
+  
+  .filter__button > button {
+    background: #ffc534;
+    border-radius: 2px;
+    width: 200px;
+    height: 40px;
+    border: 1px solid;
+    margin-top: 10px;
+    border-color: #a88734 #9c7e31 #846a29;
+  }
+
+  
