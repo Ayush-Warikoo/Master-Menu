@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import './App.css';
 import Header from './Header';
 import Mcdonalds from './Mcdonalds';
+import Pizzapizza from './Pizzapizza';
 import Checkout from './Checkout';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "react-router-dom";
@@ -47,10 +48,15 @@ function App() {
       <div className="app">
         
         <Switch>
-          {/* Sample restaurant page */}
+          {/* Sample restaurant pages */}
           <Route path="/mcdonalds">
             <Header />
             <Mcdonalds />
+          </Route>
+
+          <Route path="/pizzapizza">
+            <Header />
+            <Pizzapizza />
           </Route>
           
           {/* Login page */}

@@ -22,7 +22,7 @@ function Mcdonalds() {
         {/* Product rows */}
         <div className="restaurant__row">
           <Product
-            id="12321341"
+            id="10000000"
             title= "Big Mac"
             price={5.69}
             stars={5}
@@ -30,7 +30,7 @@ function Mcdonalds() {
             ingredients="Ingredients: beef, sesame seeds, wheat, gluten, soy, egg, mustard, milk, lettuce, cheese, pickle, onion, salt, spice, oil, sugar, corn starch, sweet relish, yeast, potato, pea"
           />
           <Product
-            id="49538094"
+            id="10000001"
             title="Double Big Mac"
             price={7.19}
             stars={4}
@@ -41,7 +41,7 @@ function Mcdonalds() {
 
         <div className="restaurant__row">
           <Product
-            id="4903851"
+            id="10000002"
             title="Strawberry Triple Thick Milkshake"
             price={3.44}
             stars={4}
@@ -49,7 +49,7 @@ function Mcdonalds() {
             ingredients="Ingredients: milk, cream, sugar, artificial vanilla flavour, cocoa, syrup"
           />
           <Product
-            id="23445930"
+            id="10000003"
             title="Breakfast Burrito"
             price={2.39}
             stars={1}
@@ -57,7 +57,7 @@ function Mcdonalds() {
             ingredients="Ingredients: pork, egg, milk, soy, wheat, gluten, oil, salt, spices, tomatoes, onions, flour, cheese"
           />
           <Product
-            id="3254354345"
+            id="10000004"
             title="Chicken McMuffin"
             price={2.49}
             stars={3}
@@ -68,7 +68,7 @@ function Mcdonalds() {
     
         <div className="restaurant__row">
           <Product
-            id="90829332"
+            id="10000005"
             title="McChicken"
             price={5.39}
             stars={3}
@@ -76,7 +76,7 @@ function Mcdonalds() {
             ingredients="Ingredients: chicken, sesame seeds, milk, egg, wheat, gluten, vegetable oil, corn starch, salt, spices, yeast, sugar, pea, potato, butter, lettuce, mayonnaise"
           />
           <Product
-            id="23445931"
+            id="10000006"
             title="4 Chicken McNuggets with Apples Happy Meal"
             price={4.79}
             stars={5}
@@ -87,7 +87,7 @@ function Mcdonalds() {
 
         <div className="restaurant__row">
           <Product
-            id="12321342"
+            id="10000007"
             title="Poutine"
             price={4.49}
             stars={3}
@@ -95,7 +95,7 @@ function Mcdonalds() {
             ingredients="Ingredients: chicken, milk, potatoes, vegetable oil, corn starch, sugar, salt, tomato, onion, garlic"
           />
           <Product
-            id="90829330"
+            id="10000008"
             title="World Famous Fries"
             price={2.98}
             stars={5}
@@ -104,7 +104,7 @@ function Mcdonalds() {
           />
 
           <Product
-            id="49538095"
+            id="10000009"
             title="Chocolate Triple Thick Milkshake"
             price={3.44}
             stars={4}
@@ -115,7 +115,7 @@ function Mcdonalds() {
     
         <div className="restaurant__row">
           <Product
-            id="4903850"
+            id="10000010"
             title="Quarter Pounder BLT"
             price={6.09}
             stars={4}
@@ -123,7 +123,7 @@ function Mcdonalds() {
             ingredients="Ingredients: beef, bacon, sesame seeds, wheat, gluten, soy, milk, egg, mustard, tomato, cheese, vegetable oil, salt, sugar, yeast, mayonnaise"
           />
           <Product
-            id="3254354346"
+            id="10000011"
             title="Banana Chocolate Chunk Muffin"
             price={1.49}
             stars={2}
