@@ -4,7 +4,7 @@ import { useStateValue } from "./StateProvider";
 
 function MenuFilter()
 {
-    const [{}, dispatch] = useStateValue();
+    const [{allergy, preference, budget, rating}, dispatch] = useStateValue();
 
   const [allergyString, setAllergyString] = useState('');
   const [preferenceString, setPreferenceString] = useState('');
@@ -35,18 +35,70 @@ function MenuFilter()
       rating: ratingValue
     });
   };
+
+  const allergyPlaceholder = () => {
+    let string = "";
+    for(let i = 0; i < allergy.length; i++)
+    {
+      if(i === 0)
+      {
+        string += allergy[i];
+      }
+      else
+      {
+        string += ", " + allergy[i];
+      }
+    }
+    return string;
+  }
+  const preferencePlaceholder = () => {
+    let string = "";
+    for(let i = 0; i < preference.length; i++)
+    {
+      if(i === 0)
+      {
+        string += preference[i];
+      }
+      else
+      {
+        string += ", " + preference[i];
+      }
+    }
+    return string;
+  }
+  const budgetPlaceholder = () => {
+    let string = "";
+    if(budget)
+    {
+      string += budget;
+    }
+    return string;
+  }
+  const ratingPlaceholder = () => {
+    let string = "";
+    if(rating)
+    {
+      string += rating;
+    }
+    return string;
+  }
+
   return(
     <div className="menu__filter">
         <h1> Menu Filter </h1>
 
         <h3>Allergies / Dietary Restrictions: </h3>
-        <input type='text' value={allergyString} onChange={e => setAllergyString(e.target.value)} />
+        <input type='text' placeholder={allergyPlaceholder()} value={allergyString} onChange={e => setAllergyString(e.target.value)} />
         <h3>Ingredient Preferences:</h3>
-        <input type='text' value={preferenceString} onChange={e => setPreferenceString(e.target.value)} />
+        <input type='text' placeholder={preferencePlaceholder()} value={preferenceString} onChange={e => setPreferenceString(e.target.value)} />
         <h3>Budget Maximum ($):</h3>
-        <input type='text' value={budgetString} onChange={e => setBudgetString(e.target.value)}/>
+        <input type='number' placeholder={budgetPlaceholder()} value={budgetString} onChange={e => setBudgetString(e.target.value)}/>
         <h3>Rating Minimum (Stars):</h3>
-        <input type='text' value={ratingString} onChange={e => setRatingString(e.target.value)}/>
+        <select value={ratingString} onChange={e => setRatingString(e.target.value)}> 
+          <option selected disabled hidden> {ratingPlaceholder()} </option>
+          <option> 1 </option>, <option> 2 </option>, <option> 3 </option>, <option> 4 </option>, <option> 5 </option>
+        </select>
+
 
         <div className="filter__button">
             <button type='submit' onClick={filter}> Filter </button>

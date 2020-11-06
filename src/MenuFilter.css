@@ -27,6 +27,16 @@
     background-color: white;
     width: 50%;
   }
+
+  .menu__filter > select {
+    height: 30px;
+    margin-bottom: 10px;
+    background-color: white;
+    width: 10%;
+    border: 2px solid;
+    border-color: #212121 #767676 #767676 #212121
+  }
+
   
   .filter__button > button {
     background: #ffc534;
