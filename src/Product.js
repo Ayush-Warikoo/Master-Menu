@@ -4,15 +4,28 @@ import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import { useStateValue } from "./StateProvider";
 
-function Product({id, title, image, price, stars, ingredients }) {
-    const [{allergy, preference, budget, rating}, dispatch] = useStateValue();
+function Product({id, title, image, price, stars, ingredients, type }) {
+    const [{allergy, preference, budget, rating, diet}, dispatch] = useStateValue();
 
     function buttonColor()
     {
-        if(allergy[0] === "" && preference[0] === "" && budget === null && rating === null)
+        if(allergy[0] === "" && preference[0] === "" && budget === null && rating === null && diet == null)
         {
             return "#ffc534";
         }
+        //Diet
+        if(diet !== null && diet !=="None")
+        {
+            if((diet === "Vegan" && {type}.type !== "Vegan") 
+            ||(diet === "Vegetarian" && {type}.type !== "Vegan" && {type}.type !== "Vegetarian")
+            ||(diet === "Pescetarian" && {type}.type !== "Vegan" && {type}.type !== "Vegetarian" && {type}.type !== "Pescetarian")
+            ||(diet === "Pollopescetarian" && {type}.type !== "Vegan" && {type}.type !== "Vegetarian"  && {type}.type !== "Pescetarian" && {type}.type !== "Pollopescetarian") 
+            )
+            {
+                return "rgb(252, 137, 137)";
+            }
+        }
+        //Allergy
         for(const all of allergy)
         {
             if(all !== "" && {ingredients}.ingredients.includes(all))
@@ -20,14 +33,17 @@ function Product({id, title, image, price, stars, ingredients }) {
                 return "rgb(252, 137, 137)";
             }
         }
+        //Budget
         if(budget !== null && budget !== "" && {price}.price > budget)
         {
             return "rgb(252, 137, 137)";
         }
+        //Rating
         if(rating !== null && rating !== "" && {stars}.stars < rating )
         {
             return "rgb(252, 137, 137)";
         }
+        //Preference
         for(const pref of preference)
         {
             if(pref !== "" && {ingredients}.ingredients.includes(pref))
@@ -48,7 +64,8 @@ function Product({id, title, image, price, stars, ingredients }) {
             image: image,
             price: price,
             rating: stars,
-            ingredients: ingredients
+            ingredients: ingredients,
+            type: type
           },
         });
     };

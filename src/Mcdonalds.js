@@ -28,6 +28,7 @@ function Mcdonalds() {
             stars={5}
             image="https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/header/en/mcdonalds-big-mac.jpg?$Product_Desktop$"
             ingredients="Ingredients: beef, sesame seeds, wheat, gluten, soy, egg, mustard, milk, lettuce, cheese, pickle, onion, salt, spice, oil, sugar, corn starch, sweet relish, yeast, potato, pea"
+            type="None"
           />
           <Product
             id="10000001"
@@ -36,6 +37,7 @@ function Mcdonalds() {
             stars={4}
             image="https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/header/en/mcdonalds-double-big-mac.jpg?$Product_Desktop$"
             ingredients="Ingredients: beef, sesame seeds, wheat, gluten, soy, egg, mustard, milk, lettuce, cheese, pickle, onion, salt, spice, oil, sugar, corn starch, sweet relish, yeast, potato, pea"
+            type="None"
           />
         </div>
 
@@ -47,6 +49,7 @@ function Mcdonalds() {
             stars={4}
             image="https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/header/en/mcdonalds-strawberry-milkshake.jpg?$Product_Desktop$"
             ingredients="Ingredients: milk, cream, sugar, artificial vanilla flavour, cocoa, syrup"
+            type="Vegetarian"
           />
           <Product
             id="10000003"
@@ -55,6 +58,7 @@ function Mcdonalds() {
             stars={1}
             image="https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/header/en/mcdonalds-breakfast-burrito.jpg?$Product_Desktop$"
             ingredients="Ingredients: pork, egg, milk, soy, wheat, gluten, oil, salt, spices, tomatoes, onions, flour, cheese"
+            type="None"
           />
           <Product
             id="10000004"
@@ -63,6 +67,7 @@ function Mcdonalds() {
             stars={3}
             image="https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/header/en/mcdonalds-chicken-mcmuffin.jpg?$Product_Desktop$"
             ingredients="Ingredients: chicken, wheat, barley, egg, mustard, milk, flour, oil, butter, salt, spice, garlic, mayonnaise"  
+            type="Pollopescetarian"
           />
         </div>
     
@@ -74,6 +79,7 @@ function Mcdonalds() {
             stars={3}
             image="https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/header/en/mcdonalds-mcchicken.jpg?$Product_Desktop$"
             ingredients="Ingredients: chicken, sesame seeds, milk, egg, wheat, gluten, vegetable oil, corn starch, salt, spices, yeast, sugar, pea, potato, butter, lettuce, mayonnaise"
+            type="Pollopescetarian"
           />
           <Product
             id="10000006"
@@ -82,6 +88,7 @@ function Mcdonalds() {
             stars={5}
             image="https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/header/en/mcdonalds-chicken-mcnuggets-happy-meal.jpg?$Product_Desktop$"
             ingredients="Ingredients: chicken, milk, vegetable oil, wheat, flour, corn starch, salt, baking powder, yeast, apple, strawberry, sugar, cream, lemon juice"
+            type="Pollopescetarian"
           />
         </div>
 
@@ -93,6 +100,7 @@ function Mcdonalds() {
             stars={3}
             image="https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/header/en/mcdonalds-poutine.jpg?$Product_Desktop$"
             ingredients="Ingredients: chicken, milk, potatoes, vegetable oil, corn starch, sugar, salt, tomato, onion, garlic"
+            type="Pollopescetarian"
           />
           <Product
             id="10000008"
@@ -101,6 +109,7 @@ function Mcdonalds() {
             stars={5}
             image="https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/header/en/mcdonalds-fries-medium.jpg?$Product_Desktop$"
             ingredients="Ingredients: potatoes, vegetable oil, citric acid, salt"
+            type="Vegan"
           />
 
           <Product
@@ -110,6 +119,7 @@ function Mcdonalds() {
             stars={4}
             image="https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/header/en/mcdonalds-chocolate-milkshake.jpg?$Product_Desktop$"
             ingredients="Ingredients: milk, cream, sugar, artificial vanilla flavour, cocoa, syrup"
+            type="Vegetarian"
           />
         </div>
     
@@ -121,6 +131,7 @@ function Mcdonalds() {
             stars={4}
             image="https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/header/en/mcdonalds-quarter-pounder-blt.jpg?$Product_Desktop$"
             ingredients="Ingredients: beef, bacon, sesame seeds, wheat, gluten, soy, milk, egg, mustard, tomato, cheese, vegetable oil, salt, sugar, yeast, mayonnaise"
+            type="None"
           />
           <Product
             id="10000011"
@@ -129,6 +140,7 @@ function Mcdonalds() {
             stars={2}
             image="https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/header/en/mcdonalds-banana-chocolate-muffin.jpg?$Product_Desktop$"
             ingredients="Ingredients: milk, egg, soy, oat, barley, wheat, gluten, sugar, flour, banana, sugar, chocolate, vegetable oil, syrup, honey, apple, orange, baking soda, spices"
+            type="Vegetarian"
           />
         </div>
       </div>

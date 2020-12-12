@@ -4,19 +4,21 @@ import { useStateValue } from "./StateProvider";
 
 function MenuFilter()
 {
-    const [{allergy, preference, budget, rating}, dispatch] = useStateValue();
+    const [{allergy, preference, budget, rating, diet}, dispatch] = useStateValue();
 
   const [allergyString, setAllergyString] = useState('');
   const [preferenceString, setPreferenceString] = useState('');
+  const [dietString, setDietString] = useState(null);
   const [budgetString, setBudgetString] = useState(null);
   const [ratingString, setRatingString] = useState(null);
 
   const filter = () => {
-    // dispatch the item into the data layer
+    // dispatch the item into the data layer   
     let allergyArray = allergyString.split(",");
     let preferenceArray = preferenceString.split(",");
     let budgetValue = budgetString;
     let ratingValue = ratingString;
+    let dietValue = dietString;
 
     for(let i = 0; i < allergyArray.length; i++)
     {
@@ -32,7 +34,8 @@ function MenuFilter()
       allergy: allergyArray,
       preference: preferenceArray,
       budget: budgetValue,
-      rating: ratingValue
+      rating: ratingValue,
+      diet: dietValue
     });
   };
 
@@ -70,7 +73,7 @@ function MenuFilter()
     let string = "";
     if(budget)
     {
-      string += budget;
+      string = budget;
     }
     return string;
   }
@@ -78,7 +81,15 @@ function MenuFilter()
     let string = "";
     if(rating)
     {
-      string += rating;
+      string = rating;
+    }
+    return string;
+  }
+  const dietPlaceholder = () => {
+    let string = "";
+    if(diet)
+    {
+      string = diet;
     }
     return string;
   }
@@ -94,11 +105,24 @@ function MenuFilter()
         <h3>Budget Maximum ($):</h3>
         <input type='number' placeholder={budgetPlaceholder()} value={budgetString} onChange={e => setBudgetString(e.target.value)}/>
         <h3>Rating Minimum (Stars):</h3>
-        <select value={ratingString} onChange={e => setRatingString(e.target.value)}> 
-          <option selected disabled hidden> {ratingPlaceholder()} </option>
-          <option> 1 </option>, <option> 2 </option>, <option> 3 </option>, <option> 4 </option>, <option> 5 </option>
-        </select>
+        <div className="filter__rating">
+          <select type="rating" value={ratingString} onChange={e => setRatingString(e.target.value)}> 
+            <option class="default" selected disabled hidden> {ratingPlaceholder() } </option>
+            <option class="1"> 1 </option>, <option class="2"> 2 </option>, <option class="3"> 3 </option>, <option class="4"> 4 </option>, <option class="5"> 5 </option>
+          </select>
+        </div>
 
+        <h3> Diet Selection:</h3>
+        <div className="filter__diet">
+          <select type="diet" value={dietString} onChange={e => setDietString(e.target.value)}> 
+            <option class="default" selected disabled hidden> {dietPlaceholder()} </option>
+            <option class="None"> None </option>, 
+            <option class="Pollopescetarian"> Pollopescetarian </option>, 
+            <option class="Pescetarian"> Pescetarian </option>, 
+            <option class="Vegetarian"> Vegetarian </option>, 
+            <option class="Vegan"> Vegan </option>
+          </select>
+        </div>       
 
         <div className="filter__button">
             <button type='submit' onClick={filter}> Filter </button>

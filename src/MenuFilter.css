@@ -11,24 +11,33 @@
     background-color: white;
     z-index: 1;
   }
-  .menu__filter > h1 {
+.menu__filter > h1 {
     text-align: center;
   }
   
-  .menu__filter > h3 {
+.menu__filter > h3 {
     margin-top: 10px;
     margin-bottom: 5px;
   }
   
   
-  .menu__filter > input {
+.menu__filter > input {
     height: 30px;
     margin-bottom: 10px;
     background-color: white;
     width: 50%;
   }
 
-  .menu__filter > select {
+.filter__rating > select {
+    height: 30px;
+    margin-bottom: 10px;
+    background-color: white;
+    width: 10%;
+    border: 2px solid;
+    border-color: #212121 #767676 #767676 #212121
+  }
+
+.filter__diet > select {
     height: 30px;
     margin-bottom: 10px;
     background-color: white;
@@ -38,7 +47,7 @@
   }
 
   
-  .filter__button > button {
+.filter__button > button {
     background: #ffc534;
     border-radius: 2px;
     width: 200px;
@@ -47,5 +56,3 @@
     margin-top: 10px;
     border-color: #a88734 #9c7e31 #846a29;
   }
-
-  

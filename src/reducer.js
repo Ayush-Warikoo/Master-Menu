@@ -3,6 +3,7 @@ export const initialState = {
     preference: [],
     budget: null,
     rating: null,
+    diet: null,
     basket: [],
     user: null,
 
@@ -21,7 +22,8 @@ const reducer = (state, action) => {
         allergy: action.allergy,
         preference: action.preference,
         budget: action.budget,
-        rating: action.rating
+        rating: action.rating,
+        diet: action.diet
       }
       
     case "ADD_TO_BASKET":
