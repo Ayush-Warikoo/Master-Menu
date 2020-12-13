@@ -64,6 +64,8 @@ function Payment() {
             // paymentIntent = payment confirmation
             //Push the payment into the database
             //Going user's collection, into orders, setting an id, 
+
+            paymentIntent.amount = getBasketTotal(basket);
             db
               .collection('users')
               .doc(user?.uid)
@@ -152,7 +154,7 @@ function Payment() {
                                     thousandSeparator={true}
                                     prefix={"$"}
                                 /> 
-                                <button disabled={processing || disabled || succeeded}> 
+                                <button disabled={processing || disabled || succeeded || basket.length == 0}> 
                                     <span> {processing ? <p> Processing </p> : "Buy Now"} </span>
                                 </button>
                             </div>
