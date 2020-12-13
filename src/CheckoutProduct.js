@@ -2,6 +2,7 @@ import React from 'react';
 import './CheckoutProduct.css'
 import { useStateValue } from "./StateProvider";
 import StarIcon from '@material-ui/icons/Star';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
 
 function CheckoutProduct({ id, image, title, price, rating, ingredients, hideButton }) {
     const [{ basket }, dispatch] = useStateValue();
@@ -30,6 +31,11 @@ function CheckoutProduct({ id, image, title, price, rating, ingredients, hideBut
                     .map((_, i) => (
                         <StarIcon />
                     ))}
+                    {Array(5 - rating)
+                        .fill()
+                        .map((_, i) => (
+                            <StarBorderIcon />
+                        ))}
                 </div>
                 {!hideButton && (
                     <button onClick={removeFromBasket}>Remove from Basket</button>
