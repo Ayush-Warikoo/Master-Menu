@@ -20,21 +20,6 @@ function Mcdonalds() {
     db.collection('Restaurant Information').doc('McDonalds').onSnapshot(snapshot => setRow5(snapshot.data()["Menu"].slice(10,12)));
   }, [])
 
-  /*
-      {db.collection('Restaurant Information').doc('McDonalds').onSnapshot(snapshot => setProducts(snapshot.data()["Menu"]))}
-    {products.map(prod => (
-      <Product
-        id= {prod.id} //"10000000"
-        title= {prod.title}
-        price= {prod.price}
-        stars= {prod.stars}
-        image= {prod.image}
-        ingredients= {prod.ingredients}
-        type= {prod.type}
-      />
-    ))}
-  */
-
   return (  
 
     <div className="restaurant">
@@ -47,76 +32,25 @@ function Mcdonalds() {
         />
 
         <MenuFilter />
-
         {/* Product rows */}
         <div className="restaurant__row">
-          {row1.map(prod => (
-            <Product
-              id= {prod.id} 
-              title= {prod.title}
-              price= {prod.price}
-              stars= {prod.stars}
-              image= {prod.image}
-              ingredients= {prod.ingredients}
-              type= {prod.type}
-            />
-          ))}
+          {row1.map(prod => (<Product product = {prod} />))}
         </div>
 
         <div className="restaurant__row">
-          {row2.map(prod => (
-            <Product
-              id= {prod.id} 
-              title= {prod.title}
-              price= {prod.price}
-              stars= {prod.stars}
-              image= {prod.image}
-              ingredients= {prod.ingredients}
-              type= {prod.type}
-            />
-          ))}
-        </div>
-    
-        <div className="restaurant__row">
-          {row3.map(prod => (
-            <Product
-              id= {prod.id} 
-              title= {prod.title}
-              price= {prod.price}
-              stars= {prod.stars}
-              image= {prod.image}
-              ingredients= {prod.ingredients}
-              type= {prod.type}
-            />
-          ))}
+          {row2.map(prod => (<Product product = {prod} />))}
         </div>
 
         <div className="restaurant__row">
-          {row4.map(prod => (
-            <Product
-              id= {prod.id} 
-              title= {prod.title}
-              price= {prod.price}
-              stars= {prod.stars}
-              image= {prod.image}
-              ingredients= {prod.ingredients}
-              type= {prod.type}
-            />
-          ))}
+          {row3.map(prod => (<Product product = {prod} />))}
         </div>
 
         <div className="restaurant__row">
-          {row5.map(prod => (
-            <Product
-              id= {prod.id} 
-              title= {prod.title}
-              price= {prod.price}
-              stars= {prod.stars}
-              image= {prod.image}
-              ingredients= {prod.ingredients}
-              type= {prod.type}
-            />
-          ))}
+          {row4.map(prod => (<Product product = {prod} />))}
+        </div>
+
+        <div className="restaurant__row">
+          {row5.map(prod => (<Product product = {prod} />))}
         </div>
       </div>
     </div>

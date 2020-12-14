@@ -4,10 +4,11 @@ import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import { useStateValue } from "./StateProvider";
 
-function Product({id, title, image, price, stars, ingredients, type }) {
+function Product({ product }) {
     const [{allergy, preference, budget, rating, diet}, dispatch] = useStateValue();
 
     const buttonColor = () => {
+
         if(allergy[0] === "" && preference[0] === "" && budget === null && rating === null && diet == null)
         {
             return "#ffc534";
@@ -15,10 +16,10 @@ function Product({id, title, image, price, stars, ingredients, type }) {
         //Diet
         if(diet !== null && diet !=="None")
         {
-            if((diet === "Vegan" && {type}.type !== "Vegan") 
-            ||(diet === "Vegetarian" && {type}.type !== "Vegan" && {type}.type !== "Vegetarian")
-            ||(diet === "Pescetarian" && {type}.type !== "Vegan" && {type}.type !== "Vegetarian" && {type}.type !== "Pescetarian")
-            ||(diet === "Pollopescetarian" && {type}.type !== "Vegan" && {type}.type !== "Vegetarian"  && {type}.type !== "Pescetarian" && {type}.type !== "Pollopescetarian") 
+            if((diet === "Vegan" && product.type !== "Vegan") 
+            ||(diet === "Vegetarian" && product.type !== "Vegan" && product.type !== "Vegetarian")
+            ||(diet === "Pescetarian" && product.type !== "Vegan" && product.type !== "Vegetarian" && product.type !== "Pescetarian")
+            ||(diet === "Pollopescetarian" && product.type !== "Vegan" && product.type !== "Vegetarian"  && product.type !== "Pescetarian" && product.type !== "Pollopescetarian") 
             )
             {
                 return "rgb(252, 137, 137)";
@@ -27,25 +28,25 @@ function Product({id, title, image, price, stars, ingredients, type }) {
         //Allergy
         for(const all of allergy)
         {
-            if(all !== "" && {ingredients}.ingredients.includes(all))
+            if(all !== "" && product.ingredients.includes(all))
             {
                 return "rgb(252, 137, 137)";
             }
         }
         //Budget
-        if(budget !== null && budget !== "" && {price}.price > budget)
+        if(budget !== null && budget !== "" && product.price > budget)
         {
             return "rgb(252, 137, 137)";
         }
         //Rating
-        if(rating !== null && rating !== "" && {stars}.stars < rating )
+        if(rating !== null && rating !== "" && product.stars < rating )
         {
             return "rgb(252, 137, 137)";
         }
         //Preference
         for(const pref of preference)
         {
-            if(pref !== "" && {ingredients}.ingredients.includes(pref))
+            if(pref !== "" && product.ingredients.includes(pref))
             {
                 return "rgb(140, 233, 144)";
             }
@@ -58,13 +59,13 @@ function Product({id, title, image, price, stars, ingredients, type }) {
         dispatch({
           type: "ADD_TO_BASKET",
           item: {
-            id: id,
-            title: title,
-            image: image,
-            price: price,
-            rating: stars,
-            ingredients: ingredients,
-            type: type
+            id: product.id,
+            title: product.title,
+            image: product.image,
+            price: product.price,
+            rating: product.stars,
+            ingredients: product.ingredients,
+            type: product.type
           },
         });
     };
@@ -73,7 +74,7 @@ function Product({id, title, image, price, stars, ingredients, type }) {
         let s = [];
         for(let i = 0; i < 5; i++)
         {
-            if(i < stars)
+            if(i < product.stars)
             {
                 s.push(<StarIcon />);
             }
@@ -89,19 +90,19 @@ function Product({id, title, image, price, stars, ingredients, type }) {
 
         <div className="product">
             <div className="product__info"> 
-                <h2> {title} </h2>
+                <h2> {product.title} </h2>
                 <p className="product__price"> 
                     <small> $ </small>
-                    <strong> {price} </strong>
+                    <strong> {product.price} </strong>
                 </p>
                 <div className="product__rating">
                     {ratingOutput()}
                 </div>
             </div> 
-            <img src={image} alt=""/>
+            <img src={product.image} alt=""/>
             <button onClick={addToBasket} style={{"backgroundColor":(buttonColor())}}> Add to Basket </button>
             <div className="product__ingredients">
-                <p> Ingredients: {ingredients}</p>
+                <p> Ingredients: {product.ingredients}</p>
             </div> 
         
         </div>

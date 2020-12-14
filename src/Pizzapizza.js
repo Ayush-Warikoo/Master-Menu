@@ -34,86 +34,27 @@ function Pizzapizza() {
         <MenuFilter />
         {/* Product rows */}
         <div className="restaurant__row">
-          {row1.map(prod => (
-            <Product
-              id= {prod.id} 
-              title= {prod.title}
-              price= {prod.price}
-              stars= {prod.stars}
-              image= {prod.image}
-              ingredients= {prod.ingredients}
-              type= {prod.type}
-            />
-          ))}
+          {row1.map(prod => (<Product product = {prod} />))}
         </div>
 
         <div className="restaurant__row">
-          {row2.map(prod => (
-            <Product
-              id= {prod.id} 
-              title= {prod.title}
-              price= {prod.price}
-              stars= {prod.stars}
-              image= {prod.image}
-              ingredients= {prod.ingredients}
-              type= {prod.type}
-            />
-          ))}
+          {row2.map(prod => (<Product product = {prod} />))}
         </div>
     
         <div className="restaurant__row">
-          {row3.map(prod => (
-            <Product
-              id= {prod.id} 
-              title= {prod.title}
-              price= {prod.price}
-              stars= {prod.stars}
-              image= {prod.image}
-              ingredients= {prod.ingredients}
-              type= {prod.type}
-            />
-          ))}
+          {row3.map(prod => (<Product product = {prod} />))}
         </div>
 
         <div className="restaurant__row">
-          {row4.map(prod => (
-            <Product
-              id= {prod.id} 
-              title= {prod.title}
-              price= {prod.price}
-              stars= {prod.stars}
-              image= {prod.image}
-              ingredients= {prod.ingredients}
-              type= {prod.type}
-            />
-          ))}
+          {row4.map(prod => (<Product product = {prod} />))}
         </div>
     
         <div className="restaurant__row">
-          {row5.map(prod => (
-            <Product
-              id= {prod.id} 
-              title= {prod.title}
-              price= {prod.price}
-              stars= {prod.stars}
-              image= {prod.image}
-              ingredients= {prod.ingredients}
-              type= {prod.type}
-            />
-          ))}
+          {row5.map(prod => (<Product product = {prod} />))}
         </div>
+
         <div className="restaurant__row">
-          {row6.map(prod => (
-            <Product
-              id= {prod.id} 
-              title= {prod.title}
-              price= {prod.price}
-              stars= {prod.stars}
-              image= {prod.image}
-              ingredients= {prod.ingredients}
-              type= {prod.type}
-            />
-          ))}
+          {row6.map(prod => (<Product product = {prod} />))}
         </div>
       </div>
     </div>
