@@ -7,8 +7,7 @@ import { useStateValue } from "./StateProvider";
 function Product({id, title, image, price, stars, ingredients, type }) {
     const [{allergy, preference, budget, rating, diet}, dispatch] = useStateValue();
 
-    function buttonColor()
-    {
+    const buttonColor = () => {
         if(allergy[0] === "" && preference[0] === "" && budget === null && rating === null && diet == null)
         {
             return "#ffc534";
