@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState} from 'react';
 import "./RestaurantPage.css";
 import Product from "./Product";
 import Background from "./img/mcdonalds-banner.jpg";
@@ -6,7 +6,8 @@ import MenuFilter from "./MenuFilter";
 import { db } from './firebase';
 
 function Mcdonalds() {
-  
+  const [product, setProduct] = useState([]);
+
   return (
 
     <div className="restaurant">
@@ -22,15 +23,17 @@ function Mcdonalds() {
 
         {/* Product rows */}
         <div className="restaurant__row">
-          {/*db.collection('Restaurant Information').doc('McDonalds').onSnapshot(snapshot => console.log(snapshot.data()["Menu"][0]["id"]))*/}
+          {db.collection('Restaurant Information').doc('McDonalds').onSnapshot(snapshot => setProduct(snapshot.data()["Menu"][0]))}
+          {/*console.log(product)*/}
+          
           <Product
-            id="10000000"
-            title= "Big Mac"
-            price={5.69}
-            stars={5}
-            image="https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/header/en/mcdonalds-big-mac.jpg?$Product_Desktop$"
-            ingredients="beef, sesame seeds, wheat, gluten, soy, egg, mustard, milk, lettuce, cheese, pickle, onion, salt, spice, oil, sugar, corn starch, sweet relish, yeast, potato, pea"
-            type="None"
+            id= {product.id} //"10000000"
+            title= {product.title}
+            price= {product.price}
+            stars= {product.stars}
+            image= {product.image}
+            ingredients= {product.ingredients}
+            type= {product.type}
           />
           <Product
             id="10000001"

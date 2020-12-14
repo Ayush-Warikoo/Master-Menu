@@ -70,7 +70,24 @@ function Product({id, title, image, price, stars, ingredients, type }) {
         });
     };
 
+    const ratingOutput = () => {
+        let s = [];
+        for(let i = 0; i < 5; i++)
+        {
+            if(i < stars)
+            {
+                s.push(<StarIcon />);
+            }
+            else
+            {
+                s.push(<StarBorderIcon />);
+            }
+        }
+        return s;
+    }
+
     return (
+
         <div className="product">
             <div className="product__info"> 
                 <h2> {title} </h2>
@@ -79,16 +96,7 @@ function Product({id, title, image, price, stars, ingredients, type }) {
                     <strong> {price} </strong>
                 </p>
                 <div className="product__rating">
-                    {Array(stars)
-                        .fill()
-                        .map((_, i) => (
-                            <StarIcon />
-                        )) }
-                    {Array(5 - stars)
-                        .fill()
-                        .map((_, i) => (
-                            <StarBorderIcon />
-                        ))}
+                    {ratingOutput()}
                 </div>
             </div> 
             <img src={image} alt=""/>
