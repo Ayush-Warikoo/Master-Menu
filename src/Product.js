@@ -94,7 +94,7 @@ function Product({id, title, image, price, stars, ingredients, type }) {
             <img src={image} alt=""/>
             <button onClick={addToBasket} style={{"backgroundColor":(buttonColor())}}> Add to Basket </button>
             <div className="product__ingredients">
-                <p> {ingredients}</p>
+                <p> Ingredients: {ingredients}</p>
             </div> 
         
         </div>

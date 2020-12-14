@@ -3,6 +3,7 @@ import "./RestaurantPage.css";
 import Product from "./Product";
 import Background from "./img/mcdonalds-banner.jpg";
 import MenuFilter from "./MenuFilter";
+import { db } from './firebase';
 
 function Mcdonalds() {
   
@@ -21,13 +22,14 @@ function Mcdonalds() {
 
         {/* Product rows */}
         <div className="restaurant__row">
+          {/*db.collection('Restaurant Information').doc('McDonalds').onSnapshot(snapshot => console.log(snapshot.data()["Menu"][0]["id"]))*/}
           <Product
             id="10000000"
             title= "Big Mac"
             price={5.69}
             stars={5}
             image="https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/header/en/mcdonalds-big-mac.jpg?$Product_Desktop$"
-            ingredients="Ingredients: beef, sesame seeds, wheat, gluten, soy, egg, mustard, milk, lettuce, cheese, pickle, onion, salt, spice, oil, sugar, corn starch, sweet relish, yeast, potato, pea"
+            ingredients="beef, sesame seeds, wheat, gluten, soy, egg, mustard, milk, lettuce, cheese, pickle, onion, salt, spice, oil, sugar, corn starch, sweet relish, yeast, potato, pea"
             type="None"
           />
           <Product
@@ -36,7 +38,7 @@ function Mcdonalds() {
             price={7.19}
             stars={4}
             image="https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/header/en/mcdonalds-double-big-mac.jpg?$Product_Desktop$"
-            ingredients="Ingredients: beef, sesame seeds, wheat, gluten, soy, egg, mustard, milk, lettuce, cheese, pickle, onion, salt, spice, oil, sugar, corn starch, sweet relish, yeast, potato, pea"
+            ingredients="beef, sesame seeds, wheat, gluten, soy, egg, mustard, milk, lettuce, cheese, pickle, onion, salt, spice, oil, sugar, corn starch, sweet relish, yeast, potato, pea"
             type="None"
           />
         </div>
@@ -48,7 +50,7 @@ function Mcdonalds() {
             price={3.44}
             stars={4}
             image="https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/header/en/mcdonalds-strawberry-milkshake.jpg?$Product_Desktop$"
-            ingredients="Ingredients: milk, cream, sugar, artificial vanilla flavour, cocoa, syrup"
+            ingredients="milk, cream, sugar, artificial vanilla flavour, cocoa, syrup"
             type="Vegetarian"
           />
           <Product
@@ -57,7 +59,7 @@ function Mcdonalds() {
             price={2.39}
             stars={1}
             image="https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/header/en/mcdonalds-breakfast-burrito.jpg?$Product_Desktop$"
-            ingredients="Ingredients: pork, egg, milk, soy, wheat, gluten, oil, salt, spices, tomatoes, onions, flour, cheese"
+            ingredients="pork, egg, milk, soy, wheat, gluten, oil, salt, spices, tomatoes, onions, flour, cheese"
             type="None"
           />
           <Product
@@ -66,7 +68,7 @@ function Mcdonalds() {
             price={2.49}
             stars={3}
             image="https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/header/en/mcdonalds-chicken-mcmuffin.jpg?$Product_Desktop$"
-            ingredients="Ingredients: chicken, wheat, barley, egg, mustard, milk, flour, oil, butter, salt, spice, garlic, mayonnaise"  
+            ingredients="chicken, wheat, barley, egg, mustard, milk, flour, oil, butter, salt, spice, garlic, mayonnaise"  
             type="Pollopescetarian"
           />
         </div>
@@ -78,7 +80,7 @@ function Mcdonalds() {
             price={5.39}
             stars={3}
             image="https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/header/en/mcdonalds-mcchicken.jpg?$Product_Desktop$"
-            ingredients="Ingredients: chicken, sesame seeds, milk, egg, wheat, gluten, vegetable oil, corn starch, salt, spices, yeast, sugar, pea, potato, butter, lettuce, mayonnaise"
+            ingredients="chicken, sesame seeds, milk, egg, wheat, gluten, vegetable oil, corn starch, salt, spices, yeast, sugar, pea, potato, butter, lettuce, mayonnaise"
             type="Pollopescetarian"
           />
           <Product
@@ -87,7 +89,7 @@ function Mcdonalds() {
             price={4.79}
             stars={5}
             image="https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/header/en/mcdonalds-chicken-mcnuggets-happy-meal.jpg?$Product_Desktop$"
-            ingredients="Ingredients: chicken, milk, vegetable oil, wheat, flour, corn starch, salt, baking powder, yeast, apple, strawberry, sugar, cream, lemon juice"
+            ingredients="chicken, milk, vegetable oil, wheat, flour, corn starch, salt, baking powder, yeast, apple, strawberry, sugar, cream, lemon juice"
             type="Pollopescetarian"
           />
         </div>
@@ -99,7 +101,7 @@ function Mcdonalds() {
             price={4.49}
             stars={3}
             image="https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/header/en/mcdonalds-poutine.jpg?$Product_Desktop$"
-            ingredients="Ingredients: chicken, milk, potatoes, vegetable oil, corn starch, sugar, salt, tomato, onion, garlic"
+            ingredients="chicken, milk, potatoes, vegetable oil, corn starch, sugar, salt, tomato, onion, garlic"
             type="Pollopescetarian"
           />
           <Product
@@ -108,7 +110,7 @@ function Mcdonalds() {
             price={2.98}
             stars={5}
             image="https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/header/en/mcdonalds-fries-medium.jpg?$Product_Desktop$"
-            ingredients="Ingredients: potatoes, vegetable oil, citric acid, salt"
+            ingredients="potatoes, vegetable oil, citric acid, salt"
             type="Vegan"
           />
 
@@ -118,7 +120,7 @@ function Mcdonalds() {
             price={3.44}
             stars={4}
             image="https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/header/en/mcdonalds-chocolate-milkshake.jpg?$Product_Desktop$"
-            ingredients="Ingredients: milk, cream, sugar, artificial vanilla flavour, cocoa, syrup"
+            ingredients="milk, cream, sugar, artificial vanilla flavour, cocoa, syrup"
             type="Vegetarian"
           />
         </div>
@@ -130,7 +132,7 @@ function Mcdonalds() {
             price={6.09}
             stars={4}
             image="https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/header/en/mcdonalds-quarter-pounder-blt.jpg?$Product_Desktop$"
-            ingredients="Ingredients: beef, bacon, sesame seeds, wheat, gluten, soy, milk, egg, mustard, tomato, cheese, vegetable oil, salt, sugar, yeast, mayonnaise"
+            ingredients="beef, bacon, sesame seeds, wheat, gluten, soy, milk, egg, mustard, tomato, cheese, vegetable oil, salt, sugar, yeast, mayonnaise"
             type="None"
           />
           <Product
@@ -139,7 +141,7 @@ function Mcdonalds() {
             price={1.49}
             stars={2}
             image="https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/header/en/mcdonalds-banana-chocolate-muffin.jpg?$Product_Desktop$"
-            ingredients="Ingredients: milk, egg, soy, oat, barley, wheat, gluten, sugar, flour, banana, sugar, chocolate, vegetable oil, syrup, honey, apple, orange, baking soda, spices"
+            ingredients="milk, egg, soy, oat, barley, wheat, gluten, sugar, flour, banana, sugar, chocolate, vegetable oil, syrup, honey, apple, orange, baking soda, spices"
             type="Vegetarian"
           />
         </div>

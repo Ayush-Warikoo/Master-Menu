@@ -3,6 +3,7 @@ import "./RestaurantPage.css";
 import Product from "./Product";
 import Background from "./img/pizzapizza-banner.jpg";
 import MenuFilter from "./MenuFilter";
+import { db } from './firebase';
 
 function Pizzapizza() {
   
@@ -24,7 +25,7 @@ function Pizzapizza() {
             price={14.59}
             stars={4}
             image="https://storage.pizzapizza.ca/phx2/ppl_images/products/en/2x/12500.png"
-            ingredients="Ingredients: wheat, mozzarella cheese, tomato sauce, mushroom, green pepper, tomatoes"
+            ingredients="wheat, mozzarella cheese, tomato sauce, mushroom, green pepper, tomatoes"
             type="Vegetarian"
           />
           <Product
@@ -33,7 +34,7 @@ function Pizzapizza() {
             price={19.69}
             stars={3}
             image="https://storage.pizzapizza.ca/phx2/ppl_images/products/en/2x/grilled-veg-and-goatcheese.png"
-            ingredients="Ingredients: wheat, mozzarella cheese, feta cheese, tomato sauce, zucchini, olives, red onions, tomatoes"
+            ingredients="wheat, mozzarella cheese, feta cheese, tomato sauce, zucchini, olives, red onions, tomatoes"
             type="Vegetarian"
           />
         </div>
@@ -45,7 +46,7 @@ function Pizzapizza() {
             price={13.89}
             stars={4}
             image="https://storage.pizzapizza.ca/phx2/ppl_images/products/en/2x/13988.png"
-            ingredients="Ingredients: wheat, mozzarella cheese, feta cheese, parmesan cheese, garlic"
+            ingredients="wheat, mozzarella cheese, feta cheese, parmesan cheese, garlic"
             type="Vegetarian"
           />
           <Product
@@ -54,7 +55,7 @@ function Pizzapizza() {
             price={11.19}
             stars={5}
             image="https://storage.pizzapizza.ca/phx2/ppl_images/products/en/2x/Pepperoni.png"
-            ingredients="Ingredients: wheat, mozzarella cheese, tomato sauce, pepperoni, beef, pork"
+            ingredients="wheat, mozzarella cheese, tomato sauce, pepperoni, beef, pork"
             type="None"
           />
           <Product
@@ -63,7 +64,7 @@ function Pizzapizza() {
             price={15.59}
             stars={2}
             image="https://storage.pizzapizza.ca/phx2/ppl_images/products/en/2x/12700.png"
-            ingredients="Ingredients: wheat, bacon, ham, mozzarella cheese, tomato sauce, pineapple" 
+            ingredients="wheat, bacon, ham, mozzarella cheese, tomato sauce, pineapple" 
             type="None" 
           />
         </div>
@@ -75,7 +76,7 @@ function Pizzapizza() {
             price={16.29}
             stars={1}
             image="https://storage.pizzapizza.ca/phx2/ppl_images/products/en/2x/meat-supreme.png"
-            ingredients="Ingredients: wheat, bacon, ham, mozzarella cheese, salt, pepper, tomato sauce, pepperoni, salami, beef, pork, sausage"
+            ingredients="wheat, bacon, ham, mozzarella cheese, salt, pepper, tomato sauce, pepperoni, salami, beef, pork, sausage"
             type="None"
           />
           <Product
@@ -84,7 +85,7 @@ function Pizzapizza() {
             price={14.59}
             stars={5}
             image="https://storage.pizzapizza.ca/phx2/ppl_images/products/en/2x/12400.png"
-            ingredients="Ingredients: wheat, mozzarella cheese, tomato sauce, mushrooms, green pepper, pepperoni, beef, pork"
+            ingredients="wheat, mozzarella cheese, tomato sauce, mushrooms, green pepper, pepperoni, beef, pork"
             type="None"
           />
         </div>
@@ -96,7 +97,7 @@ function Pizzapizza() {
             price={17.29}
             stars={2}
             image="https://storage.pizzapizza.ca/phx2/ppl_images/products/en/2x/chickenbruschetta.png"
-            ingredients="Ingredients: wheat, mozzarella cheese, olive oil, vinegar, parmesan cheese, tomato, tomato sauce, chicken, garlic"
+            ingredients="wheat, mozzarella cheese, olive oil, vinegar, parmesan cheese, tomato, tomato sauce, chicken, garlic"
             type="Pollopescetarian"
           />
           <Product
@@ -105,7 +106,7 @@ function Pizzapizza() {
             price={5.99}
             stars={4}
             image="https://storage.pizzapizza.ca/phx2/ppl_images/products/en/2x/Caesar.png"
-            ingredients="Ingredients: romaine lettuce, croutons, wheat, vinegar, oil"
+            ingredients="romaine lettuce, croutons, wheat, vinegar, oil"
             type="Vegan"
           />
 
@@ -115,29 +116,29 @@ function Pizzapizza() {
             price={7.29}
             stars={5}
             image="https://storage.pizzapizza.ca/phx2/ppl_images/products/en/2x/GCCS.png"
-            ingredients="Ingredients: bacon, romaine lettuce, parmesan cheese, croutons, wheat, vinegar, oil"
+            ingredients="bacon, romaine lettuce, parmesan cheese, croutons, wheat, vinegar, oil"
             type="None"
           />
         </div>
     
         <div className="restaurant__row">
           <Product
-            id="10000113"
+            id="10000110"
             title="Canadian Panzerotti"
             price={8.99}
             stars={5}
             image="https://storage.pizzapizza.ca/phx2/ppl_images/products/en/2x/PANCN.png"
-            ingredients="Ingredients: pepperoni, beef, pork, flour, wheat, mushroom, mozzarella cheese, green pepper, tomato sauce, roma tomato, vegetable oil"
+            ingredients="pepperoni, beef, pork, flour, wheat, mushroom, mozzarella cheese, green pepper, tomato sauce, roma tomato, vegetable oil"
             type="None"
           />
 
           <Product
-            id="10000114"
+            id="10000111"
             title="Veggie Panzerotti"
             price={8.99}
             stars={4}
             image="https://storage.pizzapizza.ca/phx2/ppl_images/products/en/2x/PANVG.png"
-            ingredients="Ingredients: flour, wheat, mushroom, mozzarella cheese, green pepper, tomato sauce, roma tomato, vegetable oil"
+            ingredients="flour, wheat, mushroom, mozzarella cheese, green pepper, tomato sauce, roma tomato, vegetable oil"
             type="Vegetarian"
           />
         </div>
@@ -148,26 +149,26 @@ function Pizzapizza() {
             price={3.99}
             stars={5}
             image="https://storage.pizzapizza.ca/phx2/ppl_images/products/en/2x/wedges.png"
-            ingredients="Ingredients: potato, garlic, vegetable oil, salt, wheat, milk, parmesan cheese"
+            ingredients="potato, garlic, vegetable oil, salt, wheat, milk, parmesan cheese"
             type="Vegetarian"
           />
 
           <Product
-            id="10000110"
+            id="10000113"
             title="Chicken Wings"
             price={6.29}
             stars={4}
             image="https://storage.pizzapizza.ca/phx2/ppl_images/products/en/2x/5W.png"
-            ingredients="Ingredients: chicken, butter, garlic, soy sauce, pepper, salt, vegetable oil, vinegar, flour"
+            ingredients="chicken, butter, garlic, soy sauce, pepper, salt, vegetable oil, vinegar, flour"
             type="Pollopescetarian"
           />
           <Product
-            id="10000111"
+            id="10000114"
             title="Single Sweet Potato Fries"
             price={4.99}
             stars={3}
             image="https://storage.pizzapizza.ca/phx2/ppl_images/products/en/2x/SPFFS.png"
-            ingredients="Ingredients: sweet potatoes, vegetable oil, salt, wheat, milk"
+            ingredients="sweet potatoes, vegetable oil, salt, wheat, milk"
             type="Vegetarian"
           />
         </div>
