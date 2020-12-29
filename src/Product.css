@@ -2,13 +2,19 @@
 .product {
     margin: 10px;
     padding: 20px;
+    padding-bottom: 80px;
     width: 100%;
     max-height: 100vh;
     min-width: 100px;
     background-color: white;
     z-index: 1;
+    position: relative;
   }
-  
+
+  .product:hover {
+    transform: scale(1.04);
+  }
+
   .product__rating {
     display: flex;
   }
@@ -21,15 +27,28 @@
   }
   
   .product > button {
-    float:left;
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
     border: 1px solid;
     margin-top: 10px;
-    color: #111;
+    color: white;
+    margin-top: 20px;
     margin-right: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     height: 40px;
     width: 150px;
-    color: test();
+    border-radius: 20px;
+    background-color: black;
+  }
+
+  .product > button:hover {
+    filter: brightness(110%);
+  }
+  
+
+  .product > button:active {
+    transform: scale(0.90);
   }
 
   .product__price {
@@ -39,5 +58,9 @@
   .product__info {
     height: 100px;
     margin-bottom: 15px;
+  }
+
+  .product__ingredients {
+    font-style: italic;
   }
 

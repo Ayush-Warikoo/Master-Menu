@@ -46,10 +46,16 @@
     border: 1px solid;
     font-weight: bolder;
     margin-top: 10px;
-    border-color: #a88734 #9c7e31 #846a29;
-    color: #111;
+    color: white;
+    border-radius: 20px;
+    background-color: black;
   }
 
   .payment__details > form > div > button:hover {
-    background: #ffb700;
+    background: rgb(48, 48, 48);
   }
+
+  .payment__details > form > div > button:active {
+    transform: scale(0.90);
+  }
+  

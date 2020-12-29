@@ -41,9 +41,21 @@ function Header() {
             
             {/*search bar*/}
             <div className="header__search">
-                <input className="header__searchInput" type="text" value={restaurant} onChange={e => setRestaurant(e.target.value)} onKeyDown={e => handleKeyPress(e.key)} />
+                <input 
+                    className="header__searchInput" 
+                    placeholder="Enter a restaurant"
+                    list="header__restaurant"
+                    type="text" 
+                    value={restaurant} 
+                    onChange={e => setRestaurant(e.target.value)} 
+                    onKeyDown={e => handleKeyPress(e.key)} 
+                />
+                <datalist id="header__restaurant">
+                    <option> McDonalds</option>
+                    <option> PizzaPizza </option>                        
+                </datalist>
                 <Link to={`/${restaurant}`}>
-                    <SearchIcon className="header__searchIcon" />
+                    <SearchIcon className="header__searchIcon" className="header__searchIcon" />
                 </Link>
             </div>
 
@@ -59,8 +71,8 @@ function Header() {
 
                 <Link to="/orders"> 
                     <div className='header__option'>
-                        <span className='header__optionLineOne'> Returns </span>
-                        <span className='header__optionLineTwo'> Orders </span>
+                        <span className='header__optionLineOne'> Order </span>
+                        <span className='header__optionLineTwo'> History </span>
                     </div>
                 </Link>
 

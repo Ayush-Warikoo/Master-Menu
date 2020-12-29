@@ -1,8 +1,8 @@
 .header {
-    height: 60px;
+    height: 70px;
     display: flex;
     align-items: center;
-    background-color: #211313;
+    background-color: black;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -20,24 +20,25 @@
     flex: 1;
     align-items: center;
     border-radius: 24px;
+    position: relative;
   }
   
   .header__searchInput {
     height: 12px;
     padding: 10px;
+    padding-left: 30px;
     border: none;
-    width: 100%;
-  }
-  
-  .header__searchIcon {
-    padding: 5px;
-    height: 22px !important;
-    background: #ffc534;
+    width: calc(100% - 75px);
+    overflow: hidden;
+    position: absolute;
     
   }
 
-  .header__searchIcon:hover {
-    background: #ffb700;
+  .header__searchIcon {
+    position: absolute;
+    margin-top: -10px;
+    margin-left: 0.5%;
+    fill-opacity: 0.5;
   }
   
   .header__optionLineOne {

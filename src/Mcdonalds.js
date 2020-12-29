@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "./RestaurantPage.css";
 import Product from "./Product";
-import Background from "./img/mcdonalds-banner.jpg";
+import Background from "./img/McDonaldsBanner.png";
 import MenuFilter from "./MenuFilter";
 import { db } from './firebase';
 
@@ -10,14 +10,12 @@ function Mcdonalds() {
   const [row2, setRow2] = useState([]);
   const [row3, setRow3] = useState([]);
   const [row4, setRow4] = useState([]);
-  const [row5, setRow5] = useState([]);
 
   useEffect(() => {
-    db.collection('Restaurant Information').doc('McDonalds').onSnapshot(snapshot => setRow1(snapshot.data()["Menu"].slice(0,2)));
-    db.collection('Restaurant Information').doc('McDonalds').onSnapshot(snapshot => setRow2(snapshot.data()["Menu"].slice(2,5)));
-    db.collection('Restaurant Information').doc('McDonalds').onSnapshot(snapshot => setRow3(snapshot.data()["Menu"].slice(5,7)));
-    db.collection('Restaurant Information').doc('McDonalds').onSnapshot(snapshot => setRow4(snapshot.data()["Menu"].slice(7,10)));
-    db.collection('Restaurant Information').doc('McDonalds').onSnapshot(snapshot => setRow5(snapshot.data()["Menu"].slice(10,12)));
+    db.collection('Restaurant Information').doc('McDonalds').onSnapshot(snapshot => setRow1(snapshot.data()["Menu"].slice(0,3)));
+    db.collection('Restaurant Information').doc('McDonalds').onSnapshot(snapshot => setRow2(snapshot.data()["Menu"].slice(3,6)));
+    db.collection('Restaurant Information').doc('McDonalds').onSnapshot(snapshot => setRow3(snapshot.data()["Menu"].slice(6,9)));
+    db.collection('Restaurant Information').doc('McDonalds').onSnapshot(snapshot => setRow4(snapshot.data()["Menu"].slice(9,12)));
   }, [])
 
   return (  
@@ -49,9 +47,6 @@ function Mcdonalds() {
           {row4.map(prod => (<Product product = {prod} />))}
         </div>
 
-        <div className="restaurant__row">
-          {row5.map(prod => (<Product product = {prod} />))}
-        </div>
       </div>
     </div>
   )

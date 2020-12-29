@@ -32,6 +32,7 @@ function Payment() {
                 url: `/payments/create?total=${getBasketTotal(basket)}`
             });
             //Get the secret back from stripe, which allows us to charge the right amount 
+            
             setClientSecret(response.data.clientSecret)
         }
         if(user && getBasketTotal(basket) > 0)
@@ -101,14 +102,11 @@ function Payment() {
     return (
         <div className="payment">
             <div className="payment__container">
-                <h1> 
-                    Checkout ( <Link to="/checkout">{basket?.length} items </Link>)
-                </h1>
 
                 {/* Restaurant */}
                 <div className="payment__section"> 
                     <div className="payment__title">
-                        <h1> McDonalds</h1>
+                        <h1> Checkout </h1>
                     </div>
                 </div>
 

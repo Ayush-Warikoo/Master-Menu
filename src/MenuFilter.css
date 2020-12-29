@@ -2,6 +2,7 @@
     padding-left: 20px;
     padding-top: 20px;
     padding-bottom: 20px; 
+    margin-bottom: 10px;
     
     width: 98.5%;
     max-height: 100vh;
@@ -31,7 +32,7 @@
 .filter__rating > select {
     height: 30px;
     margin-bottom: 10px;
-    background-color: white;
+    background-color:white;
     width: 5%;
     border: 2px solid;
     border-color: #212121 #767676 #767676 #212121
@@ -48,11 +49,22 @@
 
   
 .filter__button > button {
-    background: #ffc534;
-    border-radius: 2px;
+    background: rgb(0, 0, 0)/*#ffc534*/;
+    color: white;
     width: 200px;
     height: 40px;
     border: 1px solid;
     margin-top: 10px;
-    border-color: #a88734 #9c7e31 #846a29;
+    border-color:  #212121 #767676 #767676 #212121;
+    border-radius: 20px;
+    font-size: large;
   }
+
+  .filter__button > button:active {
+    transform: scale(0.90);
+  }
+
+  .filter__button > button:hover {
+    background: rgb(48, 48, 48);
+  }
+

@@ -8,10 +8,14 @@ function Product({ product }) {
     const [{allergy, preference, budget, rating, diet}, dispatch] = useStateValue();
 
     const buttonColor = () => {
+        let black = "rgb(0, 0, 0)";
+        let green = "rgb(17, 191, 93)";
+        let red = "rgb(227, 54, 54)"; 
 
-        if(allergy[0] === "" && preference[0] === "" && budget === null && rating === null && diet == null)
+
+        if(!allergy[0] && !preference[0] && !budget && !rating && !diet)
         {
-            return "#ffc534";
+            return black;
         }
         //Diet
         if(diet !== null && diet !=="None")
@@ -22,7 +26,7 @@ function Product({ product }) {
             ||(diet === "Pollopescetarian" && product.type !== "Vegan" && product.type !== "Vegetarian"  && product.type !== "Pescetarian" && product.type !== "Pollopescetarian") 
             )
             {
-                return "rgb(252, 137, 137)";
+                return red;
             }
         }
         //Allergy
@@ -30,28 +34,28 @@ function Product({ product }) {
         {
             if(all !== "" && product.ingredients.includes(all))
             {
-                return "rgb(252, 137, 137)";
+                return red;
             }
         }
         //Budget
         if(budget !== null && budget !== "" && product.price > budget)
         {
-            return "rgb(252, 137, 137)";
+            return red;
         }
         //Rating
         if(rating !== null && rating !== "" && product.stars < rating )
         {
-            return "rgb(252, 137, 137)";
+            return red;
         }
         //Preference
         for(const pref of preference)
         {
-            if(pref !== "" && product.ingredients.includes(pref))
+            if(pref !== "" && !product.ingredients.includes(pref))
             {
-                return "rgb(140, 233, 144)";
+                return red;
             }
         }
-        return "#ffc534";
+        return green;
     }
 
     const addToBasket = () => {
@@ -89,21 +93,23 @@ function Product({ product }) {
     return (
 
         <div className="product">
-            <div className="product__info"> 
-                <h2> {product.title} </h2>
-                <p className="product__price"> 
-                    <small> $ </small>
-                    <strong> {product.price} </strong>
-                </p>
-                <div className="product__rating">
-                    {ratingOutput()}
-                </div>
-            </div> 
+            <div className="product__header"> 
+                <div className="product__info"> 
+                    <h2> {product.title} </h2>
+                    <p className="product__price"> 
+                        <small> $ </small>
+                        <strong> {product.price} </strong>
+                    </p>
+                    <div className="product__rating">
+                        {ratingOutput()}
+                    </div>
+                </div> 
+            </div>
             <img src={product.image} alt=""/>
-            <button onClick={addToBasket} style={{"backgroundColor":(buttonColor())}}> Add to Basket </button>
             <div className="product__ingredients">
                 <p> Ingredients: {product.ingredients}</p>
             </div> 
+            <button onClick={addToBasket} style={{"backgroundColor":(buttonColor()) }}> Add to Order </button>
         
         </div>
     );
