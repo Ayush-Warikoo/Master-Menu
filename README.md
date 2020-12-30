@@ -50,7 +50,7 @@ firebase deploy
 
 <a name="demo"></a>
 ## Demo 
-![](Demo.gif) <br/>
+![](MasterMenuDemo.gif) <br/>
 
 #### Sample payments recorded using Stripe 
 ![](stripe.jpg)
