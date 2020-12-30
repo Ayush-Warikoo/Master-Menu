@@ -50,11 +50,16 @@ function Product({ product }) {
         //Preference
         for(const pref of preference)
         {
-            if(pref !== "" && !product.ingredients.includes(pref))
+            if(pref !== "" && product.ingredients.includes(pref))
             {
-                return red;
+                return green;
             }
         }
+        if(preference.length !== 0)
+        {
+            return red;
+        }
+
         return green;
     }
 

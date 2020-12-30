@@ -12,20 +12,19 @@
 <a name="description"></a>
 ## Description 
 
-### Description
-Master menu is a web application that removes all the inconveniences of eating out and allows you to personalize your dining experience. It makes a digital version of every restaurant’s menu accessible all in one place, listing each menu item’s price, rating and ingredients. This allows users with allergies or dietary restrictions to know what dishes they can eat without having to ask a waiter or hoping that the menu comes with all the ingredients. Additionally, once you know which dish you would like, you can pre-order them, which notifies the restaurant to get started on your meal ahead of time, removing the inconvenience of waiting at your table for your food to come.
+### Functionality
+Master Menu is a web application that removes many of the inconveniences of eating out and personalizes one's dining experience. It puts a digital version of restaurant menus in one place, listing each menu item’s price, rating, ingredients and a picture of the dish as well. Using the menu filter, users can input allergies/dietary restrictions, ingredient preferences, a budget limit, a rating minimum, as well as their diet, which includes pollopescetarian, pescetarian, vegetarian and vegan options. 
+The application will take this information and highlight the food that match the user's personalized criteria. 
+Once a user has decided on a dish, they can add it to their order and book a reservation, removing the inconvenience of waiting at the restaurant for their order to be taken and for their food to be made. 
 
 ### Development Tools
-The application utilizes a FERN (Firebase, Express, React and Node.js) stack, as well as Stripe for payment processing. The application leverages Firebase authentication, allowing users to sign up and log in. The deployed website is also hosted by Firebase and order information is stored and retrieved from Cloud Firestore databases. Moreover, the application uses React Router for routing between web pages, React Context API for state management and Axios package for sending HTTP requests. 
-
-### Next Steps 
-Currently the application has a McDonalds page as a demonstration, but in terms of Master Menu's next steps I’m looking to create a front end for restaurant owners where they can input restaurant information themselves as well as receive notifications for orders placed by customers. Another feature in development is allowing customers to input their food allergies, likes, dislikes, budget, calorie limit, etc to display the menu items in order of the user’s preferences. This would further the level of personalization and save customers from having to read through all of the menu.  
+The application utilizes a FERN (Firebase, Express, React and Node.js) stack, as well as Stripe for payment processing. The application leverages Firebase authentication, allowing users to sign up and log in. The deployed website is also hosted by Firebase and menu/order information is stored and retrieved from Cloud Firestore databases. Moreover, the application uses React Router for routing between web pages, Context API for state management and Axios package as the HTTP client. 
 
 <a name="installation-and-deployment"></a>
 ## Installation and Deployment
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-A deployed demo (with "McDonalds" page) is available at [https://master-menu-app.web.app/](https://master-menu-app.web.app/).
+A deployed demo (with sample "McDonalds" and "PizzaPizza" pages) is available at [https://master-menu-app.web.app/](https://master-menu-app.web.app/).
 
 Installs node_modules
 ```
@@ -56,9 +55,10 @@ firebase deploy
 #### Sample payments recorded using Stripe 
 ![](stripe.jpg)
 
-
-#### Menu item information is stored in Cloud Firestore after payment is processed and then retrieved for page listed with all previous orders 
+#### Menu item information is stored in Cloud Firestore after payment is processed and then retrieved for page listed with all previous orders.
+#### As well, all menu information is pulled from the database.  
 ![](firestore.jpg)
+![](database.jpg)
 
 
 

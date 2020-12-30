@@ -55,7 +55,7 @@ function Header() {
                     <option> PizzaPizza </option>                        
                 </datalist>
                 <Link to={`/${restaurant}`}>
-                    <SearchIcon className="header__searchIcon" className="header__searchIcon" />
+                    <SearchIcon className="header__searchIcon" />
                 </Link>
             </div>
 
