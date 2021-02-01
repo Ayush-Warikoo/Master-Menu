@@ -13,12 +13,12 @@ function Product({ product }) {
         let red = "rgb(227, 54, 54)"; 
 
 
-        if(!allergy[0] && !preference[0] && !budget && !rating && !diet)
+        if(!allergy.some(i => i) && !preference.some(i => i) && !budget && !rating && !diet)
         {
             return black;
         }
         //Diet
-        if(diet !== null && diet !=="None")
+        if(diet !== null)
         {
             if((diet === "Vegan" && product.type !== "Vegan") 
             ||(diet === "Vegetarian" && product.type !== "Vegan" && product.type !== "Vegetarian")
@@ -38,12 +38,12 @@ function Product({ product }) {
             }
         }
         //Budget
-        if(budget !== null && budget !== "" && product.price > budget)
+        if(budget !== null && product.price > budget)
         {
             return red;
         }
         //Rating
-        if(rating !== null && rating !== "" && product.stars < rating )
+        if(rating !== null && product.stars < rating )
         {
             return red;
         }
@@ -55,7 +55,7 @@ function Product({ product }) {
                 return green;
             }
         }
-        if(preference.length !== 0)
+        if(preference.some(a => a))
         {
             return red;
         }

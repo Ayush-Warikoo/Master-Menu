@@ -103,7 +103,7 @@ function MenuFilter()
         <h3>Ingredient Preferences:</h3>
         <input type='text' placeholder={preferencePlaceholder()} value={preferenceString} onChange={e => setPreferenceString(e.target.value)} />
         <h3>Budget Maximum ($):</h3>
-        <input type='number' placeholder={budgetPlaceholder()} value={budgetString} onChange={e => setBudgetString(e.target.value)}/>
+        <input type='number' placeholder={budgetPlaceholder()} value={budgetString || ""} onChange={e => setBudgetString(e.target.value)}/>
         <h3>Rating Minimum (Stars):</h3>
         <div className="filter__rating">
           <select type="rating" value={ratingString} onChange={e => setRatingString(e.target.value)}> 
