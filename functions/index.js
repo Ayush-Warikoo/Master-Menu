@@ -15,7 +15,8 @@ app.use(cors({ origin: true })); //cors is like a security
 app.use(express.json());
 
 // API Routes
-//app.get("/", (request, response) => response.status(200).send("hello world"));
+
+app.get("/health", (request, response) => response.status(200).send("All good!"));
 
 app.post("/payments/create", async (request, response) => {
   const total = request.query.total;
