@@ -5,6 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import reducer, { initialState} from "./reducer";
 import { StateProvider } from './StateProvider';
+require('dotenv').config();
 
 ReactDOM.render(
   <React.StrictMode>
