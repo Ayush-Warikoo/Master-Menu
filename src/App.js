@@ -14,14 +14,22 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import Orders from './Orders';
 import HomePage from './HomePage';
+import logo from "./img/logo-white.png";
+import background from "./img/background.jpg";
 
 const promise = loadStripe('pk_test_51HTb4yCMTvSAbugnymsc6QfztCMJk4KDkMJwUBaYUw1b19dxvi4HzlEa2CYobQLOY2bofH9UmdBkJVnF3iCc1rD600MWxcth4n');
 
 function App() {
   const [{}, dispatch] = useStateValue();
+  const preload = [logo, background];
 
   useEffect(() => {
-    // will only run once when the app component loads...
+    // will only run once when the app component loads
+
+    preload.forEach(img => {
+        const image = new Image();
+        image.src = img;
+    })
 
     auth.onAuthStateChanged((authUser) => {
       //console.log("The user is:", authUser);
