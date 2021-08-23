@@ -1,4 +1,5 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
+import axios from './axios';
 import './App.css';
 import Header from './Header';
 import Mcdonalds from './Mcdonalds';
@@ -17,7 +18,7 @@ import HomePage from './HomePage';
 import logo from "./img/logo-white.png";
 import background from "./img/background.jpg";
 
-const promise = loadStripe('pk_test_51HTb4yCMTvSAbugnymsc6QfztCMJk4KDkMJwUBaYUw1b19dxvi4HzlEa2CYobQLOY2bofH9UmdBkJVnF3iCc1rD600MWxcth4n');
+const promise = loadStripe(`${process.env.REACT_APP_LOAD_STRIPE_KEY}`);
 
 function App() {
   const [{}, dispatch] = useStateValue();

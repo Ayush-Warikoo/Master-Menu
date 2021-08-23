@@ -1,8 +1,9 @@
 const functions = require('firebase-functions');
+require('dotenv').config();
 const express = require("express");
 const cors = require("cors");
 const stripe = require("stripe")(
-    `${process.env.REACT_APP_STRIPE_TEST_KEY}`
+    `${process.env.STRIPE_TEST_KEY}`
 );
 
 //API 
@@ -11,16 +12,17 @@ const stripe = require("stripe")(
 const app = express();
 
 //Middleware
-app.use(cors({ origin: true })); //cors is like a security
+app.use(cors({ origin: [`${process.env.DEV_CORS}`, `${process.env.TEST_CORS}`] }));
 app.use(express.json());
 
 // API Routes
 
-app.get("/health", (request, response) => response.status(200).send("All good!"));
+app.get("/health", async (request, response) => {
+    response.status(200).send("All Good!");
+});
 
 app.post("/payments/create", async (request, response) => {
   const total = request.query.total;
-
   console.log("Payment Request Recieved! for this amount ", total);
 
 
@@ -40,4 +42,5 @@ app.post("/payments/create", async (request, response) => {
 exports.api = functions.https.onRequest(app);
 
 //API Endpoint
-//http://localhost:5001/master-menu-app/us-central1/api
+//Dev: https://us-central1-master-menu-app.cloudfunctions.net/api
+//Test: http://localhost:5001/master-menu-app/us-central1/api
