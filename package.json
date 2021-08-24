@@ -27,6 +27,9 @@
 	"eslintConfig": {
 		"extends": "react-app"
 	},
+    "prettier": {
+        "tabWidth": 2
+    },
 	"browserslist": {
 		"production": [
 			">0.2%",

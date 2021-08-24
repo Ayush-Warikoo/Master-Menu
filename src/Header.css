@@ -1,75 +1,74 @@
 .header {
-    height: 70px;
-    display: flex;
-    align-items: center;
-    background-color: black;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  
-  .header__logo {
-    width: 150px;
-    object-fit: contain;
-    margin: 0 20px;
-    margin-top: 18px;
-  }
-  
-  .header__search {
-    display: flex;
-    flex: 1;
-    align-items: center;
-    border-radius: 24px;
-    position: relative;
-  }
-  
-  .header__searchInput {
-    height: 12px;
-    padding: 10px;
-    padding-left: 30px;
-    border: none;
-    width: calc(100% - 75px);
-    overflow: hidden;
-    position: absolute;
-    
-  }
+  height: 70px;
+  display: flex;
+  align-items: center;
+  background-color: black;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
 
-  .header__searchIcon {
-    position: absolute;
-    margin-top: -10px;
-    margin-left: 0.5%;
-    fill-opacity: 0.5;
-  }
-  
-  .header__optionLineOne {
-    font-size: 10px;
-  }
-  
-  .header__optionLineTwo {
-    font-size: 13px;
-    font-weight: 800;
-  }
-  
-  .header__optionBasket {
-    display: flex;
-    align-items: center;
-    color: white;
-  }
-  
-  .header__basketCount {
-    margin-left: 10px;
-    margin-right: 10px;
-  }
-  
-  .header__nav {
-    display: flex;
-    justify-content: space-evenly;
-  }
-  
-  .header__option {
-    display: flex;
-    flex-direction: column;
-    margin-left: 10px;
-    margin-right: 10px;
-    color: white;
-  }
+.header__logo {
+  width: 150px;
+  object-fit: contain;
+  margin: 0 20px;
+  margin-top: 18px;
+}
+
+.header__search {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  border-radius: 24px;
+  position: relative;
+}
+
+.header__searchInput {
+  height: 12px;
+  padding: 10px;
+  padding-left: 30px;
+  border: none;
+  width: calc(100% - 75px);
+  overflow: hidden;
+  position: absolute;
+}
+
+.header__searchIcon {
+  position: absolute;
+  margin-top: -10px;
+  margin-left: 0.5%;
+  fill-opacity: 0.5;
+}
+
+.header__optionLineOne {
+  font-size: 10px;
+}
+
+.header__optionLineTwo {
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.header__optionBasket {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.header__basketCount {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.header__nav {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.header__option {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: white;
+}

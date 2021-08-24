@@ -1,70 +1,67 @@
 .menu__filter {
-    padding-left: 20px;
-    padding-top: 20px;
-    padding-bottom: 20px; 
-    margin-bottom: 10px;
-    
-    width: 98.5%;
-    max-height: 100vh;
-     
-    min-width: 100px;
-   
-    background-color: white;
-    z-index: 1;
-  }
+  padding-left: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 10px;
+
+  width: 98.5%;
+  max-height: 100vh;
+
+  min-width: 100px;
+
+  background-color: white;
+  z-index: 1;
+}
 .menu__filter > h1 {
-    text-align: center;
-  }
-  
+  text-align: center;
+}
+
 .menu__filter > h3 {
-    margin-top: 10px;
-    margin-bottom: 5px;
-  }
-  
-  
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
 .menu__filter > input {
-    height: 30px;
-    margin-bottom: 10px;
-    background-color: white;
-    width: 50%;
-  }
+  height: 30px;
+  margin-bottom: 10px;
+  background-color: white;
+  width: 50%;
+}
 
 .filter__rating > select {
-    height: 30px;
-    margin-bottom: 10px;
-    background-color:white;
-    width: 5%;
-    border: 2px solid;
-    border-color: #212121 #767676 #767676 #212121
-  }
+  height: 30px;
+  margin-bottom: 10px;
+  background-color: white;
+  width: 5%;
+  border: 2px solid;
+  border-color: #212121 #767676 #767676 #212121;
+}
 
 .filter__diet > select {
-    height: 30px;
-    margin-bottom: 10px;
-    background-color: white;
-    width: 15%;
-    border: 2px solid;
-    border-color: #212121 #767676 #767676 #212121
-  }
+  height: 30px;
+  margin-bottom: 10px;
+  background-color: white;
+  width: 15%;
+  border: 2px solid;
+  border-color: #212121 #767676 #767676 #212121;
+}
 
-  
 .filter__button > button {
-    background: rgb(0, 0, 0)/*#ffc534*/;
-    color: white;
-    width: 200px;
-    height: 40px;
-    border: 1px solid;
-    margin-top: 10px;
-    border-color:  #212121 #767676 #767676 #212121;
-    border-radius: 20px;
-    font-size: large;
-  }
+  background: rgb(0, 0, 0) /*#ffc534*/;
+  color: white;
+  width: 200px;
+  height: 40px;
+  border: 1px solid;
+  margin-top: 10px;
+  border-color: #212121 #767676 #767676 #212121;
+  border-radius: 20px;
+  font-size: large;
+}
 
-  .filter__button > button:active {
-    transform: scale(0.90);
-  }
+.filter__button > button:active {
+  transform: scale(0.9);
+}
 
-  .filter__button > button:hover {
-    background: rgb(48, 48, 48);
-  }
-
+.filter__button > button:hover {
+  background: rgb(48, 48, 48);
+}
