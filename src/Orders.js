@@ -8,23 +8,30 @@ function Orders() {
   const [{ basket, user }, dispatch] = useStateValue();
   const [orders, setOrders] = useState([]);
 
+  //Cancel logic required to avoid memory leaks
   useEffect(() => {
+    let cancel = false;
+
     if (user) {
       db.collection("users")
         .doc(user?.uid)
         .collection("orders")
         .orderBy("created", "desc")
         //Real time update
-        .onSnapshot((snapshot) =>
+        .onSnapshot((snapshot) => {
+          if (cancel) return;
           setOrders(
             snapshot.docs.map((doc) => ({
               id: doc.id,
               data: doc.data(),
             }))
           )
-        );
+        });
     } else {
       setOrders([]);
+    }
+    return () => {
+      cancel = true;
     }
   }, [user]);
 
@@ -33,9 +40,9 @@ function Orders() {
       <h1>Your Orders</h1>
 
       <div className="orders__order">
-        {orders?.map((order) => (
+        {orders.map((order) => 
           <Order order={order} />
-        ))}
+        )}
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ function Subtotal() {
   const details = () => {
     //Adds restaurants based on checkout id (check constants for values)
     //Order: McDonalds, PizzaPizza, ...
-  
+
     let restaurantSet = new Set();
 
     for (const item of basket) {

@@ -31,6 +31,7 @@ function Payment() {
         // Stripe expects the total in a currencies subunits
         url: `/payments/create?total=${getBasketTotal(basket)}`,
       });
+      
       //Get the secret back from stripe, which allows us to charge the right amount
 
       setClientSecret(response.data.clientSecret);
@@ -52,7 +53,7 @@ function Payment() {
       history.replace("/login");
       return;
     }
-
+    //console.log(clientSecret);
     //Confirms client secret
     const payload = await stripe
       .confirmCardPayment(clientSecret, {

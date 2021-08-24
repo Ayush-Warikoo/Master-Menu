@@ -10,7 +10,7 @@ function Checkout() {
   return (
     <div className="checkout">
       <div className="checkout__left">
-        <h2 className="checkout__title">Your Order </h2>
+        <h2 className="checkout__title"> Your Order </h2>
         <div className="checkout__items">
           {basket.map((item) => (
             <CheckoutProduct
