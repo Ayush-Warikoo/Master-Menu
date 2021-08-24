@@ -16,6 +16,9 @@ function Header() {
   //logout
   const handleAuthentication = () => {
     if (user) {
+      dispatch({
+        type: "EMPTY_BASKET",
+      });
       auth.signOut();
     }
   };
