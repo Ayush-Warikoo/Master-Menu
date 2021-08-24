@@ -41,6 +41,7 @@ function App() {
     //     setRestaurants(restaurants);
     // });
 
+    //Listens for sign ins and outs 
     auth.onAuthStateChanged((authUser) => {
       //console.log("The user is:", authUser);
 

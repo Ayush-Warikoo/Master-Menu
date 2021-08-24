@@ -1,16 +1,30 @@
 import React, { useState } from "react";
 import "./Login.css";
 import { Link, useHistory } from "react-router-dom";
-import { auth } from "./firebase";
+import { auth, emailProvider, facebookProvider, githubProvider, googleProvider, twitterProvider } from "./firebase";
 import logo from "./img/logo.png";
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
 function Login() {
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const signIn = (e) => {
+  let uiConfig = {
+    signInFlow: "popup",
+    signInOptions: [
+      facebookProvider.providerId,
+      googleProvider.providerId,
+      twitterProvider.providerId,
+      githubProvider.providerId,
+      emailProvider.providerId,
+    ],
+    signInSuccessUrl: '/',
+  }
+
+  const signInWithEmail = (e) => {
     e.preventDefault();
+
     auth
       .signInWithEmailAndPassword(email, password)
       .then((auth) => {
@@ -19,7 +33,7 @@ function Login() {
       .catch((error) => alert(error.message));
   };
 
-  const register = (e) => {
+  const registerWithEmail = (e) => {
     e.preventDefault();
     auth
       .createUserWithEmailAndPassword(email, password)
@@ -58,7 +72,7 @@ function Login() {
 
           <button
             type="submit"
-            onClick={signIn}
+            onClick={signInWithEmail}
             className="login__signInButton"
           >
             Sign In
@@ -67,19 +81,22 @@ function Login() {
 
         <p>
           By signing-in you agree to the MASTER MENU Conditions of Use & Sale.
-          Please see our Privacy Notice, our Cookies Notice and our
-          Interest-Based Ads Notice.
+          Please see our Privacy Notice.
         </p>
 
-        <button onClick={register} className="login__registerButton">
-          Create your Master Menu Account
+        <button onClick={registerWithEmail} className="login__registerButton">
+          Create Your Master Menu Account
         </button>
 
         <p>
           In order to register an account, enter the email and password you
-          would like to use in their respective boxes and click on the button
-          above.
+          would like to use in their respective boxes and click 'Create Your Master Menu Account'
         </p>
+
+        <StyledFirebaseAuth
+          uiConfig={uiConfig}
+          firebaseAuth={auth}
+        />
       </div>
     </div>
   );
