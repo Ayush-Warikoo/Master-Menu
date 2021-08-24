@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
 import "./HomePage.css";
 import logo from "./img/logo-white.png";
+import { restaurants } from './constants';
 
 function HomePage() {
     const history = useHistory();
@@ -35,8 +36,9 @@ function HomePage() {
                             onKeyDown={e => handleKeyPress(e.key)}
                         />
                         <datalist id="homepage__restaurant">
-                            <option> McDonalds</option>
-                            <option> PizzaPizza </option>                        
+                            {restaurants.map(restaurant => 
+                                <option> {restaurant} </option> 
+                            )}                     
                         </datalist>
                         <button className="homepage__button" type="button" onClick={search} > Search </button>
                     </div>

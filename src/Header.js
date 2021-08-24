@@ -6,6 +6,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useStateValue } from "./StateProvider";
 import { auth } from "./firebase";
 import logo from "./img/logo-white.png";
+import { restaurants } from "./constants";
 
 
 function Header() {
@@ -51,8 +52,9 @@ function Header() {
                     onKeyDown={e => handleKeyPress(e.key)} 
                 />
                 <datalist id="header__restaurant">
-                    <option> McDonalds</option>
-                    <option> PizzaPizza </option>                        
+                {restaurants.map(restaurant => 
+                    <option> {restaurant} </option> 
+                )}                         
                 </datalist>
                 <Link to={`/${restaurant}`}>
                     <SearchIcon className="header__searchIcon" />
