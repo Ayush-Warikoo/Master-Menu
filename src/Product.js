@@ -3,16 +3,13 @@ import "./Product.css";
 import StarIcon from "@material-ui/icons/Star";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import { useStateValue } from "./StateProvider";
+import {RED, BLACK, GREEN } from "./constants";
 
 function Product({ product }) {
   const [{ allergy, preference, budget, rating, diet }, dispatch] =
     useStateValue();
 
   const buttonColor = () => {
-    let black = "rgb(0, 0, 0)";
-    let green = "rgb(17, 191, 93)";
-    let red = "rgb(227, 54, 54)";
-
     if (
       !allergy.some((i) => i) &&
       !preference.some((i) => i) &&
@@ -20,10 +17,10 @@ function Product({ product }) {
       !rating &&
       !diet
     ) {
-      return black;
+      return BLACK;
     }
     //Diet
-    if (diet !== null) {
+    if (diet && diet !== "None") {
       if (
         (diet === "Vegan" && product.type !== "Vegan") ||
         (diet === "Vegetarian" &&
@@ -39,34 +36,34 @@ function Product({ product }) {
           product.type !== "Pescetarian" &&
           product.type !== "Pollopescetarian")
       ) {
-        return red;
+        return RED;
       }
     }
     //Allergy
     for (const all of allergy) {
-      if (all !== "" && product.ingredients.includes(all)) {
-        return red;
+      if (all && product.ingredients.includes(all)) {
+        return RED;
       }
     }
     //Budget
-    if (budget !== null && product.price > budget) {
-      return red;
+    if (budget && product.price > budget) {
+      return RED;
     }
     //Rating
-    if (rating !== null && product.stars < rating) {
-      return red;
+    if (rating && product.stars < rating) {
+      return RED;
     }
     //Preference
     for (const pref of preference) {
-      if (pref !== "" && product.ingredients.includes(pref)) {
-        return green;
+      if (pref && product.ingredients.includes(pref)) {
+        return GREEN;
       }
     }
     if (preference.some((a) => a)) {
-      return red;
+      return RED;
     }
 
-    return green;
+    return GREEN;
   };
 
   const addToBasket = () => {
@@ -89,9 +86,9 @@ function Product({ product }) {
     let s = [];
     for (let i = 0; i < 5; i++) {
       if (i < product.stars) {
-        s.push(<StarIcon />);
+        s.push(<StarIcon key={`product__rating_${i}`} />);
       } else {
-        s.push(<StarBorderIcon />);
+        s.push(<StarBorderIcon key={`product__rating_${i}`} />);
       }
     }
     return s;

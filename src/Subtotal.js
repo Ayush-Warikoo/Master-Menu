@@ -26,9 +26,9 @@ function Subtotal() {
 
     for (const rest of restaurantSet) {
       restaurantArray.push(<h3> {rest} </h3>);
-      restaurantArray.push(<label for="location">Location:</label>);
+      restaurantArray.push(<label htmlFor="location">Location:</label>);
       restaurantArray.push(<input type="text" id="location" />);
-      restaurantArray.push(<label for="appt">Reservation Time:</label>);
+      restaurantArray.push(<label htmlFor="appt">Reservation Time:</label>);
       restaurantArray.push(
         <input
           type="time"

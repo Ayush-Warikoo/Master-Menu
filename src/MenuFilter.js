@@ -8,9 +8,9 @@ function MenuFilter() {
 
   const [allergyString, setAllergyString] = useState("");
   const [preferenceString, setPreferenceString] = useState("");
-  const [dietString, setDietString] = useState(null);
-  const [budgetString, setBudgetString] = useState(null);
-  const [ratingString, setRatingString] = useState(null);
+  const [dietString, setDietString] = useState("");
+  const [budgetString, setBudgetString] = useState("");
+  const [ratingString, setRatingString] = useState("");
 
   const filter = () => {
     // dispatch the item into the data layer
@@ -113,13 +113,13 @@ function MenuFilter() {
           value={ratingString}
           onChange={(e) => setRatingString(e.target.value)}
         >
-          <option class="default" selected disabled hidden>
+          <option className="default" selected disabled hidden>
             {" "}
             {ratingPlaceholder()}{" "}
           </option>
-          <option class="1"> 1 </option>, <option class="2"> 2 </option>,{" "}
-          <option class="3"> 3 </option>, <option class="4"> 4 </option>,{" "}
-          <option class="5"> 5 </option>
+          <option className="1"> 1 </option>, <option className="2"> 2 </option>,{" "}
+          <option className="3"> 3 </option>, <option className="4"> 4 </option>,{" "}
+          <option className="5"> 5 </option>
         </select>
       </div>
 
@@ -130,15 +130,15 @@ function MenuFilter() {
           value={dietString}
           onChange={(e) => setDietString(e.target.value)}
         >
-          <option class="default" selected disabled hidden>
+          <option className="default" selected disabled hidden>
             {" "}
             {dietPlaceholder()}{" "}
           </option>
-          <option class="None"> None </option>,
-          <option class="Pollopescetarian"> Pollopescetarian </option>,
-          <option class="Pescetarian"> Pescetarian </option>,
-          <option class="Vegetarian"> Vegetarian </option>,
-          <option class="Vegan"> Vegan </option>
+          <option className="None"> None </option>,
+          <option className="Pollopescetarian"> Pollopescetarian </option>,
+          <option className="Pescetarian"> Pescetarian </option>,
+          <option className="Vegetarian"> Vegetarian </option>,
+          <option className="Vegan"> Vegan </option>
         </select>
       </div>
 

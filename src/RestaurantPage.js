@@ -34,10 +34,10 @@ function RestaurantPage({ restaurant }) {
 
         <MenuFilter />
         {/* Product rows */}
-        {productMatrix.map((row) => (
-          <div className="restaurant__row">
+        {productMatrix.map((row, index) => (
+          <div key={`restaurant__row_${index}`} className="restaurant__row">
             {row.map((prod) => (
-              <Product product={prod} />
+              <Product key={`restaurant__prod_${prod.id}`} product={prod} />
             ))}
           </div>
         ))}

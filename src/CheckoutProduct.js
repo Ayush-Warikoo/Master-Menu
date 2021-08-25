@@ -37,12 +37,12 @@ function CheckoutProduct({
           {Array(rating)
             .fill()
             .map((_, i) => (
-              <StarIcon />
+              <StarIcon key={`checkoutProduct__rating_${i}`}/>
             ))}
           {Array(5 - rating)
             .fill()
             .map((_, i) => (
-              <StarBorderIcon />
+              <StarBorderIcon key={`checkoutProduct__rating_${5 - i}`}/>
             ))}
         </div>
         {!hideButton && (

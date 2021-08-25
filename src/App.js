@@ -55,7 +55,7 @@ function App() {
           user: authUser,
         });
         setTimeout(() => {
-          toast.info(`Welcome back, ${authUser.displayName ? authUser.displayName : authUser.email}`, {autoClose: 2000});
+          toast.info(`Welcome back, ${authUser.displayName ? authUser.displayName : authUser.email}!`, {autoClose: 2000});
         }, 800)
         
       } else {
@@ -74,7 +74,7 @@ function App() {
         <Switch>
           {/* Sample restaurant pages */}
           {restaurants.map((restaurant) => (
-            <Route path={`/${restaurant}`}>
+            <Route key={`route__${restaurant}`} path={`/${restaurant}`}>
               <Header />
               <RestaurantPage restaurant={restaurant} />
             </Route>

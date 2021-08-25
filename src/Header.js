@@ -68,7 +68,7 @@ function Header() {
         />
         <datalist id="header__restaurant">
           {restaurants.map((restaurant) => (
-            <option> {restaurant} </option>
+            <option key={`header__option_${restaurant}`}> {restaurant} </option>
           ))}
         </datalist>
         <Link to={`/${searchBarText}`}>

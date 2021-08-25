@@ -54,7 +54,7 @@ function HomePage() {
             />
             <datalist id="homepage__restaurant">
               {restaurants.map((restaurant) => (
-                <option> {restaurant} </option>
+                <option key={`homepage__option_${restaurant}`}> {restaurant} </option>
               ))}
             </datalist>
             <button className="homepage__button" type="button" onClick={search}>
