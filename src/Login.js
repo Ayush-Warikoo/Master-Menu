@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import { auth, emailProvider, facebookProvider, githubProvider, googleProvider, twitterProvider } from "./firebase";
 import logo from "./img/logo.png";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+import { toast } from "react-toastify";
 
 function Login() {
   const history = useHistory();
@@ -30,7 +31,9 @@ function Login() {
       .then((auth) => {
         history.push("/");
       })
-      .catch((error) => alert(error.message));
+      .catch((error) => {
+        toast.error(`${error.message}`);
+      });
   };
 
   const registerWithEmail = (e) => {
@@ -39,11 +42,14 @@ function Login() {
       .createUserWithEmailAndPassword(email, password)
       .then((auth) => {
         // it successfully created a new user with email and password
+        toast.success(`Successfully registered ${email}`, {autoClose: 2000});
         if (auth) {
           history.push("/");
         }
       })
-      .catch((error) => alert(error.message));
+      .catch((error) => {
+        toast.error(`${error.message}`);
+      });
   };
 
   return (

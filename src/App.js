@@ -16,8 +16,10 @@ import logo from "./img/logo-white.png";
 import background from "./img/background.jpg";
 import RestaurantPage from "./RestaurantPage";
 import { restaurants } from "./constants";
+import { toast } from "react-toastify";
 
 const promise = loadStripe(`${process.env.REACT_APP_LOAD_STRIPE_KEY}`);
+toast.configure();
 
 function App() {
   const [{}, dispatch] = useStateValue();
@@ -52,6 +54,10 @@ function App() {
           type: "SET_USER",
           user: authUser,
         });
+        setTimeout(() => {
+          toast.info(`Welcome back, ${authUser.displayName ? authUser.displayName : authUser.email}`, {autoClose: 2000});
+        }, 800)
+        
       } else {
         // the user is logged out
         dispatch({

@@ -7,11 +7,13 @@ import { useStateValue } from "./StateProvider";
 import { auth } from "./firebase";
 import logo from "./img/logo-white.png";
 import { restaurants } from "./constants";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Header() {
   const [{ basket, user }, dispatch] = useStateValue();
   const history = useHistory();
-  const [restaurant, setRestaurant] = useState("");
+  const [searchBarText, setSearchBarText] = useState("");
 
   //logout
   const handleAuthentication = () => {
@@ -19,12 +21,25 @@ function Header() {
       dispatch({
         type: "EMPTY_BASKET",
       });
+      toast.info(`See ya, ${user.displayName ? user.displayName : user.email}!`, {autoClose: 1500});
       auth.signOut();
     }
   };
 
   const search = () => {
-    history.push(`/${restaurant}`);
+    for(let i = 0; i < restaurants.length; i++)
+    {
+      if(searchBarText.toLowerCase() === restaurants[i].toLowerCase())
+      {
+        history.push(`/${searchBarText}`);
+        setSearchBarText("");
+        return true;
+      }
+    }
+    if(searchBarText)
+    {
+      toast.error("Sorry, restaurant not available!", {autoClose: 2000});
+    }
   };
 
   const handleKeyPress = (key) => {
@@ -47,8 +62,8 @@ function Header() {
           placeholder="Enter a restaurant"
           list="header__restaurant"
           type="text"
-          value={restaurant}
-          onChange={(e) => setRestaurant(e.target.value)}
+          value={searchBarText}
+          onChange={(e) => setSearchBarText(e.target.value)}
           onKeyDown={(e) => handleKeyPress(e.key)}
         />
         <datalist id="header__restaurant">
@@ -56,7 +71,7 @@ function Header() {
             <option> {restaurant} </option>
           ))}
         </datalist>
-        <Link to={`/${restaurant}`}>
+        <Link to={`/${searchBarText}`}>
           <SearchIcon className="header__searchIcon" />
         </Link>
       </div>

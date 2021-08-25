@@ -5,6 +5,7 @@ import { useStateValue } from "./StateProvider";
 import { getBasketTotal } from "./reducer";
 import { useHistory } from "react-router-dom";
 import { restaurants, MAX_DISH_NUM, STARTING_DISH_ID } from "./constants";
+import { toast } from "react-toastify";
 
 function Subtotal() {
   const history = useHistory();
@@ -60,7 +61,7 @@ function Subtotal() {
       />
       <div className="details">{details()}</div>
 
-      <button onClick={(e) => history.push("/payment")}>
+      <button onClick={(e) => {basket.length ? history.push("/payment") : toast.error("No items to checkout!", {autoClose: 2000}); }}>
         {" "}
         Proceed to Checkout
       </button>

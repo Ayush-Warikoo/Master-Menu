@@ -3,13 +3,25 @@ import { useHistory } from "react-router-dom";
 import "./HomePage.css";
 import logo from "./img/logo-white.png";
 import { restaurants } from "./constants";
+import { toast } from "react-toastify";
 
 function HomePage() {
   const history = useHistory();
-  const [restaurant, setRestaurant] = useState("");
+  const [searchBarText, setSearchBarText] = useState("");
 
   const search = () => {
-    history.push(`/${restaurant}`);
+    for(let i = 0; i < restaurants.length; i++)
+    {
+      if(searchBarText.toLowerCase() === restaurants[i].toLowerCase())
+      {
+        history.push(`/${searchBarText}`);
+        return true;
+      }
+    }
+    if(searchBarText)
+    {
+      toast.error("Sorry, restaurant not available!", {autoClose: 2000});
+    }
   };
 
   const handleKeyPress = (key) => {
@@ -30,9 +42,15 @@ function HomePage() {
               type="text"
               list="homepage__restaurant"
               placeholder="Enter a restaurant"
-              value={restaurant}
-              onChange={(e) => setRestaurant(e.target.value)}
-              onKeyDown={(e) => handleKeyPress(e.key)}
+              value={searchBarText}
+              onChange={(e) => setSearchBarText(e.target.value)}
+              onKeyDown={(e) => {
+                if(e.key === "Enter")
+                {
+                  e.preventDefault();
+                }
+                handleKeyPress(e.key);
+              }}
             />
             <datalist id="homepage__restaurant">
               {restaurants.map((restaurant) => (

@@ -8,6 +8,7 @@ import { getBasketTotal } from "./reducer";
 import CurrencyFormat from "react-currency-format";
 import axios from "./axios";
 import { db } from "./firebase";
+import { toast } from "react-toastify";
 
 function Payment() {
   const [{ basket, user }, dispatch] = useStateValue();
@@ -85,6 +86,7 @@ function Payment() {
           type: "EMPTY_BASKET",
         });
 
+        toast.success("Purchase successful!", {autoClose: 1500});
         //Push them to orders page to not create a loop
         history.replace("/orders");
       });
