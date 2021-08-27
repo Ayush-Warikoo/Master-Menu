@@ -1,5 +1,5 @@
 //Restaurant Constants
-export const restaurants = ["McDonalds", "PizzaPizza"];
+export const restaurants = ["McDonald's", "PizzaPizza"];
 
 //Restaurant Page Formatting Constants
 export const PRODUCTS_PER_ROW = 3;

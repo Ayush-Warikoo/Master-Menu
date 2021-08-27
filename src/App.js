@@ -5,7 +5,7 @@ import Checkout from "./Checkout";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "react-router-dom";
 import Login from "./Login";
-import { auth, db } from "./firebase";
+import { auth } from "./firebase";
 import { useStateValue } from "./StateProvider";
 import Payment from "./Payment";
 import { loadStripe } from "@stripe/stripe-js";
@@ -17,6 +17,7 @@ import background from "./img/background.jpg";
 import RestaurantPage from "./RestaurantPage";
 import { restaurants } from "./constants";
 import { toast } from "react-toastify";
+import { removePunctuation } from "./helperFunctions";
 
 const promise = loadStripe(`${process.env.REACT_APP_LOAD_STRIPE_KEY}`);
 toast.configure();
@@ -42,6 +43,10 @@ function App() {
     //     })
     //     setRestaurants(restaurants);
     // });
+
+    const googlePlacesApi = document.createElement(`script`);
+    googlePlacesApi.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places`;
+    document.querySelector("body").insertAdjacentElement('beforeend', googlePlacesApi);
 
     //Listens for sign ins and outs 
     auth.onAuthStateChanged((authUser) => {
@@ -74,7 +79,7 @@ function App() {
         <Switch>
           {/* Sample restaurant pages */}
           {restaurants.map((restaurant) => (
-            <Route key={`route__${restaurant}`} path={`/${restaurant}`}>
+            <Route key={`route__${restaurant}`} path={`/${removePunctuation(restaurant)}`}>
               <Header />
               <RestaurantPage restaurant={restaurant} />
             </Route>

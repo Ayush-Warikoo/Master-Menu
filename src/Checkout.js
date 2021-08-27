@@ -12,9 +12,9 @@ function Checkout() {
       <div className="checkout__left">
         <h2 className="checkout__title"> Your Order </h2>
         <div className="checkout__items">
-          {basket.map((item) => (
+          {basket.map((item, index) => (
             <CheckoutProduct
-              key={`checkout__product_${item.id}`}
+              key={`checkout__product_${index}_${item.id}`}
               id={item.id}
               title={item.title}
               image={item.image}

@@ -24,7 +24,7 @@ The application utilizes a FERN (Firebase, Express, React and Node.js) stack, as
 ## Installation and Deployment
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-A deployed demo (with sample "McDonalds" and "PizzaPizza" pages) is available at [https://master-menu-app.web.app/](https://master-menu-app.web.app/).
+A deployed demo (with sample "McDonald's" and "PizzaPizza" pages) is available at [https://master-menu-app.web.app/](https://master-menu-app.web.app/).
 
 Installs node_modules
 ```

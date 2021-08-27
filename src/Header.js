@@ -9,6 +9,7 @@ import logo from "./img/logo-white.png";
 import { restaurants } from "./constants";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { removePunctuation } from "./helperFunctions";
 
 function Header() {
   const [{ basket, user }, dispatch] = useStateValue();
@@ -29,9 +30,9 @@ function Header() {
   const search = () => {
     for(let i = 0; i < restaurants.length; i++)
     {
-      if(searchBarText.toLowerCase() === restaurants[i].toLowerCase())
+      if(removePunctuation(searchBarText).toLowerCase() === removePunctuation(restaurants[i].toLowerCase()))
       {
-        history.push(`/${searchBarText}`);
+        history.push(`/${removePunctuation(searchBarText)}`);
         setSearchBarText("");
         return true;
       }
