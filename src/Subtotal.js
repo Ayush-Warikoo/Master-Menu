@@ -74,7 +74,7 @@ function Subtotal() {
             <input
               {...getInputProps({
                 placeholder: `Search for a(n) ${restaurant} location`,
-                className: 'location-search-input',
+                className: 'subtotal__location',
               })}
             />
 

@@ -64,14 +64,17 @@
   padding-right: 256px;
 }
 
-.location-search-input {
+.subtotal__location {
   height: 30px;
   background-color: white;
-  width: 98%;
+  width: 94%;
   border: 2px solid;
   border-color: #212121 #767676 #767676 #212121;
   margin-top: 5px;
   margin-bottom: 5px;
+  border-radius: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .subtotal__reservationTime {
@@ -80,6 +83,8 @@
   display: block;
   border: 2px solid;
   border-color: #212121 #767676 #767676 #212121;
+  border-radius: 6px;
+  padding-left: 10px;
 }
 
 .autocomplete-dropdown {

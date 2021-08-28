@@ -3,12 +3,9 @@
   padding-top: 20px;
   padding-bottom: 20px;
   margin-bottom: 10px;
-
   width: 98.5%;
   max-height: 100vh;
-
   min-width: 100px;
-
   background-color: white;
   z-index: 1;
 }
@@ -17,33 +14,38 @@
 }
 
 .menu__filter > h3 {
-  margin-top: 10px;
-  margin-bottom: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
 }
 
 .menu__filter > input {
-  height: 30px;
+  height: 35px;
   margin-bottom: 10px;
   background-color: white;
-  width: 50%;
+  width: 7%;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  font-size: 15px;
 }
 
-.filter__rating > select {
-  height: 30px;
-  margin-bottom: 10px;
-  background-color: white;
-  width: 5%;
-  border: 2px solid;
-  border-color: #212121 #767676 #767676 #212121;
-}
-
-.filter__diet > select {
-  height: 30px;
+.filter__rating_bar {
   margin-bottom: 10px;
   background-color: white;
   width: 15%;
   border: 2px solid;
   border-color: #212121 #767676 #767676 #212121;
+  border-radius: 6px;
+}
+
+.filter__diet_bar {
+  margin-bottom: 10px;
+  background-color: white;
+  width: 20%;
+  border: 2px solid;
+  border-color: #212121 #767676 #767676 #212121;
+  border-radius: 6px;
 }
 
 .filter__button > button {
@@ -64,4 +66,18 @@
 
 .filter__button > button:hover {
   background: rgb(48, 48, 48);
+}
+
+.menuFilter__searchBar_preferences {
+  width: 50%;
+  border: 2px solid;
+  border-color: #212121 #767676 #767676 #212121;
+  border-radius: 6px;
+}
+
+.menuFilter__searchBar_allergy {
+  width: 50%;
+  border: 2px solid;
+  border-color: #212121 #767676 #767676 #212121;
+  border-radius: 6px;
 }

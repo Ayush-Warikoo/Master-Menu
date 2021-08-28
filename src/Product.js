@@ -10,12 +10,14 @@ function Product({ product }) {
     useStateValue();
 
   const buttonColor = () => {
+    let ratingInt = parseInt(rating);
+    
     if (
       !allergy.some((i) => i) &&
       !preference.some((i) => i) &&
       !budget &&
-      !rating &&
-      !diet
+      (!ratingInt || diet === "None") &&
+      (!diet || diet === "None")
     ) {
       return BLACK;
     }
@@ -50,7 +52,7 @@ function Product({ product }) {
       return RED;
     }
     //Rating
-    if (rating && product.stars < rating) {
+    if (ratingInt && product.stars < ratingInt) {
       return RED;
     }
     //Preference

@@ -1,24 +1,53 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./MenuFilter.css";
 import { useStateValue } from "./StateProvider";
+import AsyncSelect from "react-select/async-creatable";
+import Select from "react-select";
+import { ratingOptions, dietOptions } from "./constants";
+
+import makeAnimated from "react-select/animated"
 
 function MenuFilter() {
-  const [{ allergy, preference, budget, rating, diet }, dispatch] =
-    useStateValue();
+  const [{ allergy, preference, budget, rating, diet }, dispatch] = useStateValue();
 
-  const [allergyString, setAllergyString] = useState("");
-  const [preferenceString, setPreferenceString] = useState("");
-  const [dietString, setDietString] = useState("");
-  const [budgetString, setBudgetString] = useState("");
-  const [ratingString, setRatingString] = useState("");
+  //Helper function
+  const convertToAutocompleteOptions = (options) => {
+    if(!options) {
+      return "";
+    }
+    let result;
+    //Multi option selects
+    if(Array.isArray(options)) {
+      result = options.map((option) => {
+        return {
+        "label": option,
+        "value": option
+      }})
+    }
+    //Single option selects
+    else {
+      result = {
+        "label": options,
+        "value": options
+      }
+    }
+    return result;
+  }
+
+  const [selectedAllergies, setSelectedAllergies] = useState(convertToAutocompleteOptions(allergy));
+  const [selectedPrefs, setSelectedPrefs] = useState(convertToAutocompleteOptions(preference));
+  const [selectedBudget, setSelectedBudget] = useState(budget || "");
+  const [selectedRating, setSelectedRating] = useState(convertToAutocompleteOptions(rating));
+  const [selectedDiet, setSelectedDiet] = useState(convertToAutocompleteOptions(diet));
+
+  const animatedComponents = makeAnimated();
 
   const filter = () => {
-    // dispatch the item into the data layer
-    let allergyArray = allergyString.split(",");
-    let preferenceArray = preferenceString.split(",");
-    let budgetValue = budgetString;
-    let ratingValue = ratingString;
-    let dietValue = dietString;
+    let allergyArray = selectedAllergies.map(allergin => allergin.value);
+    let preferenceArray = selectedPrefs.map(pref => pref.value);
+    let budgetValue = selectedBudget;
+    let ratingValue = selectedRating.value;
+    let dietValue = selectedDiet.value;
 
     for (let i = 0; i < allergyArray.length; i++) {
       allergyArray[i] = allergyArray[i].toLowerCase().trim();
@@ -37,46 +66,19 @@ function MenuFilter() {
     });
   };
 
-  const allergyPlaceholder = () => {
-    let string = "";
-    for (let i = 0; i < allergy.length; i++) {
-      if (i === 0) {
-        string += allergy[i];
-      } else {
-        string += ", " + allergy[i];
-      }
-    }
-    return string;
-  };
-  const preferencePlaceholder = () => {
-    let string = "";
-    for (let i = 0; i < preference.length; i++) {
-      if (i === 0) {
-        string += preference[i];
-      } else {
-        string += ", " + preference[i];
-      }
-    }
-    return string;
-  };
+  const loadOptions = async (query, callback) => {
+    const response = await fetch(`https://api.spoonacular.com/food/ingredients/autocomplete?apiKey=${process.env.REACT_APP_SPOONTACULAR_API_KEY}&query=${query}&number=5`);
+    const json = await response.json();
+    callback(json.map(ingredient => ({label: ingredient.name, value: ingredient.name}) ));
+  }
+
   const budgetPlaceholder = () => {
-    let string = "";
+    let string;
     if (budget) {
       string = budget;
     }
-    return string;
-  };
-  const ratingPlaceholder = () => {
-    let string = "";
-    if (rating) {
-      string = rating;
-    }
-    return string;
-  };
-  const dietPlaceholder = () => {
-    let string = "";
-    if (diet) {
-      string = diet;
+    else {
+      string = "Select..." 
     }
     return string;
   };
@@ -86,66 +88,60 @@ function MenuFilter() {
       <h1> Menu Filter </h1>
 
       <h3>Allergies / Dietary Restrictions: </h3>
-      <input
-        type="text"
-        placeholder={allergyPlaceholder()}
-        value={allergyString}
-        onChange={(e) => setAllergyString(e.target.value)}
-      />
+      <AsyncSelect 
+        cacheOptions
+        value={selectedAllergies}
+        onChange={setSelectedAllergies}
+        loadOptions={loadOptions}
+        isMulti
+        className={"menuFilter__searchBar_allergy"}
+        components={animatedComponents}
+      /> 
+
       <h3>Ingredient Preferences:</h3>
-      <input
-        type="text"
-        placeholder={preferencePlaceholder()}
-        value={preferenceString}
-        onChange={(e) => setPreferenceString(e.target.value)}
-      />
-      <h3>Budget Maximum ($):</h3>
-      <input
-        type="number"
-        placeholder={budgetPlaceholder()}
-        value={budgetString || ""}
-        onChange={(e) => setBudgetString(e.target.value)}
-      />
+      <AsyncSelect 
+        cacheOptions
+        value={selectedPrefs}
+        onChange={setSelectedPrefs}
+        loadOptions={loadOptions}
+        isMulti
+        className={"menuFilter__searchBar_preferences"}
+        components={animatedComponents}
+        
+      /> 
+
       <h3>Rating Minimum (Stars):</h3>
       <div className="filter__rating">
-        <select
-          type="rating"
-          value={ratingString}
-          onChange={(e) => setRatingString(e.target.value)}
-        >
-          <option className="default" selected disabled hidden>
-            {" "}
-            {ratingPlaceholder()}{" "}
-          </option>
-          <option className="1"> 1 </option>, <option className="2"> 2 </option>,{" "}
-          <option className="3"> 3 </option>, <option className="4"> 4 </option>,{" "}
-          <option className="5"> 5 </option>
-        </select>
+        <Select
+          value={selectedRating}
+          onChange={setSelectedRating}
+          options={ratingOptions}
+          className={"filter__rating_bar"}
+          
+        />
       </div>
 
       <h3> Diet Selection:</h3>
       <div className="filter__diet">
-        <select
-          type="diet"
-          value={dietString}
-          onChange={(e) => setDietString(e.target.value)}
-        >
-          <option className="default" selected disabled hidden>
-            {" "}
-            {dietPlaceholder()}{" "}
-          </option>
-          <option className="None"> None </option>,
-          <option className="Pollopescetarian"> Pollopescetarian </option>,
-          <option className="Pescetarian"> Pescetarian </option>,
-          <option className="Vegetarian"> Vegetarian </option>,
-          <option className="Vegan"> Vegan </option>
-        </select>
+        <Select
+          value={selectedDiet}
+          onChange={setSelectedDiet}
+          options={dietOptions}
+          className={"filter__diet_bar"}
+        />
       </div>
+
+      <h3>Budget Maximum ($):</h3>
+      <input
+        type="number"
+        placeholder={budgetPlaceholder()}
+        value={selectedBudget}
+        onChange={(e) => setSelectedBudget(e.target.value)}
+      />
 
       <div className="filter__button">
         <button type="submit" onClick={filter}>
-          {" "}
-          Filter{" "}
+          Filter
         </button>
       </div>
     </div>

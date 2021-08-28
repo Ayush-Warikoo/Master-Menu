@@ -6,6 +6,8 @@
 
 .checkoutProduct__info {
   padding-left: 20px;
+  vertical-align: middle;
+  margin-top: 50px;
 }
 
 .checkoutProduct__info > button {

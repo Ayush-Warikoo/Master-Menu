@@ -17,6 +17,7 @@ function Orders() {
         .doc(user?.uid)
         .collection("orders")
         .orderBy("created", "desc")
+        .limit(20)
         //Real time update
         .onSnapshot((snapshot) => {
           if (cancel) return;
