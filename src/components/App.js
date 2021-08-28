@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from "react";
-import "./App.css";
-import Header from "./Header";
-import Checkout from "./Checkout";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "react-router-dom";
-import Login from "./Login";
-import { auth } from "./firebase";
-import { useStateValue } from "./StateProvider";
-import Payment from "./Payment";
+import { toast } from "react-toastify";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import { auth } from "../tools/firebase";
+import { useStateValue } from "../context/StateProvider";
+import "./css/App.css";
+import Header from "./Header";
+import ShoppingCart from "./ShoppingCart";
+import Checkout from "./Checkout";
+import RestaurantPage from "./RestaurantPage";
+import Login from "./Login";
 import Orders from "./Orders";
 import HomePage from "./HomePage";
-import logo from "./img/logo-white.png";
-import background from "./img/background.jpg";
-import RestaurantPage from "./RestaurantPage";
-import { restaurants } from "./constants";
-import { toast } from "react-toastify";
-import { removePunctuation } from "./helperFunctions";
+import logo from "../img/logo-white.png";
+import background from "../img/background.jpg";
+import { restaurants } from "../util/constants";
+import { removePunctuation } from "../util/helperFunctions";
 
 const promise = loadStripe(`${process.env.REACT_APP_LOAD_STRIPE_KEY}`);
 toast.configure();
@@ -46,9 +46,11 @@ function App() {
 
     const googlePlacesApi = document.createElement(`script`);
     googlePlacesApi.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places`;
-    document.querySelector("body").insertAdjacentElement('beforeend', googlePlacesApi);
+    document
+      .querySelector("body")
+      .insertAdjacentElement("beforeend", googlePlacesApi);
 
-    //Listens for sign ins and outs 
+    //Listens for sign ins and outs
     auth.onAuthStateChanged((authUser) => {
       //console.log("The user is:", authUser);
 
@@ -60,9 +62,13 @@ function App() {
           user: authUser,
         });
         setTimeout(() => {
-          toast.info(`Welcome back, ${authUser.displayName ? authUser.displayName : authUser.email}!`, {autoClose: 2000});
-        }, 800)
-        
+          toast.info(
+            `Welcome back, ${
+              authUser.displayName ? authUser.displayName : authUser.email
+            }!`,
+            { autoClose: 2000 }
+          );
+        }, 800);
       } else {
         // the user is logged out
         dispatch({
@@ -79,7 +85,10 @@ function App() {
         <Switch>
           {/* Sample restaurant pages */}
           {restaurants.map((restaurant) => (
-            <Route key={`route__${restaurant}`} path={`/${removePunctuation(restaurant)}`}>
+            <Route
+              key={`route__${restaurant}`}
+              path={`/${removePunctuation(restaurant)}`}
+            >
               <Header />
               <RestaurantPage restaurant={restaurant} />
             </Route>
@@ -90,17 +99,17 @@ function App() {
             <Login />
           </Route>
 
+          {/* Shopping Cart page*/}
+          <Route path="/shoppingcart">
+            <Header />
+            <ShoppingCart />
+          </Route>
+
           {/* Checkout page*/}
           <Route path="/checkout">
             <Header />
-            <Checkout />
-          </Route>
-
-          {/* Payment page*/}
-          <Route path="/payment">
-            <Header />
             <Elements stripe={promise}>
-              <Payment />
+              <Checkout />
             </Elements>
           </Route>
 

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import "./RestaurantPage.css";
+import { db } from "../tools/firebase";
+import "./css/RestaurantPage.css";
 import Product from "./Product";
 import MenuFilter from "./MenuFilter";
-import { db } from "./firebase";
-import { PRODUCTS_PER_ROW } from "./constants";
+import { PRODUCTS_PER_ROW } from "../util/constants";
 
 function RestaurantPage({ restaurant }) {
   const [productMatrix, setProductMatrix] = useState([]);
-  const Banner = require(`./img/${restaurant}Banner.png`);
+  const Banner = require(`../img/${restaurant}Banner.png`);
 
   useEffect(() => {
     //Retrieve all relevant data for restaurant from firestore

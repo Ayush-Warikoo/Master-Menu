@@ -1,9 +1,9 @@
 import React from "react";
-import "./Product.css";
+import "./css/Product.css";
 import StarIcon from "@material-ui/icons/Star";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
-import { useStateValue } from "./StateProvider";
-import {RED, BLACK, GREEN } from "./constants";
+import { useStateValue } from "../context/StateProvider";
+import { RED, BLACK, GREEN } from "../util/constants";
 
 function Product({ product }) {
   const [{ allergy, preference, budget, rating, diet }, dispatch] =
@@ -11,7 +11,7 @@ function Product({ product }) {
 
   const buttonColor = () => {
     let ratingInt = parseInt(rating);
-    
+
     if (
       !allergy.some((i) => i) &&
       !preference.some((i) => i) &&

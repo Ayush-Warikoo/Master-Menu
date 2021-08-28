@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { db } from "./firebase";
-import "./Orders.css";
-import { useStateValue } from "./StateProvider";
+import { db } from "../tools/firebase";
+import { useStateValue } from "../context/StateProvider";
+import "./css/Orders.css";
 import Order from "./Order";
 
 function Orders() {
@@ -26,14 +26,14 @@ function Orders() {
               id: doc.id,
               data: doc.data(),
             }))
-          )
+          );
         });
     } else {
       setOrders([]);
     }
     return () => {
       cancel = true;
-    }
+    };
   }, [user]);
 
   return (
@@ -41,9 +41,9 @@ function Orders() {
       <h1>Your Orders</h1>
 
       <div className="orders__order">
-        {orders.map((order, index) => 
-          <Order key={`orders__order_${index}`}order={order} />
-        )}
+        {orders.map((order, index) => (
+          <Order key={`orders__order_${index}`} order={order} />
+        ))}
       </div>
     </div>
   );

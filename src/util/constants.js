@@ -15,18 +15,18 @@ export const RED = "rgb(227, 54, 54)";
 
 //Autocomplete Constants
 export const ratingOptions = [
-  {value: "None", label: "None"},
-  {value: "1 Star", label: "1 Star"},
-  {value: "2 Stars", label: "2 Stars"},
-  {value: "3 Stars", label: "3 Stars"},
-  {value: "4 Stars", label: "4 Stars"},
-  {value: "5 Stars", label: "5 Stars"},
+  { value: "None", label: "None" },
+  { value: "1 Star", label: "1 Star" },
+  { value: "2 Stars", label: "2 Stars" },
+  { value: "3 Stars", label: "3 Stars" },
+  { value: "4 Stars", label: "4 Stars" },
+  { value: "5 Stars", label: "5 Stars" },
 ];
 
 export const dietOptions = [
-  {value: "None", label: "None"},
-  {value: "Pollopescetarian", label: "Pollopescetarian"},
-  {value: "Pescetarian", label: "Pescetarian"},
-  {value: "Vegetarian", label: "Vegetarian"},
-  {value: "Vegan", label: "Vegan"},
+  { value: "None", label: "None" },
+  { value: "Pollopescetarian", label: "Pollopescetarian" },
+  { value: "Pescetarian", label: "Pescetarian" },
+  { value: "Vegetarian", label: "Vegetarian" },
+  { value: "Vegan", label: "Vegan" },
 ];

@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
+import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
-import reducer, { initialState } from "./reducer";
-import { StateProvider } from "./StateProvider";
+import reducer, { initialState } from "./reducer/reducer";
+import { StateProvider } from "./context/StateProvider";
 require("dotenv").config();
 
 ReactDOM.render(

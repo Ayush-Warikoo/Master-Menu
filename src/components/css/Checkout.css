@@ -1,8 +1,8 @@
-.payment {
+.checkout {
   background-color: white;
 }
 
-.payment__container > h1 {
+.checkout__container > h1 {
   text-align: center;
   padding: 10px;
   font-weight: 400;
@@ -10,8 +10,19 @@
   border-bottom: 1px solid lightgray;
 }
 
-.payment__container > h1 a {
+.checkout__container > h1 a {
   text-decoration: none;
+}
+
+.checkout__section {
+  display: flex;
+  padding: 20px;
+  margin: 0 20px;
+  border-bottom: 1px solid lightgray;
+}
+
+.checkout__items {
+  flex: 0.8;
 }
 
 .payment__section {
@@ -25,8 +36,6 @@
   flex: 0.2;
 }
 
-.payment__address,
-.payment__items,
 .payment__details {
   flex: 0.8;
 }

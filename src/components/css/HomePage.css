@@ -5,7 +5,7 @@
       rgba(0, 0, 0, 0.5),
       rgba(0, 0, 0, 0)
     ),
-    url("img/background.jpg");
+    url("../../img/background.jpg");
   background-size: cover;
   background-position: center;
   display: flex;

@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import "./Header.css";
+import { Link, useHistory } from "react-router-dom";
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
-import { Link, useHistory } from "react-router-dom";
-import { useStateValue } from "./StateProvider";
-import { auth } from "./firebase";
-import logo from "./img/logo-white.png";
-import { restaurants } from "./constants";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { removePunctuation } from "./helperFunctions";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useStateValue } from "../context/StateProvider";
+import { auth } from "../tools/firebase";
+import "./css/Header.css";
+import logo from "../img/logo-white.png";
+import { restaurants } from "../util/constants";
+import { removePunctuation } from "../util/helperFunctions";
 
 function Header() {
   const [{ basket, user }, dispatch] = useStateValue();
@@ -22,24 +22,27 @@ function Header() {
       dispatch({
         type: "EMPTY_BASKET",
       });
-      toast.info(`See ya, ${user.displayName ? user.displayName : user.email}!`, {autoClose: 1500});
+      toast.info(
+        `See ya, ${user.displayName ? user.displayName : user.email}!`,
+        { autoClose: 1500 }
+      );
       auth.signOut();
     }
   };
 
   const search = () => {
-    for(let i = 0; i < restaurants.length; i++)
-    {
-      if(removePunctuation(searchBarText).toLowerCase() === removePunctuation(restaurants[i].toLowerCase()))
-      {
+    for (let i = 0; i < restaurants.length; i++) {
+      if (
+        removePunctuation(searchBarText).toLowerCase() ===
+        removePunctuation(restaurants[i].toLowerCase())
+      ) {
         history.push(`/${removePunctuation(searchBarText)}`);
         setSearchBarText("");
         return true;
       }
     }
-    if(searchBarText)
-    {
-      toast.error("Sorry, restaurant not available!", {autoClose: 2000});
+    if (searchBarText) {
+      toast.error("Sorry, restaurant not available!", { autoClose: 2000 });
     }
   };
 
@@ -83,9 +86,10 @@ function Header() {
           <div onClick={handleAuthentication} className="header__option">
             <span className="header__optionLineOne">
               {" "}
-              Hello {!user 
-                ? "Guest" 
-                : user.displayName 
+              Hello{" "}
+              {!user
+                ? "Guest"
+                : user.displayName
                 ? user.displayName
                 : user.email}{" "}
             </span>
@@ -103,7 +107,7 @@ function Header() {
           </div>
         </Link>
 
-        <Link to="/checkout">
+        <Link to="/shoppingcart">
           <div className="header__option">
             <div className="header__optionBasket">
               <ShoppingBasketIcon />

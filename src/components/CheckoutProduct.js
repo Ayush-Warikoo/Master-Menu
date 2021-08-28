@@ -1,8 +1,8 @@
 import React from "react";
-import "./CheckoutProduct.css";
-import { useStateValue } from "./StateProvider";
 import StarIcon from "@material-ui/icons/Star";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
+import { useStateValue } from "../context/StateProvider";
+import "./css/CheckoutProduct.css";
 
 function CheckoutProduct({
   id,
@@ -37,12 +37,12 @@ function CheckoutProduct({
           {Array(rating)
             .fill()
             .map((_, i) => (
-              <StarIcon key={`checkoutProduct__rating_${i}`}/>
+              <StarIcon key={`checkoutProduct__rating_${i}`} />
             ))}
           {Array(5 - rating)
             .fill()
             .map((_, i) => (
-              <StarBorderIcon key={`checkoutProduct__rating_${5 - i}`}/>
+              <StarBorderIcon key={`checkoutProduct__rating_${5 - i}`} />
             ))}
         </div>
         {!hideButton && (

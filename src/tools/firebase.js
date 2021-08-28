@@ -1,7 +1,7 @@
 //import firebase from "firebase";
-import firebase from '@firebase/app';
-import '@firebase/auth';
-import '@firebase/firestore';
+import firebase from "@firebase/app";
+import "@firebase/auth";
+import "@firebase/firestore";
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -24,5 +24,3 @@ export const githubProvider = new firebase.auth.GithubAuthProvider();
 export const googleProvider = new firebase.auth.GoogleAuthProvider();
 export const twitterProvider = new firebase.auth.TwitterAuthProvider();
 export const emailProvider = new firebase.auth.EmailAuthProvider();
-
-

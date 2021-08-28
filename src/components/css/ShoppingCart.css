@@ -1,4 +1,4 @@
-.checkout {
+.shoppingcart {
   display: flex;
   padding: 20px;
   background-color: white;
@@ -7,21 +7,21 @@
   padding-bottom: 30px;
 }
 
-.checkout__ad {
+.shoppingcart__ad {
   width: 99%;
   margin-bottom: 10px;
   margin-right: 500px;
 }
 
-.checkout__left {
+.shoppingcart__left {
   margin-right: 20px;
 }
 
-.checkout__items {
+.shoppingcart__items {
   margin-left: 50px;
 }
 
-.checkout__title {
+.shoppingcart__title {
   margin-right: 10px;
   padding: 10px;
   border-bottom: 1px solid lightgray;

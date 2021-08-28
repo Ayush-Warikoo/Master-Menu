@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { useStateValue } from "./StateProvider";
-import "./Payment.css";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import CheckoutProduct from "./CheckoutProduct";
-import { getBasketTotal } from "./reducer";
-import CurrencyFormat from "react-currency-format";
-import axios from "./axios";
-import { db } from "./firebase";
 import { toast } from "react-toastify";
+import CurrencyFormat from "react-currency-format";
+import axios from "../tools/axios";
+import { db } from "../tools/firebase";
+import { getBasketTotal } from "../reducer/reducer";
+import { useStateValue } from "../context/StateProvider";
+import "./css/Checkout.css";
+import CheckoutProduct from "./CheckoutProduct";
 
-function Payment() {
+function Checkout() {
   const [{ basket, user }, dispatch] = useStateValue();
   const history = useHistory();
   const stripe = useStripe();
@@ -20,9 +20,9 @@ function Payment() {
   const [processing, setProcessing] = useState("");
   const [error, setError] = useState(null);
   const [disabled, setDisabled] = useState(true);
-  const [clientSecret, setClientSecret] = useState(true);
+  const [clientSecret, setClientSecret] = useState(null);
 
-  //Listener that loads once (payment component loads) and then only when a variable (basket) changes otherwise
+  //Listener that loads on every render (though does nothing when we have the stripe client secret)
   //New secret whenever something changes from the basket (different amount)
   useEffect(() => {
     // generate the special stripe secret which allows us to charge a customer
@@ -32,15 +32,14 @@ function Payment() {
         // Stripe expects the total in a currencies subunits
         url: `/payments/create?total=${getBasketTotal(basket)}`,
       });
-      
-      //Get the secret back from stripe, which allows us to charge the right amount
 
+      //Get the secret back from stripe, which allows us to charge the right amount
       setClientSecret(response.data.clientSecret);
     };
-    if (user && getBasketTotal(basket) > 0) {
+    if (user && getBasketTotal(basket) > 0 && !clientSecret) {
       getClientSecret();
     }
-  }, [basket]);
+  });
 
   //console.log('The secret is', clientSecret);
 
@@ -86,9 +85,14 @@ function Payment() {
           type: "EMPTY_BASKET",
         });
 
-        toast.success("Purchase successful!", {autoClose: 1500});
+        toast.success("Purchase successful!", { autoClose: 1500 });
         //Push them to orders page to not create a loop
         history.replace("/orders");
+      })
+      .catch((error) => {
+        toast.error("Purchase unsuccessful, please try again!", {
+          autoClose: 1500,
+        });
       });
   };
 
@@ -100,24 +104,24 @@ function Payment() {
   };
 
   return (
-    <div className="payment">
-      <div className="payment__container">
+    <div className="checkout">
+      <div className="checkout__container">
         {/* Restaurant */}
-        <div className="payment__section">
-          <div className="payment__title">
+        <div className="checkout__section">
+          <div className="checkout__title">
             <h1> Checkout </h1>
           </div>
         </div>
 
         {/* Payment section - Review Items */}
-        <div className="payment__section">
-          <div className="payment__title">
+        <div className="checkout__section">
+          <div className="checkout__title">
             <h3>Review items and delivery</h3>
           </div>
-          <div className="payment__items">
+          <div className="checkout__items">
             {basket.map((item, index) => (
               <CheckoutProduct
-                key={`payment__items_${index}_${item.id}`}
+                key={`checkout__items_${index}_${item.id}`}
                 id={item.id}
                 title={item.title}
                 image={item.image}
@@ -164,4 +168,4 @@ function Payment() {
   );
 }
 
-export default Payment;
+export default Checkout;

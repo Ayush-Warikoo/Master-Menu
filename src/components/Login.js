@@ -1,10 +1,17 @@
 import React, { useState } from "react";
-import "./Login.css";
 import { Link, useHistory } from "react-router-dom";
-import { auth, emailProvider, facebookProvider, githubProvider, googleProvider, twitterProvider } from "./firebase";
-import logo from "./img/logo.png";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import { toast } from "react-toastify";
+import {
+  auth,
+  emailProvider,
+  facebookProvider,
+  githubProvider,
+  googleProvider,
+  twitterProvider,
+} from "../tools/firebase";
+import "./css/Login.css";
+import logo from "../img/logo.png";
 
 function Login() {
   const history = useHistory();
@@ -20,8 +27,8 @@ function Login() {
       githubProvider.providerId,
       emailProvider.providerId,
     ],
-    signInSuccessUrl: '/',
-  }
+    signInSuccessUrl: "/",
+  };
 
   const signInWithEmail = (e) => {
     e.preventDefault();
@@ -42,7 +49,7 @@ function Login() {
       .createUserWithEmailAndPassword(email, password)
       .then((auth) => {
         // it successfully created a new user with email and password
-        toast.success(`Successfully registered ${email}`, {autoClose: 2000});
+        toast.success(`Successfully registered ${email}`, { autoClose: 2000 });
         if (auth) {
           history.push("/");
         }
@@ -96,13 +103,11 @@ function Login() {
 
         <p>
           In order to register an account, enter the email and password you
-          would like to use in their respective boxes and click 'Create Your Master Menu Account'
+          would like to use in their respective boxes and click 'Create Your
+          Master Menu Account'
         </p>
 
-        <StyledFirebaseAuth
-          uiConfig={uiConfig}
-          firebaseAuth={auth}
-        />
+        <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
       </div>
     </div>
   );

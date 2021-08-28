@@ -1,27 +1,27 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import "./HomePage.css";
-import logo from "./img/logo-white.png";
-import { restaurants } from "./constants";
 import { toast } from "react-toastify";
-import { removePunctuation } from "./helperFunctions";
+import "./css/HomePage.css";
+import logo from "../img/logo-white.png";
+import { restaurants } from "../util/constants";
+import { removePunctuation } from "../util/helperFunctions";
 
 function HomePage() {
   const history = useHistory();
   const [searchBarText, setSearchBarText] = useState("");
 
   const search = () => {
-    for(let i = 0; i < restaurants.length; i++)
-    {
-      if(removePunctuation(searchBarText).toLowerCase() === removePunctuation(restaurants[i]).toLowerCase())
-      {
+    for (let i = 0; i < restaurants.length; i++) {
+      if (
+        removePunctuation(searchBarText).toLowerCase() ===
+        removePunctuation(restaurants[i]).toLowerCase()
+      ) {
         history.push(`/${removePunctuation(searchBarText)}`);
         return true;
       }
     }
-    if(searchBarText)
-    {
-      toast.error("Sorry, restaurant not available!", {autoClose: 2000});
+    if (searchBarText) {
+      toast.error("Sorry, restaurant not available!", { autoClose: 2000 });
     }
   };
 
@@ -46,8 +46,7 @@ function HomePage() {
               value={searchBarText}
               onChange={(e) => setSearchBarText(e.target.value)}
               onKeyDown={(e) => {
-                if(e.key === "Enter")
-                {
+                if (e.key === "Enter") {
                   e.preventDefault();
                 }
                 handleKeyPress(e.key);
@@ -55,7 +54,10 @@ function HomePage() {
             />
             <datalist id="homepage__restaurant">
               {restaurants.map((restaurant) => (
-                <option key={`homepage__option_${restaurant}`}> {restaurant} </option>
+                <option key={`homepage__option_${restaurant}`}>
+                  {" "}
+                  {restaurant}{" "}
+                </option>
               ))}
             </datalist>
             <button className="homepage__button" type="button" onClick={search}>
