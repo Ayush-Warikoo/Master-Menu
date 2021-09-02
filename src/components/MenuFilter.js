@@ -10,7 +10,7 @@ function MenuFilter() {
   const [{ allergy, preference, budget, rating, diet }, dispatch] =
     useStateValue();
 
-  //Helper function
+  //Helper function to remember filter options
   const convertToAutocompleteOptions = (options) => {
     if (!options) {
       return "";

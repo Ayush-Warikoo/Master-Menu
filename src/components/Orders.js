@@ -12,6 +12,7 @@ function Orders() {
   useEffect(() => {
     let cancel = false;
 
+    //Pulls history if user is signed in
     if (user) {
       db.collection("users")
         .doc(user?.uid)

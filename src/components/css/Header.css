@@ -12,7 +12,7 @@
   width: 150px;
   object-fit: contain;
   margin: 0 20px;
-  margin-top: 18px;
+  margin-top: 10px;
 }
 
 .header__search {
@@ -40,13 +40,9 @@
   fill-opacity: 0.5;
 }
 
-.header__optionLineOne {
-  font-size: 10px;
-}
-
-.header__optionLineTwo {
+.header__optionLine {
   font-size: 13px;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .header__optionBasket {

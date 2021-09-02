@@ -31,9 +31,9 @@ function RestaurantPage({ restaurant }) {
       <div className="restaurant__container">
         {/* Banner */}
         <img className="restaurant__banner" src={Banner} alt="" />
-
+        {/* Menu Filter */}
         <MenuFilter />
-        {/* Product rows */}
+        {/* Products */}
         {productMatrix.map((row, index) => (
           <div key={`restaurant__row_${index}`} className="restaurant__row">
             {row.map((prod) => (

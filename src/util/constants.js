@@ -3,6 +3,13 @@ export const restaurants = ["McDonald's", "PizzaPizza"];
 
 //Restaurant Page Formatting Constants
 export const PRODUCTS_PER_ROW = 3;
+export const DIET = {
+  Vegan: 1,
+  Vegetarian: 2,
+  Pescetarian: 3,
+  Pollopescetarian: 4,
+  None: 5,
+};
 
 //Dish Constansts
 export const STARTING_DISH_ID = 100000;

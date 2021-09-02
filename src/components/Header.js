@@ -75,7 +75,7 @@ function Header() {
             <option key={`header__option_${restaurant}`}> {restaurant} </option>
           ))}
         </datalist>
-        <Link to={`/${searchBarText}`}>
+        <Link to={`/${removePunctuation(searchBarText)}`}>
           <SearchIcon className="header__searchIcon" />
         </Link>
       </div>
@@ -84,16 +84,16 @@ function Header() {
       <div className="header__nav">
         <Link to={!user && "/login"}>
           <div onClick={handleAuthentication} className="header__option">
-            <span className="header__optionLineOne">
-              {" "}
+            <span className="header__optionLine">
               Hello{" "}
               {!user
                 ? "Guest"
                 : user.displayName
                 ? user.displayName
-                : user.email}{" "}
+                : user.email}
+              {","}
             </span>
-            <span className="header__optionLineTwo">
+            <span className="header__optionLine">
               {" "}
               {!user ? "Sign In" : "Sign Out"}
             </span>
@@ -102,8 +102,8 @@ function Header() {
 
         <Link to="/orders">
           <div className="header__option">
-            <span className="header__optionLineOne"> Order </span>
-            <span className="header__optionLineTwo"> History </span>
+            <span className="header__optionLine"> Order </span>
+            <span className="header__optionLine"> History </span>
           </div>
         </Link>
 
@@ -112,8 +112,7 @@ function Header() {
             <div className="header__optionBasket">
               <ShoppingBasketIcon />
               <span className="header__optionLineTwo header__basketCount">
-                {" "}
-                {basket.length}{" "}
+                {basket.length}
               </span>
             </div>
           </div>

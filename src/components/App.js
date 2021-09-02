@@ -19,7 +19,7 @@ import background from "../img/background.jpg";
 import { restaurants } from "../util/constants";
 import { removePunctuation } from "../util/helperFunctions";
 
-const promise = loadStripe(`${process.env.REACT_APP_LOAD_STRIPE_KEY}`);
+const promise = loadStripe(`${process.env.REACT_APP_STRIPE_PUBLIC_KEY}`);
 toast.configure();
 
 function App() {
@@ -35,7 +35,7 @@ function App() {
       image.src = img;
     });
 
-    //Pulls list of restaurants from db, takes a second though
+    // Pulls list of restaurants from db (dynamic), adds to latency
     // db.collection('Restaurant Information').get().then(snap => {
     //     let restaurants = [];
     //     snap.forEach((doc) => {
@@ -52,11 +52,8 @@ function App() {
 
     //Listens for sign ins and outs
     auth.onAuthStateChanged((authUser) => {
-      //console.log("The user is:", authUser);
-
+      // the user just logged in / the user was logged in
       if (authUser) {
-        // the user just logged in / the user was logged in
-
         dispatch({
           type: "SET_USER",
           user: authUser,
@@ -83,7 +80,7 @@ function App() {
     <Router>
       <div className="app">
         <Switch>
-          {/* Sample restaurant pages */}
+          {/* Restaurant pages */}
           {restaurants.map((restaurant) => (
             <Route
               key={`route__${restaurant}`}
@@ -113,7 +110,7 @@ function App() {
             </Elements>
           </Route>
 
-          {/* Order page */}
+          {/* Order History page */}
           <Route path="/orders">
             <Header />
             <Orders />

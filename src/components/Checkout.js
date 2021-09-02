@@ -22,8 +22,7 @@ function Checkout() {
   const [disabled, setDisabled] = useState(true);
   const [clientSecret, setClientSecret] = useState(null);
 
-  //Listener that loads on every render (though does nothing when we have the stripe client secret)
-  //New secret whenever something changes from the basket (different amount)
+  //Listener that loads on every render, where we don't have the client secret
   useEffect(() => {
     // generate the special stripe secret which allows us to charge a customer
     const getClientSecret = async () => {
@@ -41,19 +40,20 @@ function Checkout() {
     }
   });
 
-  //console.log('The secret is', clientSecret);
-
   const handleSubmit = async (event) => {
-    //console.log(basket);
-
-    event.preventDefault(); //stops refreshing
-    setProcessing(true); //Block you from hitting the button again after its already processing
+    //Stops refreshing
+    event.preventDefault();
+    //Blocks user from hitting the button again after its already processing
+    setProcessing(true);
 
     if (!user) {
       history.replace("/login");
+      toast.error("Please sign in first, before making a purchase!", {
+        autoClose: 1500,
+      });
       return;
     }
-    //console.log(clientSecret);
+
     //Confirms client secret
     const payload = await stripe
       .confirmCardPayment(clientSecret, {
@@ -89,7 +89,7 @@ function Checkout() {
         //Push them to orders page to not create a loop
         history.replace("/orders");
       })
-      .catch((error) => {
+      .catch((e) => {
         toast.error("Purchase unsuccessful, please try again!", {
           autoClose: 1500,
         });
@@ -154,7 +154,7 @@ function Checkout() {
                 />
                 <button
                   disabled={
-                    processing || disabled || succeeded || basket.length == 0
+                    processing || disabled || succeeded || basket.length === 0
                   }
                 >
                   <span> {processing ? "Processing" : "Buy Now"} </span>

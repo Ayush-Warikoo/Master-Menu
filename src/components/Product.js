@@ -3,7 +3,7 @@ import "./css/Product.css";
 import StarIcon from "@material-ui/icons/Star";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import { useStateValue } from "../context/StateProvider";
-import { RED, BLACK, GREEN } from "../util/constants";
+import { RED, BLACK, GREEN, DIET } from "../util/constants";
 
 function Product({ product }) {
   const [{ allergy, preference, budget, rating, diet }, dispatch] =
@@ -12,34 +12,19 @@ function Product({ product }) {
   const buttonColor = () => {
     let ratingInt = parseInt(rating);
 
+    //No filter applied
     if (
       !allergy.some((i) => i) &&
       !preference.some((i) => i) &&
       !budget &&
-      (!ratingInt || diet === "None") &&
+      (!ratingInt || rating === "None") &&
       (!diet || diet === "None")
     ) {
       return BLACK;
     }
     //Diet
-    if (diet && diet !== "None") {
-      if (
-        (diet === "Vegan" && product.type !== "Vegan") ||
-        (diet === "Vegetarian" &&
-          product.type !== "Vegan" &&
-          product.type !== "Vegetarian") ||
-        (diet === "Pescetarian" &&
-          product.type !== "Vegan" &&
-          product.type !== "Vegetarian" &&
-          product.type !== "Pescetarian") ||
-        (diet === "Pollopescetarian" &&
-          product.type !== "Vegan" &&
-          product.type !== "Vegetarian" &&
-          product.type !== "Pescetarian" &&
-          product.type !== "Pollopescetarian")
-      ) {
-        return RED;
-      }
+    if (diet && DIET[diet] !== "None" && DIET[product.type] > DIET[diet]) {
+      return RED;
     }
     //Allergy
     for (const all of allergy) {
