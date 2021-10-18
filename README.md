@@ -1,8 +1,9 @@
 <div>
-  <img align="left" src="https://badges.pufler.dev/created/Ayush-Warikoo/Master-Menu" />
+  <!-- <img align="left" src="https://badges.pufler.dev/created/Ayush-Warikoo/Master-Menu" /> -->
   <img align="left" src="https://badges.pufler.dev/updated/Ayush-Warikoo/Master-Menu" />
   <img align="right" src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" />
   <img align="right" src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" />
+  <img align="right" src="https://img.shields.io/badge/Amazon_AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white" />
   <img align="right" src="https://img.shields.io/badge/firebase-ffca28?style=for-the-badge&logo=firebase&logoColor=black" />
   <img align="right" src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
 </div>
@@ -52,7 +53,9 @@
 
 # About the Project
 
-A deployed demo (with sample "McDonald's" and "PizzaPizza" pages) is available at [https://master-menu-app.web.app/](https://master-menu-app.web.app/).
+A deployed demo (with sample "McDonald's" and "PizzaPizza" pages) is available at [https://www.mastermenu.ca](https://www.mastermenu.ca/) (as well as [https://master-menu-app.web.app/](https://master-menu-app.web.app/)).
+
+
 
 ## Problem Statement
 This application was originally inspired by some of the problems I noticed around the inconveniences of eating out at restaurants, especially as a student:
@@ -71,9 +74,11 @@ Master Menu is a Firebase, React web application that minimizes the aforemention
 
 ## Description
 
-The following is a general description of the application that complements the diagram above, along with the application's usage and design decisions. The application leverages a FERN stack (i.e. Firebase, Express, React, Node), along with Stripe for payment processing and Google Places & Spoonacular API for autocomplete functionality. 
+The following is a general description of the application that complements the diagram above, along with the application's usage and design decisions. The application leverages a FERN stack (i.e. Firebase, Express, React, Node), along with Amazon Web Services for hosting, Stripe for payment processing and Google Places & Spoonacular API for autocomplete functionality. 
 
-Primarily, Firebase hosts the application and also handles user authentication. Users can create an account or sign in using their existing social media accounts (e.g. Google, Facebook, Github), which is required for purchases.  On the home page, users can search for restaurants (e.g. McDonalds and Pizza Pizza), which will take them to the individual restaurant page. 
+Primarily, Amazon Web Services are used to host the application, using Route 53 for DNS services, CloudFront for CDN services and S3 for file storage. When users visit the secure domain, CloudFront pulls the web application files from S3 buckets, and delivers the files to the appropriate IP address to create the webpage for users. As well, CloudFront provides caching services to avoid having to pull the files from S3 on every request, ensuring a low latency. 
+
+Next, Firebase facilitates user authentication and allows users to create an account or sign in using their existing social media accounts (e.g. Google, Facebook, Github), which is required for purchases.  On the home page, users can search for restaurants (e.g. McDonalds and Pizza Pizza), which will take them to the individual restaurant page. 
 
 All restaurant data (e.g. dish prices, ingredients, images) is retrieved from Firestore and presented using product components. Users can then input their personal preferences (e.g. diet, allergies/dietary restrictions) to highlight the product components that best suit their needs. When typing ingredients, the autocomplete is generated from Spoonacular APIs, where the current typed string is sent in the request and possible ingredients that match the query are sent back in the response and cached for optimization. The user can then add products to their shopping cart. The filter input is stored in React Context so that it is remembered when rendering/accessing new restaurant pages. The shopping cart items are also stored in React Context to make it easier to access across the app (many components need it) and it is also stored in Local Storage so that the cart products are remembered when revisiting or refreshing the page, as shown in the demo. 
 
@@ -85,7 +90,7 @@ Once again the cart products are retrieved from React Context/Local Storage. On 
 ## Demo and Images
 ![](readme-assets/Demo.gif) <br/>
 
-Demo the app yourself (with sample "McDonald's" and "PizzaPizza" pages) at https://master-menu-app.web.app/.
+Demo the app yourself (with sample "McDonald's" and "PizzaPizza" pages) at https://www.mastermenu.ca.
 
 <h3> Sample image of the Firestore database and of Stripe payment transactions</h3>
 <p width="100%" float="left" text-align="center">
@@ -96,7 +101,7 @@ Demo the app yourself (with sample "McDonald's" and "PizzaPizza" pages) at https
 ## Features
 The following includes a detailed list of implemented features/details:
 * Shopping cart products are cached and therefore remembered after closing the tab
-* Initial website render time is under 1.5 seconds on desktop through image management and preloading
+* Initial website render time is under 1.5 seconds on desktop through image management, preloading and CDN caching
 * Restaurant pages are completely dynamic, and only require data to be stored in Firestore for a new page to be generated 
 * Implemented notification system that is responsive to user actions (sign-in, sign-out, purchasing, etc) and restricts/warns users in case of errors 
 * Supports user sign-ins through Google, Facebook, Twitter, Github or Email account authentication 
@@ -110,6 +115,7 @@ The following includes a detailed list of implemented features/details:
   * Location is also protected by validation logic
 * Implemented payment authorization and processing
 * Allows authorized users to update and retrieve order history
+* Uses a secure and certified transfer protocol (HTTPS)
 
 ## Built With
 Languages
@@ -123,10 +129,14 @@ Development Tools/Libraries/Frameworks
   * React Context
   * React DOM
 * Firebase
-  * Firebase Hosting
   * Firebase Authentication
   * Firestore (Database)
   * Serverless Cloud Functions
+* AWS
+  * S3
+  * CloudFront
+  * Route 53
+  * Certificate Manager
 * NodeJS
 * Express
 
