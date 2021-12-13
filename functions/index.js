@@ -11,7 +11,13 @@ const app = express();
 
 //Middleware
 app.use(
-  cors({ origin: [`${process.env.DEV_CORS}`, `${process.env.DEV_ALT_CORS}`, `${process.env.TEST_CORS}`] })
+  cors({
+    origin: [
+      `${process.env.DEV_CORS}`,
+      `${process.env.DEV_ALT_CORS}`,
+      `${process.env.TEST_CORS}`,
+    ],
+  })
 );
 app.use(express.json());
 
