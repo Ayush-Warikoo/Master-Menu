@@ -23,7 +23,7 @@ const promise = loadStripe(`${process.env.REACT_APP_STRIPE_PUBLIC_KEY}`);
 toast.configure();
 
 function App() {
-  const [{}, dispatch] = useStateValue();
+  const [{basket}, dispatch] = useStateValue();
   //const [restaurants, setRestaurants] = useState([]);
   const preload = [logo, background];
 

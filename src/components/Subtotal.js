@@ -122,7 +122,7 @@ function Subtotal() {
     //Adds restaurants based on checkout id (check constants for values)
     //Order: McDonald's, PizzaPizza, ...
     let restaurantSubtotal = [];
-    restaurantArray.map((restaurant, index) => {
+    restaurantArray.forEach((restaurant, index) => {
       restaurantSubtotal.push(
         <h3 key={`subtotal__${restaurant}`}> {restaurant} </h3>
       );
