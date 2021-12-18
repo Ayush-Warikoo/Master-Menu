@@ -23,22 +23,28 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    - run: touch .env
+    - run: echo "${{secrets.REACT_APP_ENV}}" > .env
     - run: npm ci
     - run: CI=false npm run build
 
-    - uses: jakejarvis/s3-sync-action@master
+    - name: S3 Sync
+      uses: jakejarvis/s3-sync-action@master
       with:
-        args: --acl public-read --follow-symlinks --delete
+        args: --acl public-read --delete
       env:
-        CI: false
         AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: 'us-east-2'
         SOURCE_DIR: 'build'
 
+    - name: Invalidate CloudFront
+      uses: chetan/invalidate-cloudfront-action@v2.2
+      env:
+        DISTRIBUTION: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+        PATHS: '/*'
+        AWS_REGION: 'us-east-2'
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-
-
-
-  
