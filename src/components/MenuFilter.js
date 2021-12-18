@@ -99,19 +99,57 @@ function MenuFilter() {
   };
 
   return (
-    <div className="menu__filter">
-      <h1> Menu Filter </h1>
-
-      <h3>Allergies / Dietary Restrictions: </h3>
+    <div className="filter">
+      <div className="filter__title">
+        <h1> Menu Filter </h1>
+      </div>
+      
+      
+      <h3> Allergies / Dietary Restrictions: </h3>
       <AsyncSelect
         cacheOptions
         value={selectedAllergies}
         onChange={setSelectedAllergies}
         loadOptions={loadOptions}
         isMulti
-        className={"menuFilter__searchBar_allergy"}
+        className={"filter__searchBar_allergy"}
         components={animatedComponents}
       />
+
+      <div className="filter__rating_diet_budget">
+        <div className="filter__rating">
+          <h3>Rating Minimum:</h3>
+      
+          <Select
+            value={selectedRating}
+            onChange={setSelectedRating}
+            options={ratingOptions}
+            className={"filter__rating_bar"}
+          />
+        </div>
+      
+        <div className="filter__diet">
+          <h3> Diet Selection:</h3>
+          <Select
+            value={selectedDiet}
+            onChange={setSelectedDiet}
+            options={dietOptions}
+            className={"filter__diet_bar"}
+          />
+        </div>
+
+        <div className="filter__budget"> 
+          <h3>Budget Maximum:</h3>
+          <input
+            type="number"
+            placeholder={budgetPlaceholder()}
+            value={selectedBudget}
+            onChange={(e) => setSelectedBudget(e.target.value)}
+            className={"filter__budget_bar"}
+          />
+        </div>
+        
+      </div>
 
       <h3>Ingredient Preferences:</h3>
       <AsyncSelect
@@ -120,37 +158,10 @@ function MenuFilter() {
         onChange={setSelectedPrefs}
         loadOptions={loadOptions}
         isMulti
-        className={"menuFilter__searchBar_preferences"}
+        className={"filter__searchBar_preferences"}
         components={animatedComponents}
       />
 
-      <h3>Rating Minimum (Stars):</h3>
-      <div className="filter__rating">
-        <Select
-          value={selectedRating}
-          onChange={setSelectedRating}
-          options={ratingOptions}
-          className={"filter__rating_bar"}
-        />
-      </div>
-
-      <h3> Diet Selection:</h3>
-      <div className="filter__diet">
-        <Select
-          value={selectedDiet}
-          onChange={setSelectedDiet}
-          options={dietOptions}
-          className={"filter__diet_bar"}
-        />
-      </div>
-
-      <h3>Budget Maximum ($):</h3>
-      <input
-        type="number"
-        placeholder={budgetPlaceholder()}
-        value={selectedBudget}
-        onChange={(e) => setSelectedBudget(e.target.value)}
-      />
 
       <div className="filter__button">
         <button type="submit" onClick={filter}>

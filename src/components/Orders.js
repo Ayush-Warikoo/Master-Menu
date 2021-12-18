@@ -3,10 +3,14 @@ import { db } from "../tools/firebase";
 import { useStateValue } from "../context/StateProvider";
 import "./css/Orders.css";
 import Order from "./Order";
+import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Orders() {
   const [{ basket, user }, dispatch] = useStateValue();
   const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const history = useHistory();
 
   //Cancel logic required to avoid memory leaks
   useEffect(() => {
@@ -14,6 +18,7 @@ function Orders() {
 
     //Pulls history if user is signed in
     if (user) {
+      //setWasLoggedIn(true);
       db.collection("users")
         .doc(user?.uid)
         .collection("orders")
@@ -29,22 +34,31 @@ function Orders() {
             }))
           );
         });
+      
     } else {
-      setOrders([]);
+      setOrders(null);
     }
+
+    if(loading) {
+      setLoading(false);
+    }
+
+    
     return () => {
       cancel = true;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   return (
     <div className="orders">
-      <h1>Your Orders</h1>
-
       <div className="orders__order">
-        {orders.map((order, index) => (
-          <Order key={`orders__order_${index}`} order={order} />
-        ))}
+        {orders && orders.length > 0 
+          ? <h1>Your Orders</h1> && orders.map((order, index) => (<Order key={`orders__order_${index}`} order={order} />))
+          : user
+          ? loading || <h1> No order history, please make a purchase! </h1>
+          : loading || <h1> Please log in to view order history! </h1>
+        }
       </div>
     </div>
   );

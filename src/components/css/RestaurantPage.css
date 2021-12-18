@@ -6,14 +6,18 @@
   max-width: 1800px;
 }
 
+.restaurant__header {
+  margin-left: 10px;
+  margin-right: 10px;
+}
 .restaurant__row {
   display: flex;
   z-index: 1;
-  margin-left: 5px;
-  margin-right: 5px;
+  width: 100%;
 }
 
 .restaurant__banner {
+  margin-bottom: 10px;
   width: 100%;
   z-index: -1;
 }

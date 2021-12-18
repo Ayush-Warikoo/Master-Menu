@@ -1,54 +1,111 @@
-.menu__filter {
+.filter {
   padding-left: 20px;
   padding-top: 20px;
   padding-bottom: 20px;
-  margin-bottom: 10px;
-  width: 98.5%;
+  margin-bottom: 5px;
+  width: calc(100% - 20px);
   max-height: 100vh;
-  min-width: 100px;
   background-color: white;
   z-index: 1;
 }
-.menu__filter > h1 {
+
+.filter__title {
+  width: 80%;
+  margin: 0 9%;
   text-align: center;
 }
 
-.menu__filter > h3 {
+.filter > h3 {
+  margin: 0 9%;
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  width: 80%;
 }
 
-.menu__filter > input {
-  height: 35px;
-  margin-bottom: 10px;
-  background-color: white;
-  width: 7%;
+.filter__searchBar_allergy {
+  margin: 0 9%;
+  width: 80%;
+  border: 2px solid;
+  border-color: #212121 #767676 #767676 #212121;
+  border-radius: 6px;
+  
+}
+
+.filter__searchBar_preferences {
+  margin: 0 9%;
+  width: 80%;
+  border: 2px solid;
+  border-color: #212121 #767676 #767676 #212121;
   border-radius: 6px;
   margin-bottom: 20px;
+  
+}
+
+.filter__rating_diet_budget {
+  margin: 0 9%;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.filter__rating {
+  width: min(35%, calc((100% - 200px)/2));
+  margin-top: 20px;
+}
+
+.filter__rating_bar {
+  margin-top: 10px;
+  background-color: white;
+  width: 95%;
+  border: 2px solid;
+  border-color: #212121 #767676 #767676 #212121;
+  border-radius: 6px;
+}
+
+.filter__diet {
+  width: min(35%, calc((100% - 200px)/2));
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.filter__diet_bar {
+  margin-top: 10px;
+  background-color: white;
+  width: 95%;
+  border: 2px solid;
+  border-color: #212121 #767676 #767676 #212121;
+  border-radius: 6px;
+}
+
+.filter__budget {
+  width: max(20%, 190px);
+  margin-top: 20px;
+}
+
+.filter__budget_bar {
+  margin-top: 11px;
+  border: 2px solid;
+  border-color: #212121 #767676 #767676 #212121;
+  border-radius: 6px;
+  width: 92%;
+  height: 35px;
+  background-color: white;
   padding-left: 10px;
   font-size: 15px;
 }
 
-.filter__rating_bar {
-  margin-bottom: 10px;
-  background-color: white;
-  width: 15%;
-  border: 2px solid;
-  border-color: #212121 #767676 #767676 #212121;
-  border-radius: 6px;
-}
-
-.filter__diet_bar {
-  margin-bottom: 10px;
-  background-color: white;
-  width: 20%;
-  border: 2px solid;
-  border-color: #212121 #767676 #767676 #212121;
-  border-radius: 6px;
+.filter__button {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0 9%;
 }
 
 .filter__button > button {
-  background: rgb(0, 0, 0) /*#ffc534*/;
+  background: rgb(0, 0, 0);
   color: white;
   width: 200px;
   height: 40px;
@@ -65,18 +122,4 @@
 
 .filter__button > button:hover {
   background: rgb(48, 48, 48);
-}
-
-.menuFilter__searchBar_preferences {
-  width: 50%;
-  border: 2px solid;
-  border-color: #212121 #767676 #767676 #212121;
-  border-radius: 6px;
-}
-
-.menuFilter__searchBar_allergy {
-  width: 50%;
-  border: 2px solid;
-  border-color: #212121 #767676 #767676 #212121;
-  border-radius: 6px;
 }

@@ -83,23 +83,20 @@ function Product({ product }) {
 
   return (
     <div className="product">
-      <div className="product__header">
-        <div className="product__info">
-          <h2> {product.title} </h2>
-          <p className="product__price">
-            <small> $ </small>
-            <strong> {product.price} </strong>
-          </p>
-          <div className="product__rating">{ratingOutput()}</div>
-        </div>
+      <div className="product__info">
+        <h2> {product.title} </h2>
+        <p className="product__price">
+          <small> $ </small>
+          <strong> {product.price} </strong>
+        </p>
+        <div className="product__rating">{ratingOutput()}</div>
       </div>
       <img src={product.image} alt="" />
       <div className="product__ingredients">
         <p> Ingredients: {product.ingredients}</p>
       </div>
       <button onClick={addToBasket} style={{ backgroundColor: buttonColor() }}>
-        {" "}
-        Add to Order{" "}
+        Add to Order
       </button>
     </div>
   );
