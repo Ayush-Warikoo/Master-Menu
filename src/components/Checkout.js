@@ -139,9 +139,13 @@ function Checkout() {
             <h3>Payment Method </h3>
           </div>
           <div className="payment__details">
+            <p style={{ fontStyle: "italic" }}>
+              *For testing purposes - Card Number: 4242 4242 4242 4242, &nbsp;
+              Exp. Date: 4 / 24, &nbsp; CVC: 242, &nbsp; ZIP: 42424
+            </p>
+            <br />
             <form onSubmit={handleSubmit}>
-              <CardElement onChange={handleChange} />
-
+              <CardElement className="Input" onChange={handleChange} /> <br />
               <div className="payment__priceConatiner">
                 <CurrencyFormat
                   renderText={(value) => <h3>Order Total: {value}</h3>}

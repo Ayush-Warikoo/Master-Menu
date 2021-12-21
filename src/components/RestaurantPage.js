@@ -31,7 +31,11 @@ function RestaurantPage({ restaurant }) {
       <div className="restaurant__container">
         <div className="restaurant__header">
           {/* Banner */}
-          <img className="restaurant__banner" src={Banner} alt="Restaurant Banner" />
+          <img
+            className="restaurant__banner"
+            src={Banner}
+            alt="Restaurant Banner"
+          />
           {/* Menu Filter */}
           <MenuFilter />
         </div>

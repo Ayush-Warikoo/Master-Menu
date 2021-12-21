@@ -63,7 +63,7 @@ function Header() {
       <div className="header__search">
         <input
           className="header__searchInput"
-          placeholder="Enter a restaurant"
+          placeholder="Enter a restaurant..."
           list="header__restaurant"
           type="text"
           value={searchBarText}

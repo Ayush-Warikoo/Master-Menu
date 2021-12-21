@@ -3,6 +3,8 @@
 **/.env
 **/.git
 **/.gitignore
+**/.prettierignore
+**/.markdownlint.json
 **/.project
 **/.settings
 **/.toolstarget

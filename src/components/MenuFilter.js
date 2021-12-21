@@ -103,8 +103,7 @@ function MenuFilter() {
       <div className="filter__title">
         <h1> Menu Filter </h1>
       </div>
-      
-      
+
       <h3> Allergies / Dietary Restrictions: </h3>
       <AsyncSelect
         cacheOptions
@@ -119,7 +118,7 @@ function MenuFilter() {
       <div className="filter__rating_diet_budget">
         <div className="filter__rating">
           <h3>Rating Minimum:</h3>
-      
+
           <Select
             value={selectedRating}
             onChange={setSelectedRating}
@@ -127,7 +126,7 @@ function MenuFilter() {
             className={"filter__rating_bar"}
           />
         </div>
-      
+
         <div className="filter__diet">
           <h3> Diet Selection:</h3>
           <Select
@@ -138,7 +137,7 @@ function MenuFilter() {
           />
         </div>
 
-        <div className="filter__budget"> 
+        <div className="filter__budget">
           <h3>Budget Maximum:</h3>
           <input
             type="number"
@@ -148,7 +147,6 @@ function MenuFilter() {
             className={"filter__budget_bar"}
           />
         </div>
-        
       </div>
 
       <h3>Ingredient Preferences:</h3>
@@ -161,7 +159,6 @@ function MenuFilter() {
         className={"filter__searchBar_preferences"}
         components={animatedComponents}
       />
-
 
       <div className="filter__button">
         <button type="submit" onClick={filter}>

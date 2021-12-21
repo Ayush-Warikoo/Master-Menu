@@ -34,16 +34,14 @@ function Orders() {
             }))
           );
         });
-      
     } else {
       setOrders(null);
     }
 
-    if(loading) {
+    if (loading) {
       setLoading(false);
     }
 
-    
     return () => {
       cancel = true;
     };
@@ -53,12 +51,14 @@ function Orders() {
   return (
     <div className="orders">
       <div className="orders__order">
-        {orders && orders.length > 0 
-          ? <h1>Your Orders</h1> && orders.map((order, index) => (<Order key={`orders__order_${index}`} order={order} />))
+        {orders && orders.length > 0
+          ? <h1>Your Orders</h1> &&
+            orders.map((order, index) => (
+              <Order key={`orders__order_${index}`} order={order} />
+            ))
           : user
           ? loading || <h1> No order history, please make a purchase! </h1>
-          : loading || <h1> Please log in to view order history! </h1>
-        }
+          : loading || <h1> Please log in to view order history! </h1>}
       </div>
     </div>
   );

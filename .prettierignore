@@ -1,0 +1,5 @@
+/build
+/public
+/.firebase
+**/package-lock.json
+/functions/.eslintrc.js
