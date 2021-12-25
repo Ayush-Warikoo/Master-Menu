@@ -169,9 +169,9 @@ function Subtotal() {
     <div className="subtotal">
       <CurrencyFormat
         renderText={(value) => (
-          <p>
+          <h3>
             Subtotal ({basket.length} items): <strong>{value} </strong>
-          </p>
+          </h3>
         )}
         value={getBasketTotal(basket) / 100}
         decimalScale={2}
@@ -199,7 +199,6 @@ function Subtotal() {
             : history.push("/checkout");
         }}
       >
-        {" "}
         Proceed to Checkout
       </button>
     </div>

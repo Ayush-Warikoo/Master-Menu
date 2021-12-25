@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../tools/firebase";
+import ReactLoading from "react-loading";
 import "./css/RestaurantPage.css";
 import Product from "./Product";
 import MenuFilter from "./MenuFilter";
@@ -40,13 +41,24 @@ function RestaurantPage({ restaurant }) {
           <MenuFilter />
         </div>
         {/* Products */}
-        {productMatrix.map((row, index) => (
-          <div key={`restaurant__row_${index}`} className="restaurant__row">
-            {row.map((prod) => (
-              <Product key={`restaurant__prod_${prod.id}`} product={prod} />
-            ))}
+        {productMatrix.length > 0 ? (
+          productMatrix.map((row, index) => (
+            <div key={`restaurant__row_${index}`} className="restaurant__row">
+              {row.map((prod) => (
+                <Product key={`restaurant__prod_${prod.id}`} product={prod} />
+              ))}
+            </div>
+          ))
+        ) : (
+          <div className="restaurant__loading">
+            <ReactLoading
+              type={"bars"}
+              color={"#696969"}
+              height={"100px"}
+              width={"100px"}
+            />
           </div>
-        ))}
+        )}
       </div>
     </div>
   );
