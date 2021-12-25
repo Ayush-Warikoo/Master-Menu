@@ -12,6 +12,7 @@ function CheckoutProduct({
   rating,
   ingredients,
   hideButton,
+  quantity,
 }) {
   const [{ basket }, dispatch] = useStateValue();
 
@@ -29,9 +30,12 @@ function CheckoutProduct({
 
       <div className="checkoutProduct__info">
         <p className="checkoutProduct__title">{title}</p>
+        <p className="checkoutProduct__quantity">
+          {" "}
+          <strong> Qty: {quantity || 1} </strong>
+        </p>
         <p className="checkoutProduct__price">
-          <small>$</small>
-          <strong>{price}</strong>
+          <strong> Price: ${price} </strong>
         </p>
         <div className="checkoutProduct__rating">
           {Array(rating)

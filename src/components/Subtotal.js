@@ -170,7 +170,8 @@ function Subtotal() {
       <CurrencyFormat
         renderText={(value) => (
           <h3>
-            Subtotal ({basket.length} items): <strong>{value} </strong>
+            Subtotal ({basket.reduce((acc, curr) => acc + curr.quantity, 0)}{" "}
+            items): <strong>{value} </strong>
           </h3>
         )}
         value={getBasketTotal(basket) / 100}

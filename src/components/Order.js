@@ -21,6 +21,7 @@ function Order({ order }) {
           price={item.price}
           rating={item.rating}
           ingredients={item.ingredients}
+          quantity={item.quantity}
           hideButton
         />
       ))}

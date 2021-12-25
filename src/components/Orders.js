@@ -13,28 +13,33 @@ function Orders() {
   const [isItemsLeft, setIsItemsLeft] = useState(true);
 
   function isBottom() {
+    if (!document.getElementsByClassName("orders")[0]) return false;
     const pageHeight =
-      document.getElementsByClassName("orders")[0]?.clientHeight;
+      document.getElementsByClassName("orders")[0].clientHeight;
     return Boolean(Math.abs(pageHeight - window.scrollY) <= 1000);
+  }
+
+  async function getOrders() {
+    if (!user) return [];
+    return db
+      .collection("users")
+      .doc(user.uid)
+      .collection("orders")
+      .orderBy("created", "desc")
+      .startAfter(lastOrder.time ? lastOrder.time : Date.now())
+      .limit(5)
+      .get();
   }
 
   //Cancel logic required to avoid memory leaks
   useEffect(() => {
     let cancel = false;
-
     const loadOrders = async () => {
       if (cancel) return null;
 
-      const orders = await db
-        .collection("users")
-        .doc(user?.uid)
-        .collection("orders")
-        .orderBy("created", "desc")
-        .startAfter(lastOrder.time ? lastOrder.time : Date.now())
-        .limit(5)
-        .get();
+      const orders = await getOrders();
 
-      if (orders.docs.length > 0) {
+      if (orders.docs && orders.docs.length > 0) {
         setOrders((prevOrders) => {
           const newOrders = orders.docs.map((doc) => ({
             id: doc.id,
@@ -49,18 +54,19 @@ function Orders() {
         });
       } else {
         setIsItemsLeft(false);
+        setOrders([]);
       }
     };
 
     //Pulls history if user is signed in
     if (user) {
       loadOrders();
-    } else if (user === null) {
+    } else {
       // Since user is undefined to start and can be null for a short time before it is loaded
       setTimeout(() => {
         if (cancel) return null;
         setOrders(null);
-      }, 600);
+      }, 800);
     }
 
     function handleScroll() {

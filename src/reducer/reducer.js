@@ -11,10 +11,12 @@ export const initialState = {
 // Selector
 let newBasket;
 export const getBasketTotal = (basket) =>
-  basket?.reduce((amount, item) => Math.round(item.price * 100) + amount, 0);
+  basket?.reduce(
+    (amount, item) => Math.round(item.price * item.quantity * 100) + amount,
+    0
+  );
 
 const reducer = (state, action) => {
-  //console.log(action);
   switch (action.type) {
     case "UPDATE_FILTER":
       return {
@@ -27,7 +29,20 @@ const reducer = (state, action) => {
       };
 
     case "ADD_TO_BASKET":
-      newBasket = [...state.basket, action.item];
+      //if item is already in basket, increase the quantity
+      newBasket = [...state.basket];
+      const indexAdd = newBasket.findIndex(
+        (item) => item.id === action.item.id
+      );
+      if (indexAdd >= 0) {
+        newBasket[indexAdd] = {
+          ...newBasket[indexAdd],
+          quantity: newBasket[indexAdd].quantity + 1,
+        };
+      } else {
+        newBasket.push({ ...action.item, quantity: 1 });
+      }
+
       localStorage.setItem("basket", JSON.stringify(newBasket));
       return {
         ...state,

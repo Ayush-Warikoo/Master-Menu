@@ -95,7 +95,10 @@ function Product({ product }) {
       <div className="product__ingredients">
         <p> Ingredients: {product.ingredients}</p>
       </div>
-      <button onClick={addToBasket} style={{ backgroundColor: buttonColor() }}>
+      <button
+        onClick={() => addToBasket()}
+        style={{ backgroundColor: buttonColor() }}
+      >
         Add to Order
       </button>
     </div>
