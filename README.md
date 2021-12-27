@@ -66,21 +66,21 @@ Master Menu is a Firebase, React web application that minimizes the aforemention
 
 ## Architecture
 
-!["Master Menu Architecture Diagram"](readme-assets/MasterMenuDiagram.jpg)
+!["Master Menu Architecture Diagram"](readme-assets/MasterMenuDiagramV3.jpg)
 
 ## Description
 
 The following is a general description of the application that complements the diagram above, along with the application's usage and design decisions. The application leverages a FERN stack (i.e. Firebase, Express, React, Node), along with Amazon Web Services for hosting, Stripe for payment processing and Google Places & Spoonacular API for autocomplete functionality.
 
-Primarily, Amazon Web Services are used to host the application, using Route 53 for DNS services, CloudFront for CDN services and S3 for file storage. When users visit the secure domain, CloudFront pulls the web application files from S3 buckets, and delivers the files to the appropriate IP address to create the webpage for users. As well, CloudFront provides caching services to avoid having to pull the files from S3 on every request, ensuring a low latency.
+Primarily, Amazon Web Services are used to host the application, using Route 53 for DNS services, Certificate Manager to certify the domain is secure, CloudFront for content delivery network services and S3 for file storage. When users visit the secure domain, CloudFront pulls the web application files from S3 buckets, and delivers the files to the appropriate IP address to create the webpage for users. As well, CloudFront provides caching services to avoid having to pull the files from S3 on every request, ensuring a low latency. When code is committed to the repository, GitHub Actions automatically uploads the files to the S3 bucket and invalidates the CloudFront cache, with authorization from IAM.
 
-Next, Firebase facilitates user authentication and allows users to create an account or sign in using their existing social media accounts (e.g. Google, Facebook, Github), which is required for purchases. On the home page, users can search for restaurants (e.g. McDonalds and Pizza Pizza), which will take them to the individual restaurant page.
+Next, Firebase facilitates user authentication and allows users to create an account or sign in using their existing social media accounts (e.g. Google, Facebook, GitHub, Twitter, etc), which is required for purchases. On the home page, users can search for restaurants (e.g. McDonalds and PizzaPizza), which will take them to the individual restaurant page.
 
 All restaurant data (e.g. dish prices, ingredients, images) is retrieved from Firestore and presented using product components. Users can then input their personal preferences (e.g. diet, allergies/dietary restrictions) to highlight the product components that best suit their needs. When typing ingredients, the autocomplete is generated from Spoonacular APIs, where the current typed string is sent in the request and possible ingredients that match the query are sent back in the response and cached for optimization. The user can then add products to their shopping cart. The filter input is stored in React Context so that it is remembered when rendering/accessing new restaurant pages. The shopping cart items are also stored in React Context to make it easier to access across the app (many components need it) and it is also stored in Local Storage so that the cart products are remembered when revisiting or refreshing the page, as shown in the demo.
 
-Once finished shopping, users can use the header component to navigate to the shopping cart page to review the selected items. Note that the header component is on the restaurant, shopping cart, checkout and order history pages and allows for navigation to most other pages. But, the links between pages in the diagram just show the general paths that users will follow for simplicity, not what is only possible. The products are retrieved from React Context/Local Storage and then presented as product components, along with the subtotal. Users can remove products and then are required to put a location and reservation time for each restaurant. While filling the location, the current string is sent on requests to the Google Places API, and the typographically closest establishments are in the response back, which is used to create the location autocomplete dropdown. Finally, once set, the user can proceed to the checkout page.
+Once finished shopping, users can use the header component to navigate to the shopping cart page to review the selected items. The products are retrieved from React Context/Local Storage and then presented as product components, along with the subtotal. Users can remove products and then are required to put a location and reservation time for each restaurant. While filling the location, a request with the query is sent to the Google Places API, and the typographically closest establishments are sent in the response back, which is used to create the location autocomplete dropdown. Finally, once set, the user can proceed to the checkout page.
 
-Once again the cart products are retrieved from React Context/Local Storage. On page load, a request is sent, to the Firebase serverless functions, which then sends a request to Stripe APIs for a client secret and once received, relays it back to the frontend for use. Note that the API request is conducted through the backend since security is the priority. The API requests used in autocompletes are conducted from the frontend since speed is the priority there and security is handled in alternate ways. Users can then fill out the payment information in the Stripe Card Element component, which will then use the client secret to process the payment (this is done using the test Stripe Keys currently). But in the case that the user is not authorized, they will instead be redirected to the login page when attempting to pay. After a successful payment, the order will be sent to the Firestore database and stored under the specific user. The user will also be notified of the payment and be redirected to the order history page, where they can see their past purchases and verify that their most recent purchase has been processed. The order history page retrieves the past 20 orders from the Firestore database and displays them using order components. This page will be empty if the user is not signed in, as they will not have a stored history.
+Once again the cart products are retrieved from React Context/Local Storage. On page load, a request is sent, to the Firebase serverless functions, which then sends a request to Stripe APIs for a client secret and once received, relays it back to the frontend for use. Note that the API request is conducted through the backend since security is the priority. The API requests used in autocompletes are conducted from the frontend since speed is the priority there and security is handled in alternate ways. Users can then fill out the payment information in the Stripe Card Element component, which will then use the client secret to process the payment (this is done using the test Stripe Keys currently). But in the case that the user is not authorized, they will instead be redirected to the login page when attempting to pay. After a successful payment, the order will be sent to the Firestore database and stored under the specific user. The user will also be notified of the payment and be redirected to the order history page, where they can see their past purchases and verify that their most recent purchase has been processed. The order history page paginates the data from the Firestore database into groups of 5 orders. Incrementally rendering more by the user's scrolling and displaying them using order components. The page will show an appropriate warning depending on if the user is signed in or has not made a purchase.
 
 ## Demo and Images
 
@@ -106,14 +106,18 @@ The following includes a detailed list of implemented features/details:
 - Allows users to access the name, price, rating, ingredients and visuals of all dishes from searcheable restaurants
 - Allows users to filter dishes based on allergies/dietary restrictions, ingredient preferences, rating minimums, diet or budget limitations
   - The diet options consist of pollopescatarian, pescatarian, vegetarian, vegan and none options
-  - Allergies/dietary restrictions and ingredient preferences fields support autocomplete functionality (cached for optimization)
+  - Allergies/dietary restrictions and ingredient preferences fields support autocomplete functionality (using debouncing and caching for optimizations)
 - Allows users to review their shopping cart products and remove items
 - Allows users to input their reservation time and the location of the restaurant
-  - The location field supports autocomplete functionality
+  - The location field supports autocomplete functionality (using debouncing for optimizations)
   - Location is also protected by validation logic
 - Implemented payment authorization and processing
 - Allows authorized users to retrieve order history
 - Uses a secure and certified transfer protocol (HTTPS)
+- GitHub Actions deploys the application to AWS S3, invalidates the CloudFront cache and also deploys to Firebase on code commits
+- Stying adjusts to any laptop or desktop screen size
+- General UI/UX design and functionality using Material-UI
+- Uses infinite scrolling to paginate the order history (incorpating throttling for optimization)
 
 ## Built With
 
@@ -139,6 +143,7 @@ Development Tools/Libraries/Frameworks
   - Route 53
   - Certificate Manager
   - IAM
+  - Budgets
 - NodeJS
 - Express
 - Github Actions
@@ -151,12 +156,14 @@ External Services
 
 Notable Node Packages
 
-- Axios
-- Dotenv
+- Material UI
 - React FirebaseUI
 - React Places Autocomplete
 - React Select
 - React Toastify
+- Axios
+- Dotenv
+- Lodash
 
 # Getting Started
 
@@ -179,6 +186,8 @@ The following personal API keys will also have to be acquired and set to their c
 - Spoonacular API Key
 
 Note that in order to set up the user authentication through social media accounts, it requires generating your own ID and Secret Keys for the corresponding social media and setting it up in the firebase authentication console.
+
+You will also need to generate your own AWS Secrets and add them as GitHub Repository Secrets to be used by the GitHub Actions workflow.
 
 ## Development
 
@@ -207,6 +216,8 @@ Miscellaneous:
 
 ## Deployment
 
+Note that if you have the GitHub Actions set-up, the following will be done automatically when you commit.
+
 Builds the app for production to the `build` folder.<br />
 It correctly bundles React in production mode and optimizes the build for the best performance to be ready for deployment
 
@@ -219,6 +230,8 @@ Configure firebase and then use it for deployment
 ```bash
 firebase deploy
 ```
+
+Finally, delete the previous files in your S3 bucket and upload all the files in the updated build folder.
 
 # Roadmap
 

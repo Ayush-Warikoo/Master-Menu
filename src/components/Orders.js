@@ -5,6 +5,12 @@ import { throttle } from "lodash";
 import ReactLoading from "react-loading";
 import "./css/Orders.css";
 import Order from "./Order";
+import {
+  BOTTOM_DISTANCE_TOLERANCE,
+  DARK_GRAY,
+  PAGINATION_LIMIT,
+  THROTTLE_TIME,
+} from "../util/constants";
 
 function Orders() {
   const [{ basket, user }, dispatch] = useStateValue();
@@ -16,7 +22,9 @@ function Orders() {
     if (!document.getElementsByClassName("orders")[0]) return false;
     const pageHeight =
       document.getElementsByClassName("orders")[0].clientHeight;
-    return Boolean(Math.abs(pageHeight - window.scrollY) <= 1000);
+    return Boolean(
+      Math.abs(pageHeight - window.scrollY) <= BOTTOM_DISTANCE_TOLERANCE
+    );
   }
 
   async function getOrders() {
@@ -38,13 +46,13 @@ function Orders() {
       if (cancel) return null;
 
       const orders = await getOrders();
-
       if (orders.docs && orders.docs.length > 0) {
         setOrders((prevOrders) => {
           const newOrders = orders.docs.map((doc) => ({
             id: doc.id,
             data: doc.data(),
           }));
+
           lastOrder.time = newOrders[newOrders.length - 1].data.created;
 
           if (!prevOrders) {
@@ -52,9 +60,10 @@ function Orders() {
           }
           return [...prevOrders, ...newOrders];
         });
-      } else {
+      }
+
+      if (!orders.docs || orders.docs.length < PAGINATION_LIMIT) {
         setIsItemsLeft(false);
-        setOrders([]);
       }
     };
 
@@ -76,7 +85,7 @@ function Orders() {
       }
     }
 
-    const throttledScrolls = throttle(handleScroll, 1000);
+    const throttledScrolls = throttle(handleScroll, THROTTLE_TIME);
     window.onscroll = throttledScrolls;
 
     return () => {
@@ -93,7 +102,7 @@ function Orders() {
           <div className="orders__initLoad">
             <ReactLoading
               type={"bars"}
-              color={"#696969"}
+              color={DARK_GRAY}
               height={"100px"}
               width={"100px"}
             />
@@ -114,7 +123,7 @@ function Orders() {
         <div className={"orders__newLoad"}>
           <ReactLoading
             type={"bars"}
-            color={"#696969"}
+            color={DARK_GRAY}
             height={"69px"}
             width={"69px"}
           />

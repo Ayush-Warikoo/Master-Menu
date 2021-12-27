@@ -3,7 +3,7 @@ import "./css/Product.css";
 import StarIcon from "@material-ui/icons/Star";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import { useStateValue } from "../context/StateProvider";
-import { RED, BLACK, GREEN, DIET } from "../util/constants";
+import { RED, BLACK, GREEN, DIET, MAX_STARS } from "../util/constants";
 
 function Product({ product }) {
   const [{ allergy, preference, budget, rating, diet }, dispatch] =
@@ -71,7 +71,7 @@ function Product({ product }) {
 
   const ratingOutput = () => {
     let s = [];
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < MAX_STARS; i++) {
       if (i < product.stars) {
         s.push(<StarIcon key={`product__rating_${i}`} />);
       } else {

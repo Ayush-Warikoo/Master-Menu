@@ -28,6 +28,7 @@
   border: 2px solid;
   border-color: #212121 #767676 #767676 #212121;
   border-radius: 6px;
+  margin-bottom: 30px;
 }
 
 .filter__searchBar_preferences {
@@ -36,7 +37,7 @@
   border: 2px solid;
   border-color: #212121 #767676 #767676 #212121;
   border-radius: 6px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .filter__rating_diet_budget {
@@ -45,6 +46,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-bottom: 30px;
 }
 
 .filter__rating {

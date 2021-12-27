@@ -19,6 +19,9 @@ export const MAX_DISH_NUM = 100;
 export const BLACK = "rgb(0, 0, 0)";
 export const GREEN = "rgb(17, 191, 93)";
 export const RED = "rgb(227, 54, 54)";
+export const WHITE = "#FFF";
+export const LIGHT_GRAY = "#E8E8E8";
+export const DARK_GRAY = "#696969";
 
 //Autocomplete Constants
 export const ratingOptions = [
@@ -37,3 +40,18 @@ export const dietOptions = [
   { value: "Vegetarian", label: "Vegetarian" },
   { value: "Vegan", label: "Vegan" },
 ];
+
+export const DEBOUNCE_TIME = 400;
+
+//Orders Constants
+export const PAGINATION_LIMIT = 5;
+export const BOTTOM_DISTANCE_TOLERANCE = 1000;
+export const THROTTLE_TIME = 1000;
+
+//Checkout Constants
+export const MAX_STARS = 5;
+
+//Toast Constants
+export const LONG_TOAST_DURATION = 2500;
+export const MID_TOAST_DURATION = 2000;
+export const SHORT_TOAST_DURATION = 1500;

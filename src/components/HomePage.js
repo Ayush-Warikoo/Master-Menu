@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import "./css/HomePage.css";
 import logo from "../img/logo-white.png";
-import { restaurants } from "../util/constants";
+import { MID_TOAST_DURATION, restaurants } from "../util/constants";
 import { removePunctuation } from "../util/helperFunctions";
 
 function HomePage() {
@@ -21,7 +21,9 @@ function HomePage() {
       }
     }
     if (searchBarText) {
-      toast.error("Sorry, restaurant not available!", { autoClose: 2000 });
+      toast.error("Sorry, restaurant not available!", {
+        autoClose: MID_TOAST_DURATION,
+      });
     }
   };
 

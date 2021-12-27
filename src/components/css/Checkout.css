@@ -33,7 +33,8 @@
 }
 
 .payment__title {
-  flex: 0.2;
+  /*flex: 0.2;*/
+  width: 230px;
 }
 
 .payment__details {

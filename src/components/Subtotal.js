@@ -6,7 +6,15 @@ import CurrencyFormat from "react-currency-format";
 import { useStateValue } from "../context/StateProvider";
 import { getBasketTotal } from "../reducer/reducer";
 import "./css/Subtotal.css";
-import { restaurants, MAX_DISH_NUM, STARTING_DISH_ID } from "../util/constants";
+import {
+  restaurants,
+  MAX_DISH_NUM,
+  STARTING_DISH_ID,
+  MID_TOAST_DURATION,
+  DEBOUNCE_TIME,
+  WHITE,
+  LIGHT_GRAY,
+} from "../util/constants";
 import googleImage from "../img/poweredByGoogle.png";
 import { removePunctuation } from "../util/helperFunctions";
 
@@ -32,14 +40,14 @@ function Subtotal() {
   );
 
   // Helper Functions
-  const areRequiredInputsFilled = () => {
+  const isRequiredInputFilled = () => {
     for (let i = 0; i < restaurantArray.length; i++) {
       if (!(address[i] && timeReserve[i])) return false;
     }
     return true;
   };
 
-  const areLocationsCorrect = () => {
+  const isLocationCorrect = () => {
     for (let i = 0; i < restaurantArray.length; i++) {
       //Checks if address without punctuation includes corresponding restaurant
       if (
@@ -74,6 +82,7 @@ function Subtotal() {
       searchOptions={{
         types: ["establishment"],
       }}
+      debounce={DEBOUNCE_TIME}
     >
       {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
         <div>
@@ -94,10 +103,11 @@ function Subtotal() {
                 ? "suggestion-item--active"
                 : "suggestion-item";
               const style = suggestion.active
-                ? { backgroundColor: "#E8E8E8", cursor: "pointer" }
-                : { backgroundColor: "#FFF", cursor: "pointer" };
+                ? { backgroundColor: LIGHT_GRAY, cursor: "pointer" }
+                : { backgroundColor: WHITE, cursor: "pointer" };
               return (
                 <div
+                  key={`suggestion_${suggestion}_${index}`}
                   {...getSuggestionItemProps(suggestion, {
                     className,
                     style,
@@ -186,16 +196,18 @@ function Subtotal() {
       <button
         onClick={(e) => {
           !basket.length
-            ? toast.error("No items to checkout!", { autoClose: 2000 })
-            : !areRequiredInputsFilled()
+            ? toast.error("No items to checkout!", {
+                autoClose: MID_TOAST_DURATION,
+              })
+            : !isRequiredInputFilled()
             ? toast.error(
                 "Please ensure every location and reservation time is set!",
-                { autoClose: 2000 }
+                { autoClose: MID_TOAST_DURATION }
               )
-            : !areLocationsCorrect()
+            : !isLocationCorrect()
             ? toast.error(
                 "Please ensure the location is of the corresponding restaurant!",
-                { autoClose: 2000 }
+                { autoClose: MID_TOAST_DURATION }
               )
             : history.push("/checkout");
         }}

@@ -58,7 +58,7 @@ function ShoppingCart() {
             </TableHead>
             <TableBody>
               {basket.map((row, index) => (
-                <TableRow hover key={row.name}>
+                <TableRow hover key={row.id}>
                   <TableCell>
                     <div className={"shoppingcart__product"}>
                       <img

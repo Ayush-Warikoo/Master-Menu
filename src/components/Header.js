@@ -8,7 +8,11 @@ import { useStateValue } from "../context/StateProvider";
 import { auth } from "../tools/firebase";
 import "./css/Header.css";
 import logo from "../img/logo-white.png";
-import { restaurants } from "../util/constants";
+import {
+  MID_TOAST_DURATION,
+  restaurants,
+  SHORT_TOAST_DURATION,
+} from "../util/constants";
 import { removePunctuation } from "../util/helperFunctions";
 
 function Header() {
@@ -24,7 +28,7 @@ function Header() {
       });
       toast.info(
         `See ya, ${user.displayName ? user.displayName : user.email}!`,
-        { autoClose: 1500 }
+        { autoClose: SHORT_TOAST_DURATION }
       );
       auth.signOut();
     }
@@ -42,7 +46,9 @@ function Header() {
       }
     }
     if (searchBarText) {
-      toast.error("Sorry, restaurant not available!", { autoClose: 2000 });
+      toast.error("Sorry, restaurant not available!", {
+        autoClose: MID_TOAST_DURATION,
+      });
     }
   };
 

@@ -4,7 +4,8 @@ import AsyncSelect from "react-select/async-creatable";
 import makeAnimated from "react-select/animated";
 import { useStateValue } from "../context/StateProvider";
 import "./css/MenuFilter.css";
-import { ratingOptions, dietOptions } from "../util/constants";
+import { ratingOptions, dietOptions, DEBOUNCE_TIME } from "../util/constants";
+import AwesomeDebouncePromise from "awesome-debounce-promise";
 
 function MenuFilter() {
   const [{ allergy, preference, budget, rating, diet }, dispatch] =
@@ -98,6 +99,8 @@ function MenuFilter() {
     return string;
   };
 
+  const debouncedHandler = AwesomeDebouncePromise(loadOptions, DEBOUNCE_TIME);
+
   return (
     <div className="filter">
       <div className="filter__title">
@@ -109,9 +112,20 @@ function MenuFilter() {
         cacheOptions
         value={selectedAllergies}
         onChange={setSelectedAllergies}
-        loadOptions={loadOptions}
+        loadOptions={debouncedHandler}
         isMulti
         className={"filter__searchBar_allergy"}
+        components={animatedComponents}
+      />
+
+      <h3>Ingredient Preferences:</h3>
+      <AsyncSelect
+        cacheOptions
+        value={selectedPrefs}
+        onChange={setSelectedPrefs}
+        loadOptions={debouncedHandler}
+        isMulti
+        className={"filter__searchBar_preferences"}
         components={animatedComponents}
       />
 
@@ -148,17 +162,6 @@ function MenuFilter() {
           />
         </div>
       </div>
-
-      <h3>Ingredient Preferences:</h3>
-      <AsyncSelect
-        cacheOptions
-        value={selectedPrefs}
-        onChange={setSelectedPrefs}
-        loadOptions={loadOptions}
-        isMulti
-        className={"filter__searchBar_preferences"}
-        components={animatedComponents}
-      />
 
       <div className="filter__button">
         <button type="submit" onClick={filter}>

@@ -3,6 +3,7 @@ import StarIcon from "@material-ui/icons/Star";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import { useStateValue } from "../context/StateProvider";
 import "./css/CheckoutProduct.css";
+import { MAX_STARS } from "../util/constants";
 
 function CheckoutProduct({
   id,
@@ -43,10 +44,12 @@ function CheckoutProduct({
             .map((_, i) => (
               <StarIcon key={`checkoutProduct__rating_${i}`} />
             ))}
-          {Array(5 - rating)
+          {Array(MAX_STARS - rating)
             .fill()
             .map((_, i) => (
-              <StarBorderIcon key={`checkoutProduct__rating_${5 - i}`} />
+              <StarBorderIcon
+                key={`checkoutProduct__rating_${MAX_STARS - i}`}
+              />
             ))}
         </div>
         {!hideButton && (

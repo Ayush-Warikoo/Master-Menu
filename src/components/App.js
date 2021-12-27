@@ -16,7 +16,7 @@ import Orders from "./Orders";
 import HomePage from "./HomePage";
 import logo from "../img/logo-white.png";
 import background from "../img/background.jpg";
-import { restaurants } from "../util/constants";
+import { restaurants, MID_TOAST_DURATION } from "../util/constants";
 import { removePunctuation } from "../util/helperFunctions";
 
 const promise = loadStripe(`${process.env.REACT_APP_STRIPE_PUBLIC_KEY}`);
@@ -63,7 +63,7 @@ function App() {
             `Welcome back, ${
               authUser.displayName ? authUser.displayName : authUser.email
             }!`,
-            { autoClose: 2000 }
+            { autoClose: MID_TOAST_DURATION }
           );
         }, 800);
       } else {

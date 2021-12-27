@@ -4,7 +4,7 @@ import ReactLoading from "react-loading";
 import "./css/RestaurantPage.css";
 import Product from "./Product";
 import MenuFilter from "./MenuFilter";
-import { PRODUCTS_PER_ROW } from "../util/constants";
+import { DARK_GRAY, PRODUCTS_PER_ROW } from "../util/constants";
 
 function RestaurantPage({ restaurant }) {
   const [productMatrix, setProductMatrix] = useState([]);
@@ -53,7 +53,7 @@ function RestaurantPage({ restaurant }) {
           <div className="restaurant__loading">
             <ReactLoading
               type={"bars"}
-              color={"#696969"}
+              color={DARK_GRAY}
               height={"100px"}
               width={"100px"}
             />

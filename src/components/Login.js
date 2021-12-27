@@ -12,6 +12,7 @@ import {
 } from "../tools/firebase";
 import "./css/Login.css";
 import logo from "../img/logo.png";
+import { MID_TOAST_DURATION } from "../util/constants";
 
 function Login() {
   const history = useHistory();
@@ -49,7 +50,9 @@ function Login() {
       .createUserWithEmailAndPassword(email, password)
       .then((auth) => {
         // it successfully created a new user with email and password
-        toast.success(`Successfully registered ${email}`, { autoClose: 2000 });
+        toast.success(`Successfully registered ${email}`, {
+          autoClose: MID_TOAST_DURATION,
+        });
         if (auth) {
           history.push("/");
         }

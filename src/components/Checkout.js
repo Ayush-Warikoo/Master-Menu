@@ -9,6 +9,7 @@ import { getBasketTotal } from "../reducer/reducer";
 import { useStateValue } from "../context/StateProvider";
 import "./css/Checkout.css";
 import CheckoutProduct from "./CheckoutProduct";
+import { SHORT_TOAST_DURATION } from "../util/constants";
 
 function Checkout() {
   const [{ basket, user }, dispatch] = useStateValue();
@@ -49,7 +50,7 @@ function Checkout() {
     if (!user) {
       history.replace("/login");
       toast.error("Please sign in first, before making a purchase!", {
-        autoClose: 1500,
+        autoClose: SHORT_TOAST_DURATION,
       });
       return;
     }
@@ -85,13 +86,15 @@ function Checkout() {
           type: "EMPTY_BASKET",
         });
 
-        toast.success("Purchase successful!", { autoClose: 1500 });
+        toast.success("Purchase successful!", {
+          autoClose: SHORT_TOAST_DURATION,
+        });
         //Push them to orders page to not create a loop
         history.replace("/orders");
       })
       .catch((e) => {
         toast.error("Purchase unsuccessful, please try again!", {
-          autoClose: 1500,
+          autoClose: SHORT_TOAST_DURATION,
         });
       });
   };
@@ -142,7 +145,8 @@ function Checkout() {
           <div className="payment__details">
             <p style={{ fontStyle: "italic" }}>
               *For testing purposes - Card Number: 4242 4242 4242 4242, &nbsp;
-              Exp. Date: 4 / 24, &nbsp; CVC: 242, &nbsp; ZIP: 42424
+              Exp. Date: 4 / 24, &nbsp; CVC: 242, &nbsp; ZIP: 42424 &nbsp;
+              (Alternate 4 and 2)
             </p>
             <br />
             <form onSubmit={handleSubmit}>
