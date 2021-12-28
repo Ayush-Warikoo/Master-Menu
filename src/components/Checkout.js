@@ -5,14 +5,16 @@ import { toast } from "react-toastify";
 import CurrencyFormat from "react-currency-format";
 import axios from "../tools/axios";
 import { db } from "../tools/firebase";
-import { getBasketTotal } from "../reducer/reducer";
-import { useStateValue } from "../context/StateProvider";
+import { getBasketTotalCost, useBasketContext } from "../context/BasketContext";
 import "./css/Checkout.css";
 import CheckoutProduct from "./CheckoutProduct";
 import { SHORT_TOAST_DURATION } from "../util/constants";
+import { useAuthContext } from "../context/AuthContext";
 
 function Checkout() {
-  const [{ basket, user }, dispatch] = useStateValue();
+  const [{ basket }, basketDispatch] = useBasketContext();
+  const [{ user }] = useAuthContext();
+
   const history = useHistory();
   const stripe = useStripe();
   const elements = useElements();
@@ -30,13 +32,13 @@ function Checkout() {
       const response = await axios({
         method: "post",
         // Stripe expects the total in a currencies subunits
-        url: `/payments/create?total=${getBasketTotal(basket)}`,
+        url: `/payments/create?total=${getBasketTotalCost(basket)}`,
       });
 
       //Get the secret back from stripe, which allows us to charge the right amount
       setClientSecret(response.data.clientSecret);
     };
-    if (user && getBasketTotal(basket) > 0 && !clientSecret) {
+    if (user && getBasketTotalCost(basket) > 0 && !clientSecret) {
       getClientSecret();
     }
   });
@@ -67,7 +69,7 @@ function Checkout() {
         //Push the payment into the database
         //Going user's collection, into orders, setting an id,
 
-        paymentIntent.amount = getBasketTotal(basket);
+        paymentIntent.amount = getBasketTotalCost(basket);
         db.collection("users")
           .doc(user?.uid)
           .collection("orders")
@@ -82,7 +84,7 @@ function Checkout() {
         setError(null);
         setProcessing(false);
 
-        dispatch({
+        basketDispatch({
           type: "EMPTY_BASKET",
         });
 
@@ -156,7 +158,7 @@ function Checkout() {
                   renderText={(value) => <h3>Order Total: {value}</h3>}
                   decimalScale={2}
                   fixedDecimalScale={true}
-                  value={getBasketTotal(basket) / 100}
+                  value={getBasketTotalCost(basket) / 100}
                   displayType={"text"}
                   thousandSeparator={true}
                   prefix={"$"}

@@ -1,33 +1,23 @@
-export const initialState = {
-  allergy: [],
-  preference: [],
-  budget: null,
-  rating: null,
-  diet: null,
+import React, { createContext, useReducer, useContext } from "react";
+
+export const initBasketState = {
   basket: JSON.parse(localStorage.getItem("basket") || "[]"),
-  user: null,
 };
 
-// Selector
-let newBasket;
-export const getBasketTotal = (basket) =>
+export const BasketContext = createContext();
+
+export const getBasketTotalCost = (basket) =>
   basket?.reduce(
     (amount, item) => Math.round(item.price * item.quantity * 100) + amount,
     0
   );
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "UPDATE_FILTER":
-      return {
-        ...state,
-        allergy: action.allergy,
-        preference: action.preference,
-        budget: action.budget,
-        rating: action.rating,
-        diet: action.diet,
-      };
+export const getBasketTotalQuantity = (basket) =>
+  basket.reduce((acc, curr) => acc + curr.quantity, 0);
 
+const basketReducer = (state, action) => {
+  let newBasket;
+  switch (action.type) {
     case "ADD_TO_BASKET":
       //if item is already in basket, increase the quantity
       newBasket = [...state.basket];
@@ -42,7 +32,6 @@ const reducer = (state, action) => {
       } else {
         newBasket.push({ ...action.item, quantity: 1 });
       }
-
       localStorage.setItem("basket", JSON.stringify(newBasket));
       return {
         ...state,
@@ -71,16 +60,9 @@ const reducer = (state, action) => {
         );
       }
       localStorage.setItem("basket", JSON.stringify(newBasket));
-
       return {
         ...state,
         basket: newBasket,
-      };
-
-    case "SET_USER":
-      return {
-        ...state,
-        user: action.user,
       };
 
     default:
@@ -88,4 +70,12 @@ const reducer = (state, action) => {
   }
 };
 
-export default reducer;
+export const BasketContextProvider = ({ children }) => {
+  return (
+    <BasketContext.Provider value={useReducer(basketReducer, initBasketState)}>
+      {children}
+    </BasketContext.Provider>
+  );
+};
+
+export const useBasketContext = () => useContext(BasketContext);

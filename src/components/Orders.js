@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../tools/firebase";
-import { useStateValue } from "../context/StateProvider";
 import { throttle } from "lodash";
 import ReactLoading from "react-loading";
 import "./css/Orders.css";
@@ -11,9 +10,11 @@ import {
   PAGINATION_LIMIT,
   THROTTLE_TIME,
 } from "../util/constants";
+import { useAuthContext } from "../context/AuthContext";
 
 function Orders() {
-  const [{ basket, user }, dispatch] = useStateValue();
+  const [{ user }] = useAuthContext();
+
   const [orders, setOrders] = useState();
   const [lastOrder, setLastOrder] = useState({ time: null });
   const [isItemsLeft, setIsItemsLeft] = useState(true);

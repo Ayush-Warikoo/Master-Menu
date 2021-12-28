@@ -3,8 +3,11 @@ import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import PlacesAutoComplete from "react-places-autocomplete";
 import CurrencyFormat from "react-currency-format";
-import { useStateValue } from "../context/StateProvider";
-import { getBasketTotal } from "../reducer/reducer";
+import {
+  getBasketTotalCost,
+  getBasketTotalQuantity,
+  useBasketContext,
+} from "../context/BasketContext";
 import "./css/Subtotal.css";
 import {
   restaurants,
@@ -20,7 +23,7 @@ import { removePunctuation } from "../util/helperFunctions";
 
 function Subtotal() {
   const history = useHistory();
-  const [{ basket }, dispatch] = useStateValue();
+  const [{ basket }] = useBasketContext();
 
   const getRestaurantArray = () => {
     let restaurantSet = new Set();
@@ -180,11 +183,11 @@ function Subtotal() {
       <CurrencyFormat
         renderText={(value) => (
           <h3>
-            Subtotal ({basket.reduce((acc, curr) => acc + curr.quantity, 0)}{" "}
-            items): <strong>{value} </strong>
+            Subtotal ({getBasketTotalQuantity(basket)} items):{" "}
+            <strong>{value} </strong>
           </h3>
         )}
-        value={getBasketTotal(basket) / 100}
+        value={getBasketTotalCost(basket) / 100}
         decimalScale={2}
         fixedDecimalScale={true}
         displayType={"text"}

@@ -29,6 +29,7 @@
   border-color: #212121 #767676 #767676 #212121;
   border-radius: 6px;
   margin-bottom: 30px;
+  z-index: 4;
 }
 
 .filter__searchBar_preferences {
@@ -38,6 +39,7 @@
   border-color: #212121 #767676 #767676 #212121;
   border-radius: 6px;
   margin-bottom: 10px;
+  z-index: 3;
 }
 
 .filter__rating_diet_budget {
@@ -61,13 +63,16 @@
   border: 2px solid;
   border-color: #212121 #767676 #767676 #212121;
   border-radius: 6px;
+  z-index: 2;
 }
 
 .filter__diet {
   width: min(35%, calc((100% - 200px) / 2));
   margin-top: 20px;
-  margin-left: 20px;
-  margin-right: 20px;
+}
+
+.filter__diet > h3 {
+  margin-left: 1.2vw;
 }
 
 .filter__diet_bar {
@@ -77,6 +82,8 @@
   border: 2px solid;
   border-color: #212121 #767676 #767676 #212121;
   border-radius: 6px;
+  z-index: 2;
+  margin-left: 1.2vw;
 }
 
 .filter__budget {

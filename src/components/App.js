@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { auth } from "../tools/firebase";
-import { useStateValue } from "../context/StateProvider";
 import "./css/App.css";
 import Header from "./Header";
 import ShoppingCart from "./ShoppingCart";
@@ -18,12 +17,15 @@ import logo from "../img/logo-white.png";
 import background from "../img/background.jpg";
 import { restaurants, MID_TOAST_DURATION } from "../util/constants";
 import { removePunctuation } from "../util/helperFunctions";
+import { useAuthContext } from "../context/AuthContext";
+import { FilterContextProvider } from "../context/FilterContext";
 
 const promise = loadStripe(`${process.env.REACT_APP_STRIPE_PUBLIC_KEY}`);
 toast.configure();
 
 function App() {
-  const [{ basket }, dispatch] = useStateValue();
+  const [, authDispatch] = useAuthContext();
+
   //const [restaurants, setRestaurants] = useState([]);
   const preload = [logo, background];
 
@@ -54,7 +56,7 @@ function App() {
     auth.onAuthStateChanged((authUser) => {
       // the user just logged in / the user was logged in
       if (authUser) {
-        dispatch({
+        authDispatch({
           type: "SET_USER",
           user: authUser,
         });
@@ -68,7 +70,7 @@ function App() {
         }, 800);
       } else {
         // the user is logged out
-        dispatch({
+        authDispatch({
           type: "SET_USER",
           user: null,
         });
@@ -88,7 +90,9 @@ function App() {
               path={`/${removePunctuation(restaurant)}`}
             >
               <Header />
-              <RestaurantPage restaurant={restaurant} />
+              <FilterContextProvider>
+                <RestaurantPage restaurant={restaurant} />
+              </FilterContextProvider>
             </Route>
           ))}
 

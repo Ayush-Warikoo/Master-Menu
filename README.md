@@ -118,6 +118,7 @@ The following includes a detailed list of implemented features/details:
 - Stying adjusts to any laptop or desktop screen size
 - General UI/UX design and functionality using Material-UI
 - Uses infinite scrolling to paginate the order history (incorpating throttling for optimization)
+- Rendering optimizations utilizing memoization
 
 ## Built With
 

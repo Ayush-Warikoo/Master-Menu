@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import Select from "react-select";
 import AsyncSelect from "react-select/async-creatable";
 import makeAnimated from "react-select/animated";
-import { useStateValue } from "../context/StateProvider";
 import "./css/MenuFilter.css";
 import { ratingOptions, dietOptions, DEBOUNCE_TIME } from "../util/constants";
 import AwesomeDebouncePromise from "awesome-debounce-promise";
+import { useFilterContext } from "../context/FilterContext";
 
 function MenuFilter() {
-  const [{ allergy, preference, budget, rating, diet }, dispatch] =
-    useStateValue();
+  const [{ allergy, preference, budget, rating, diet }, filterDispatch] =
+    useFilterContext();
 
   //Helper function to remember filter options
   const convertToAutocompleteOptions = (options) => {
@@ -66,7 +66,7 @@ function MenuFilter() {
       preferenceArray[i] = preferenceArray[i].toLowerCase().trim();
     }
 
-    dispatch({
+    filterDispatch({
       type: "UPDATE_FILTER",
       allergy: allergyArray,
       preference: preferenceArray,
@@ -141,16 +141,6 @@ function MenuFilter() {
           />
         </div>
 
-        <div className="filter__diet">
-          <h3> Diet Selection:</h3>
-          <Select
-            value={selectedDiet}
-            onChange={setSelectedDiet}
-            options={dietOptions}
-            className={"filter__diet_bar"}
-          />
-        </div>
-
         <div className="filter__budget">
           <h3>Budget Maximum:</h3>
           <input
@@ -159,6 +149,16 @@ function MenuFilter() {
             value={selectedBudget}
             onChange={(e) => setSelectedBudget(e.target.value)}
             className={"filter__budget_bar"}
+          />
+        </div>
+
+        <div className="filter__diet">
+          <h3> Diet Selection:</h3>
+          <Select
+            value={selectedDiet}
+            onChange={setSelectedDiet}
+            options={dietOptions}
+            className={"filter__diet_bar"}
           />
         </div>
       </div>

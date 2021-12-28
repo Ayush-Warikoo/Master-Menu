@@ -4,7 +4,6 @@ import SearchIcon from "@material-ui/icons/Search";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useStateValue } from "../context/StateProvider";
 import { auth } from "../tools/firebase";
 import "./css/Header.css";
 import logo from "../img/logo-white.png";
@@ -14,16 +13,23 @@ import {
   SHORT_TOAST_DURATION,
 } from "../util/constants";
 import { removePunctuation } from "../util/helperFunctions";
+import {
+  getBasketTotalQuantity,
+  useBasketContext,
+} from "../context/BasketContext";
+import { useAuthContext } from "../context/AuthContext";
 
 function Header() {
-  const [{ basket, user }, dispatch] = useStateValue();
+  const [{ basket }, basketDispatch] = useBasketContext();
+  const [{ user }] = useAuthContext();
+
   const history = useHistory();
   const [searchBarText, setSearchBarText] = useState("");
 
   //logout
   const handleAuthentication = () => {
     if (user) {
-      dispatch({
+      basketDispatch({
         type: "EMPTY_BASKET",
       });
       toast.info(
@@ -118,7 +124,7 @@ function Header() {
             <div className="header__optionBasket">
               <ShoppingBasketIcon />
               <span className="header__optionLineTwo header__basketCount">
-                {basket.reduce((acc, curr) => acc + curr.quantity, 0)}
+                {getBasketTotalQuantity(basket)}
               </span>
             </div>
           </div>

@@ -2,12 +2,14 @@ import React from "react";
 import "./css/Product.css";
 import StarIcon from "@material-ui/icons/Star";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
-import { useStateValue } from "../context/StateProvider";
 import { RED, BLACK, GREEN, DIET, MAX_STARS } from "../util/constants";
+import { useFilterContext } from "../context/FilterContext";
+import { useBasketContext } from "../context/BasketContext";
 
-function Product({ product }) {
-  const [{ allergy, preference, budget, rating, diet }, dispatch] =
-    useStateValue();
+const Product = ({ product }) => {
+  const [{ allergy, preference, budget, rating, diet }] = useFilterContext();
+
+  const [, basketDispatch] = useBasketContext();
 
   const buttonColor = () => {
     let ratingInt = parseInt(rating);
@@ -55,7 +57,7 @@ function Product({ product }) {
 
   const addToBasket = () => {
     // dispatch the item into the data layer
-    dispatch({
+    basketDispatch({
       type: "ADD_TO_BASKET",
       item: {
         id: product.id,
@@ -81,28 +83,30 @@ function Product({ product }) {
     return s;
   };
 
-  return (
-    <div className="product">
-      <div className="product__info">
-        <h2> {product.title} </h2>
-        <p className="product__price">
-          <small> $ </small>
-          <strong> {product.price} </strong>
-        </p>
-        <div className="product__rating">{ratingOutput()}</div>
+  return React.useMemo(() => {
+    return (
+      <div className="product">
+        <div className="product__info">
+          <h2> {product.title} </h2>
+          <p className="product__price">
+            <small> $ </small>
+            <strong> {product.price} </strong>
+          </p>
+          <div className="product__rating">{ratingOutput()}</div>
+        </div>
+        <img src={product.image} alt="" />
+        <div className="product__ingredients">
+          <p> Ingredients: {product.ingredients}</p>
+        </div>
+        <button
+          onClick={() => addToBasket()}
+          style={{ backgroundColor: buttonColor() }}
+        >
+          Add to Order
+        </button>
       </div>
-      <img src={product.image} alt="" />
-      <div className="product__ingredients">
-        <p> Ingredients: {product.ingredients}</p>
-      </div>
-      <button
-        onClick={() => addToBasket()}
-        style={{ backgroundColor: buttonColor() }}
-      >
-        Add to Order
-      </button>
-    </div>
-  );
-}
+    );
+  }, [allergy, preference, budget, rating, diet]);
+};
 
 export default Product;

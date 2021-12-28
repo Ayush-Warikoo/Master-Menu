@@ -3,15 +3,17 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
-import reducer, { initialState } from "./reducer/reducer";
-import { StateProvider } from "./context/StateProvider";
+import { AuthContextProvider } from "./context/AuthContext";
+import { BasketContextProvider } from "./context/BasketContext";
 require("dotenv").config();
 
 ReactDOM.render(
   <React.StrictMode>
-    <StateProvider initialState={initialState} reducer={reducer}>
-      <App />
-    </StateProvider>
+    <AuthContextProvider>
+      <BasketContextProvider>
+        <App />
+      </BasketContextProvider>
+    </AuthContextProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
